@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Santa Cycle Rampage MSP//Event Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:20261205-meetup@santacyclerampagemsp.org
+DTSTAMP:20261003T042508Z
+DTSTART:20261205T160000Z
+DTEND:20261205T170000Z
+SUMMARY:Twin Cities Santa Cycle Rampage
+LOCATION:The Loop\, 606 Washington Ave N\, Suite 100\, Minneapolis\, MN 554
+ 01
+DESCRIPTION:Meet at 10 AM for breakfast at The Loop. Bring a toy for kids i
+ n need. The brewery-to-brewery ride continues after the meetup. The collec
+ tion brewery and later stops will be announced closer to ride day. Ride at
+  your own risk and follow traffic laws.
+URL:https://santacyclerampagemsp.org/
+END:VEVENT
+END:VCALENDAR
