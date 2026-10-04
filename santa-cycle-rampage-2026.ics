@@ -5,20 +5,20 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
 UID:20261205-meetup@santacyclerampagemsp.org
-DTSTAMP:20261004T030103Z
+DTSTAMP:20261004T030832Z
 DTSTART:20261205T160000Z
-DTEND:20261205T170000Z
+DTEND:20261205T233000Z
 SUMMARY:Twin Cities Santa Cycle Rampage 2026
 LOCATION:The Loop\, 606 Washington Ave N\, Suite 100\, Minneapolis\, MN 554
  01
 DESCRIPTION:Meet at 10 AM for breakfast at The Loop. Dress festive and brin
- g a toy for kids in need. The brewery-to-brewery ride continues after the 
- meetup. The collection brewery and later stops will be announced closer to
-  ride day.\n\nWebsite and ride updates: https://scrmsp.org\n\nFacebook RSV
- P (optional but appreciated): https://www.facebook.com/events/197279829668
- 3555/\n\nThe ride is free and no registration is required. Ride at your ow
- n risk and follow traffic laws. If you’re drinking, arrange a sober driv
- er.
+ g a toy for kids in need. The brewery-to-brewery ride continues after brea
+ kfast and ends at 5:30 PM at Fulton Brewery. The toy collection brewery an
+ d intermediate stops will be announced closer to ride day.\n\nWebsite and 
+ ride updates: https://scrmsp.org\n\nFacebook RSVP (optional but appreciate
+ d): https://www.facebook.com/events/1972798296683555/\n\nThe ride is free 
+ and no registration is required. Ride at your own risk and follow traffic 
+ laws. If you’re drinking, arrange a sober driver.
 URL:https://scrmsp.org/
 END:VEVENT
 END:VCALENDAR
