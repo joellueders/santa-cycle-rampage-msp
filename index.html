@@ -101,6 +101,7 @@ section{padding:58px 0}.section-title{font-size:clamp(3.1rem,13vw,7.4rem);margin
 .hero h1 .event-region{font-size:.3em;letter-spacing:.04em;color:var(--ink);margin-bottom:.35em}
 
 .hero-since{margin-top:16px}
+.brewery-film{margin:20px 0 0;max-width:760px}.brewery-film video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--ink);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--red)}.brewery-film figcaption{margin-top:12px;font-size:.75rem;font-weight:800;text-transform:uppercase}
 </style>
 </head>
 <body>
@@ -128,7 +129,7 @@ section{padding:58px 0}.section-title{font-size:clamp(3.1rem,13vw,7.4rem);margin
 <section id="how"><div class="wrap rule"><h2 class="display section-title">How it works</h2><div class="steps">
 <div class="step"><div class="num">01</div><div><h3>Dress like Santa</h3><p>Put on your Santa suit. Meet at The Loop at 10 AM for breakfast. The address is 606 Washington Ave N, Suite 100, Minneapolis, MN 55401. When it fills up, there are other places nearby. Many riders skip the breakfast and join at the first brewery, our second stop. For them, that is where the day begins.</p></div></div>
 <div class="step"><div class="num">02</div><div><h3>Ride a bike</h3><p>Take it slow. Stay with the group and look out for each other. Bring bells and make some noise. <mark class="lights-reminder">Bring front and rear bike lights.</mark> By the last two stops, the sun will be going down.</p></div></div>
-<div class="step"><div class="num">03</div><div><h3>Have a beer</h3><p>We stop at breweries along the way. Have a local craft beer and enjoy the company. You do not have to drink.</p></div></div>
+<div class="step"><div class="num">03</div><div><h3>Have a beer</h3><p>We stop at breweries along the way. Have a local craft beer and enjoy the company. You do not have to drink.</p><figure class="brewery-film"><video class="brewery-loop" controls muted loop playsinline preload="none" poster="assets/ladona-santas-loop-poster.jpg" aria-label="Santas gathered around tables inside La Doña brewery"><source data-src="assets/ladona-santas-loop.mp4" type="video/mp4"></video><figcaption>Santas take over La Doña.</figcaption></figure></div></div>
 <div class="step"><div class="num">04</div><div><h3>Spread some cheer</h3><p>Wave to the people on the sidewalk and watching from their cars. Ring your bell. Give them something to smile about. Keep riding.</p></div></div>
 </div></div></section>
 
@@ -191,6 +192,12 @@ if(packLoop&&!reduceMotion){
   const loadPackLoop=()=>{const source=packLoop.querySelector("source[data-src]");if(source){source.src=source.dataset.src;source.removeAttribute("data-src");packLoop.load();}packLoop.play().catch(()=>{});};
   if("IntersectionObserver" in window){const observer=new IntersectionObserver(entries=>{if(entries.some(entry=>entry.isIntersecting)){loadPackLoop();observer.disconnect();}},{rootMargin:"200px"});observer.observe(packLoop);}
   else{loadPackLoop();}
+}
+const breweryLoop=document.querySelector(".brewery-loop");
+if(breweryLoop){
+  const loadBreweryLoop=()=>{const source=breweryLoop.querySelector("source[data-src]");if(source){source.src=source.dataset.src;source.removeAttribute("data-src");breweryLoop.load();}if(!reduceMotion)breweryLoop.play().catch(()=>{});};
+  if("IntersectionObserver" in window){const observer=new IntersectionObserver(entries=>{if(entries.some(entry=>entry.isIntersecting)){loadBreweryLoop();observer.disconnect();}},{rootMargin:"200px"});observer.observe(breweryLoop);}
+  else{loadBreweryLoop();}
 }
 </script>
 <!-- Cloudflare Web Analytics -->
