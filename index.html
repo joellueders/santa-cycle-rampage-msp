@@ -93,10 +93,12 @@ section{padding:58px 0}.section-title{font-size:clamp(3.1rem,13vw,7.4rem);margin
 /* Hi-vis accents */
 .lights-reminder{background:#b7ff00;color:var(--ink)}
 .hero-event .calendar-button:not(.facebook-button){background:#b7ff00;color:var(--ink)}
+
+.schedule-link{background:#b7ff00;color:var(--ink);padding:6px 8px}.desktop-nav{align-items:center}.mobile-nav .schedule-link{color:var(--ink)}.footer-brand{display:flex;align-items:center;gap:16px}.footer-brand img{width:90px;height:100px;object-fit:contain;background:var(--paper);border-radius:4px;padding:5px}.footerline{align-items:center}
 </style>
 </head>
 <body>
-<header><div class="wrap bar"><div class="brand"><img class="brand-logo" src="assets/santa-logo.png" alt=""><span>SANTA CYCLE RAMPAGE MSP</span></div><nav class="desktop-nav" aria-label="Main navigation"><a href="#about">What is this?</a><a href="#gifts">Toy drive</a><a href="#how">How it works</a><a href="#stops">Schedule</a><a href="#history">History</a><a href="#faq">FAQ</a><a href="press.html">Press</a></nav><button class="menu" type="button" aria-label="Open menu" aria-controls="mobile-nav" aria-expanded="false"><span></span><span></span><span></span></button></div><nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><div class="wrap"><a href="#about">What is this?</a><a href="#gifts">Toy drive</a><a href="#how">How it works</a><a href="#stops">Schedule</a><a href="#history">History</a><a href="#faq">FAQ</a><a href="press.html">Press</a></div></nav></header>
+<header><div class="wrap bar"><div class="brand"><img class="brand-logo" src="assets/santa-logo.png" alt=""><span>SANTA CYCLE RAMPAGE MSP</span></div><nav class="desktop-nav" aria-label="Main navigation"><a href="#about">What is this?</a><a href="#gifts">Toy drive</a><a href="#how">How it works</a><a class="schedule-link" href="#stops">Schedule</a><a href="#history">History</a><a href="#faq">FAQ</a><a href="press.html">Press</a></nav><button class="menu" type="button" aria-label="Open menu" aria-controls="mobile-nav" aria-expanded="false"><span></span><span></span><span></span></button></div><nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><div class="wrap"><a href="#about">What is this?</a><a href="#gifts">Toy drive</a><a href="#how">How it works</a><a class="schedule-link" href="#stops">Schedule</a><a href="#history">History</a><a href="#faq">FAQ</a><a href="press.html">Press</a></div></nav></header>
 <main>
 <section class="hero"><div class="wrap">
 <div class="kicker">Minneapolis · Since 2013</div>
@@ -161,7 +163,7 @@ section{padding:58px 0}.section-title{font-size:clamp(3.1rem,13vw,7.4rem);margin
 <div class="fullbleed"><img src="assets/patio.jpg" alt="Santa Cycle Rampage riders relaxing outside at a brewery"><div class="caption">December patio weather.</div></div>
 <section class="follow"><div class="wrap"><div class="kicker">Ride updates and more cheer</div><h2 class="display section-title">Join the joy</h2><p>The website is home base. Facebook is where we post current announcements, schedule updates and ride-day changes.</p><a class="cta" href="https://www.facebook.com/SantaCycleRampageMSP/" target="_blank" rel="noopener">Follow ride updates on Facebook ↗</a></div></section>
 </main>
-<footer><div class="wrap footerline"><strong>SANTA CYCLE RAMPAGE MSP</strong><span>Ride a bike. Have a beer. Spread some cheer.</span><span>Minneapolis, Minnesota</span><a href="press.html">Press &amp; media</a></div></footer>
+<footer><div class="wrap footerline"><div class="footer-brand"><img src="assets/santa-logo.png" alt="Santa face made from bicycle parts and beer glasses"><strong>SANTA CYCLE RAMPAGE MSP</strong></div><span>Ride a bike. Have a beer. Spread some cheer.</span><span>Minneapolis, Minnesota</span><a href="press.html">Press &amp; media</a></div></footer>
 <script>
 const menuButton=document.querySelector(".menu");
 const mobileNav=document.querySelector("#mobile-nav");
