@@ -101,7 +101,7 @@ section{padding:58px 0}.section-title{font-size:clamp(3.1rem,13vw,7.4rem);margin
 .hero h1 .event-region{font-size:.3em;letter-spacing:.04em;color:var(--ink);margin-bottom:.35em}
 
 .hero-since{margin-top:16px}
-.brewery-room{background:var(--paper);padding:32px 0 52px}.brewery-room-grid{display:grid;gap:28px;align-items:center}.brewery-film{margin:0;width:100%;max-width:440px;justify-self:center}.brewery-film video{display:block;width:100%;height:auto;aspect-ratio:9/16;background:var(--ink);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--red)}.brewery-room h2{font-size:clamp(2.8rem,10vw,5rem);margin:10px 0 16px}.brewery-room .lede{margin:0}@media(min-width:760px){.brewery-room-grid{grid-template-columns:minmax(0,440px) 1fr;gap:52px}.brewery-room-copy{max-width:470px}}
+.brewery-room{background:var(--paper);padding:32px 0 52px}.brewery-film{position:relative;margin:0 auto;width:100%;max-width:440px}.brewery-film video{display:block;width:100%;height:auto;aspect-ratio:9/16;background:var(--ink);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--red)}.brewery-film .caption{top:14px;bottom:auto;right:14px;left:auto;max-width:calc(100% - 28px)}
 </style>
 </head>
 <body>
@@ -133,7 +133,7 @@ section{padding:58px 0}.section-title{font-size:clamp(3.1rem,13vw,7.4rem);margin
 <div class="step"><div class="num">04</div><div><h3>Spread some cheer</h3><p>Wave to the people on the sidewalk and watching from their cars. Ring your bell. Give them something to smile about. Keep riding.</p></div></div>
 </div></div></section>
 
-<section class="brewery-room" aria-labelledby="brewery-room-title"><div class="wrap brewery-room-grid"><figure class="brewery-film"><video class="brewery-loop" controls muted loop playsinline preload="none" poster="assets/ladona-room-pan-poster.jpg" aria-label="A pan across La Doña brewery filled with Santas gathered around tables"><source data-src="assets/ladona-room-pan.mp4" type="video/mp4"></video></figure><div class="brewery-room-copy"><div class="kicker">Inside the brewery</div><h2 class="display" id="brewery-room-title">Santas take over La Doña.</h2><p class="lede">The brewery stops are half the fun.</p></div></div></section>
+<section class="brewery-room" aria-labelledby="brewery-room-title"><div class="wrap"><figure class="brewery-film"><video class="brewery-loop" controls muted loop playsinline preload="none" poster="assets/ladona-room-pan-poster.jpg" aria-label="A pan across La Doña brewery filled with Santas gathered around tables"><source data-src="assets/ladona-room-pan.mp4" type="video/mp4"></video><figcaption class="caption" id="brewery-room-title">Santas take over La Doña.</figcaption></figure></div></section>
 
 <div class="fullbleed"><img src="assets/hero.jpg" alt="A large group of Santa-costumed cyclists riding through Minneapolis"><div class="caption">Free · Festive · Full of cheer</div></div>
 
