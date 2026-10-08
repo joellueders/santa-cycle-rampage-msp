@@ -15,11 +15,11 @@ Prepared October 4, 2026. Drafts only; no submissions or messages sent.
 
 Dress like Santa, decorate your bike, and join a free holiday bicycle ride through Minneapolis. Santa Cycle Rampage MSP brings festive riders together for brewery stops, toy donations, and plenty of unexpected cheer along the way. Meet at The Loop at 10 AM for breakfast before the ride. Bring a new, unwrapped toy you can carry on your bike to donate to children in need.
 
-The full brewery schedule, final stop, and toy-drop location will be announced closer to ride day. Follow the website and Facebook event for updates. Ride at your own risk and follow traffic laws. If drinking, arrange a sober way home.
+The full brewery schedule and final stop will be announced closer to ride day. Follow the website and Facebook event for updates. Ride at your own risk and follow traffic laws. If drinking, arrange a sober way home.
 
 ## Short listing
 
-Santa Cycle Rampage MSP returns Saturday, December 5, 2026! Meet at 10 AM at The Loop in Minneapolis for a free festive bike ride. Dress up, decorate your bike, and bring a new, unwrapped toy to donate. Brewery stops and toy-drop details to come. Details: https://scrmsp.org/
+Santa Cycle Rampage MSP returns Saturday, December 5, 2026! Meet at 10 AM at The Loop in Minneapolis for a free festive bike ride. Dress up, decorate your bike, and bring a new, unwrapped toy to donate. Brewery stops to come. Details: https://scrmsp.org/
 
 Toy recipient: to be confirmed. Collection brewery and delivery arrangements will be confirmed during brewery visits. Solo riders are welcome.
 
@@ -43,7 +43,7 @@ Hello,
 
 Could you consider Twin Cities Santa Cycle Rampage 2026 for your event calendar or community announcements?
 
-The free holiday bicycle ride meets Saturday, December 5, at 10 AM at The Loop in Minneapolis. Riders wear festive costumes, decorate their bikes, and bring new, unwrapped toys to donate while spreading cheer across the city. The brewery schedule, final stop, and toy-drop details will be announced closer to ride day.
+The free holiday bicycle ride meets Saturday, December 5, at 10 AM at The Loop in Minneapolis. Riders wear festive costumes, decorate their bikes, and bring new, unwrapped toys to donate while spreading cheer across the city. The brewery schedule and final stop will be announced closer to ride day.
 
 Event details: https://scrmsp.org/
 Photos, B-roll, and media facts: https://scrmsp.org/press.html
