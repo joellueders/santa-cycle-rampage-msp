@@ -21,7 +21,7 @@ The full brewery schedule, final stop, and toy-drop location will be announced c
 
 Santa Cycle Rampage MSP returns Saturday, December 5, 2026! Meet at 10 AM at The Loop in Minneapolis for a free festive bike ride. Dress up, decorate your bike, and bring a new, unwrapped toy to donate. Brewery stops and toy-drop details to come. Details: https://scrmsp.org/
 
-Planned toy recipient: The Salvation Army. Collection brewery and delivery arrangements will be confirmed during brewery visits. Solo riders are welcome.
+Toy recipient: to be confirmed. Collection brewery and delivery arrangements will be confirmed during brewery visits. Solo riders are welcome.
 
 ## Priority outreach
 
