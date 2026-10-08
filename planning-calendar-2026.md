@@ -123,3 +123,7 @@ Draft ad copy to develop:
 - Choose starting 2026 budget; $100 is last year's baseline, not a cap. Recover prior campaign results if available.
 - Confirm Instagram advertising identity, permissions, and organic posting access while Joel handles account recovery.
 - Preferred final format: weekly checklist, calendar import, or both.
+
+
+Current slogan: Dress like Santa. Bring a gift. Ride a bike. Drink a beer. Spread some cheer.
+Toy guidance: new, unwrapped toys. Keep historical posters and quotations unchanged.

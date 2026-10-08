@@ -55,3 +55,7 @@ Thank you for considering it!
 Start with the calendars and neighborhood listing now. Follow with a second announcement when the brewery schedule and toy-drop location are confirmed. Use the exact event title consistently and link to the website.
 
 If a calendar requires a precise end time, leave it blank if permitted or confirm it with the organizer before submitting. The downloadable calendar currently blocks time through 5:30 PM as an estimate; the finish time and final brewery are not confirmed.
+
+
+Current slogan: Dress like Santa. Bring a gift. Ride a bike. Drink a beer. Spread some cheer.
+Toy guidance: new, unwrapped toys. Keep historical posters and quotations unchanged.
