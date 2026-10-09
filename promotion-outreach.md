@@ -13,13 +13,13 @@ Prepared October 4, 2026. Drafts only; no submissions or messages sent.
 **Facebook event:** https://www.facebook.com/events/1972798296683555/
 **Media resources:** https://scrmsp.org/press.html
 
-Dress like Santa, decorate your bike, and join a free holiday bicycle ride through Minneapolis. Santa Cycle Rampage MSP brings festive riders together for brewery stops, toy donations, and plenty of unexpected cheer along the way. Meet at The Loop at 10 AM for breakfast before the ride. Bring a new, unwrapped toy you can carry on your bike to donate to children in need.
+Dress like Santa, decorate your bike, and join a free holiday bicycle ride through Minneapolis. Santa Cycle Rampage MSP brings festive riders together for local craft beer at Minneapolis breweries, toy donations, and plenty of unexpected cheer along the way. Meet at The Loop at 10 AM for breakfast before the ride. Bring a new, unwrapped toy you can carry on your bike to donate to children in need.
 
 The full brewery schedule and final stop will be announced closer to ride day. Follow the website and Facebook event for updates. Ride at your own risk and follow traffic laws. If drinking, arrange a sober way home.
 
 ## Short listing
 
-Santa Cycle Rampage MSP returns Saturday, December 5, 2026! Meet at 10 AM at The Loop in Minneapolis for a free festive bike ride. Dress up, decorate your bike, and bring a new, unwrapped toy to donate. Brewery stops to come. Details: https://scrmsp.org/
+Santa Cycle Rampage MSP returns Saturday, December 5, 2026! Meet at 10 AM at The Loop in Minneapolis for a free festive bike ride with local craft beer and brewery stops. Dress up, decorate your bike, and bring a new, unwrapped toy to donate. Brewery lineup to come. Details: https://scrmsp.org/
 
 Toy recipient: to be confirmed. Collection brewery and delivery arrangements will be confirmed during brewery visits. Solo riders are welcome.
 
@@ -43,7 +43,7 @@ Hello,
 
 Could you consider Twin Cities Santa Cycle Rampage 2026 for your event calendar or community announcements?
 
-The free holiday bicycle ride meets Saturday, December 5, at 10 AM at The Loop in Minneapolis. Riders wear festive costumes, decorate their bikes, and bring new, unwrapped toys to donate while spreading cheer across the city. The brewery schedule and final stop will be announced closer to ride day.
+The free holiday bicycle ride meets Saturday, December 5, at 10 AM at The Loop in Minneapolis. Riders wear festive costumes, decorate their bikes, enjoy local craft beer at Minneapolis breweries, and bring new, unwrapped toys to donate while spreading cheer across the city. The brewery schedule and final stop will be announced closer to ride day.
 
 Event details: https://scrmsp.org/
 Photos, B-roll, and media facts: https://scrmsp.org/press.html
@@ -59,3 +59,7 @@ If a calendar requires a precise end time, leave it blank if permitted or confir
 
 Current slogan: Dress like Santa. Bring a gift. Ride a bike. Drink a beer. Spread some cheer.
 Toy guidance: new, unwrapped toys. Keep historical posters and quotations unchanged.
+
+## Current writing direction
+
+Local craft beer is central to the invitation: a punk rock brewery beer bash on bicycles, with costumes, holiday mischief, generosity, and joy among strangers. Name local craft beer in event descriptions, listings, and brewery-focused posts. Keep the approved slogan's rhythm. Family participation and drink alternatives belong in practical FAQs rather than repeated qualifications in promotional copy. Joel reviews new social copy before posting.
