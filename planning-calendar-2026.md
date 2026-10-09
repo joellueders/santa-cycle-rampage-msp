@@ -125,5 +125,5 @@ Draft ad copy to develop:
 - Preferred final format: weekly checklist, calendar import, or both.
 
 
-Current slogan: Dress like Santa. Bring a gift. Ride a bike. Drink a beer. Spread some cheer.
+Current slogan: Dress like Santa. Bring a gift. Decorate your bike. Drink a beer. Spread some cheer.
 Toy guidance: new, unwrapped toys. Keep historical posters and quotations unchanged.
