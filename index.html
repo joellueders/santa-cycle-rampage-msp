@@ -124,6 +124,16 @@ main{scroll-margin-top:72px}
 
 .menu{min-width:44px;min-height:44px}
 
+
+.event-essentials{margin:12px 0 0;font-size:1rem;font-weight:700;line-height:1.5}
+.event-essentials a{text-decoration-thickness:1px;text-underline-offset:3px}
+#when-where{scroll-margin-top:76px}
+.video-shell{position:relative}
+.video-shell video{cursor:pointer}
+.video-toggle{position:absolute;left:10px;bottom:10px;z-index:2;min-height:44px;min-width:44px;padding:8px 12px;border:2px solid var(--paper);background:var(--ink);color:var(--paper);font:700 .85rem Arial,sans-serif;cursor:pointer}
+.video-shell[data-playing="true"] .video-toggle{opacity:0;pointer-events:none}
+.video-shell:hover .video-toggle,.video-shell:focus-within .video-toggle{opacity:1;pointer-events:auto}
+.video-toggle:focus-visible{outline:3px solid #b7ff00;outline-offset:3px}
 </style>
 </head>
 <body>
@@ -134,6 +144,7 @@ main{scroll-margin-top:72px}
 
 <h1 class="display red"><span class="event-region">Twin Cities</span><span>Santa</span><span>Cycle</span><span>Rampage</span></h1>
 <div class="kicker hero-since">Since 2013</div>
+<p class="event-essentials"><a href="#when-where"><time datetime="2026-12-05">Saturday, December 5</time> · 10 AM · The Loop · Free</a></p>
 <div class="hero-photo" id="hero-photo"><img alt="A smiling elf waves while riding with Santa-costumed cyclists in Minneapolis" src="assets/optimized/hero-waving-elf-composite-1023.webp" width="1023" height="1537" decoding="async" srcset="assets/optimized/hero-waving-elf-composite-480.webp 480w, assets/optimized/hero-waving-elf-composite-1023.webp 1023w" sizes="(min-width: 1152px) 1120px, calc(100vw - 32px)" loading="eager" fetchpriority="high"></div>
 
 
@@ -235,28 +246,47 @@ mobileNav.querySelectorAll("a").forEach(link=>link.addEventListener("click",clos
 document.addEventListener("keydown",event=>{if(event.key==="Escape"&&!mobileNav.hidden){closeMenu();menuButton.focus();}});
 document.addEventListener("click",event=>{if(!mobileNav.hidden&&!event.target.closest("header"))closeMenu();});
 const motionPreference=window.matchMedia("(prefers-reduced-motion: reduce)");
-const videos=[...document.querySelectorAll("video")];
-const pauseVideo=video=>video.pause();
-
+const videoStates=[];
+const syncVideo=state=>{
+  const playing=!state.video.paused&&!state.video.ended;
+  state.shell.dataset.playing=String(playing);
+  state.button.textContent=playing?"Pause":"Play";
+  state.button.setAttribute("aria-label",(playing?"Pause: ":"Play: ")+state.label);
+};
+const updateVideo=state=>{
+  const eligible=state.visible&&!document.hidden&&!state.userPaused&&!state.video.ended&&(!motionPreference.matches||state.userStarted);
+  if(eligible)state.video.play().catch(()=>syncVideo(state));
+  else state.video.pause();
+};
+document.querySelectorAll("video").forEach((video,index)=>{
+  video.controls=false;
+  video.tabIndex=-1;
+  if(!video.id)video.id="ride-video-"+index;
+  const shell=document.createElement("div");shell.className="video-shell";
+  video.parentNode.insertBefore(shell,video);shell.append(video);
+  const button=document.createElement("button");button.type="button";button.className="video-toggle";button.setAttribute("aria-controls",video.id);shell.append(button);
+  const state={video,shell,button,label:video.getAttribute("aria-label")||"Ride video",visible:false,userPaused:false,userStarted:false};
+  const toggle=()=>{
+    if(video.paused||video.ended){state.userPaused=false;state.userStarted=true;if(video.ended)video.currentTime=0;video.play().catch(()=>syncVideo(state));}
+    else{state.userPaused=true;video.pause();}
+  };
+  button.addEventListener("click",toggle);video.addEventListener("click",toggle);
+  ["play","pause","ended","error"].forEach(event=>video.addEventListener(event,()=>syncVideo(state)));
+  videoStates.push(state);syncVideo(state);
+});
 if("IntersectionObserver" in window){
-  const loadObserver=new IntersectionObserver(entries=>{
-    for(const entry of entries){if(entry.isIntersecting){
-      const video=entry.target;
-      if(!motionPreference.matches){video.preload="metadata";}
-      loadObserver.unobserve(video);
-    }}
-  },{rootMargin:"200px"});
-  const playbackObserver=new IntersectionObserver(entries=>{
-    for(const entry of entries){const video=entry.target;
-      if(entry.isIntersecting){
-        if(!motionPreference.matches&&!document.hidden&&!video.ended)video.play().catch(()=>{});
-      }else{pauseVideo(video);}
+  const observer=new IntersectionObserver(entries=>{
+    for(const entry of entries){
+      const state=videoStates.find(item=>item.video===entry.target);
+      state.visible=entry.isIntersecting;updateVideo(state);
     }
   },{threshold:0.25});
-  videos.forEach(video=>{loadObserver.observe(video);playbackObserver.observe(video);});
+  videoStates.forEach(state=>observer.observe(state.video));
 }
-motionPreference.addEventListener("change",event=>{if(event.matches)videos.forEach(pauseVideo);});
-document.addEventListener("visibilitychange",()=>{if(document.hidden)videos.forEach(pauseVideo);});
+motionPreference.addEventListener("change",event=>{
+  videoStates.forEach(state=>{if(event.matches)state.userStarted=false;updateVideo(state);});
+});
+document.addEventListener("visibilitychange",()=>videoStates.forEach(updateVideo));
 </script>
 <!-- Cloudflare Web Analytics -->
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "9a3162fb92da4ce69bf791c1a7c37741"}'></script>
