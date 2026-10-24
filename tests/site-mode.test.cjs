@@ -91,7 +91,7 @@ test('event details, calendar and media remain single shared elements', () => {
   assert.match(html, /Fudge that\. Get together\. Spread cheer\./);
   assert.match(html, /Join the resistance/);
   assert.doesNotMatch(html, /<a[^>]*>Join the resistance/);
-  assert.match(html, /<h2 class="join-heading rebel-copy">Join the resistance\.<\/h2>/);
+  assert.match(html, /id="join-resistance-title">Join the resistance\.<\/h2>/);
   const heroIntro = html.split('<div class="hero-layout"><div class="hero-intro">')[1].split('<div class="hero-photo"')[0];
   assert.match(heroIntro, /class="event-actions"/);
   assert.match(heroIntro, /https:\/\/www\.facebook\.com\/events\/1972798296683555\//);
@@ -99,7 +99,42 @@ test('event details, calendar and media remain single shared elements', () => {
   assert.match(html, /brewery to brewery across Minneapolis/);
   assert.match(html, /the destination is the people we meet along the way/);
   assert.match(html, /lower the shields we put around our hearts/);
-  assert.match(html, /<h2 class="rebel-response rebel-copy">Fudge that\. Get together\. Spread cheer\.<\/h2>\s*<p class="hero-tagline">Minnesota’s jolliest brewery ride and toy drive\.<\/p>/);
+  assert.ok(heroIntro.indexOf('class="hero-rebel-kicker') < heroIntro.indexOf('<h1'));
+  assert.ok(heroIntro.indexOf('class="hero-tagline') < heroIntro.indexOf('class="rebel-response'));
+  assert.ok(heroIntro.indexOf('class="rebel-response') < heroIntro.indexOf('class="event-actions'));
+  assert.ok(heroIntro.indexOf('class="event-actions') < heroIntro.indexOf('class="hero-free-note'));
+  assert.match(html, /data-rebel-intro="cheer"/);
+  assert.match(html, /Rebel Mode: ON/);
+  assert.match(html, /Switch to default/);
+  const joinCopy = html.split('<section class="join-resistance')[1].split('</section>')[0];
+  assert.doesNotMatch(joinCopy, /—/);
+  assert.match(joinCopy, /hearts, and helps strangers lower theirs/);
+  assert.equal((html.match(/class="starting-spot rebel-copy"/g) || []).length, 1);
   assert.doesNotMatch(html, /The ride is still happening/);
   assert.doesNotMatch(html, /@import|fonts\.googleapis|fonts\.gstatic/);
+});
+
+test('every inline script has valid JavaScript or JSON syntax', () => {
+  for (const script of scripts) {
+    if (script[0].includes('application/ld+json')) JSON.parse(script[1]);
+    else new vm.Script(script[1]);
+  }
+});
+
+test('Rebel body and primary action colors exceed 4.5:1 contrast', () => {
+  function luminance(hex) {
+    const linear = hex.match(/[a-f0-9]{2}/gi).map(value => {
+      const channel = parseInt(value, 16) / 255;
+      return channel <= .04045 ? channel / 12.92 : ((channel + .055) / 1.055) ** 2.4;
+    });
+    return .2126 * linear[0] + .7152 * linear[1] + .0722 * linear[2];
+  }
+  function contrast(a, b) {
+    const values = [luminance(a), luminance(b)].sort((x, y) => y - x);
+    return (values[0] + .05) / (values[1] + .05);
+  }
+  assert.ok(contrast('ebe4d6', '171613') >= 4.5);
+  assert.ok(contrast('fff3e3', 'b52b24') >= 4.5);
+  assert.match(html, /--muted:#ebe4d6/);
+  assert.match(html, /background:#b52b24/);
 });
