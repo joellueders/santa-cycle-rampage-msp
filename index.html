@@ -6,6 +6,9 @@
 <meta name="google-site-verification" content="q4kN9aiz9IwiqMlKps-kd9uDwu2JkqOlaohZ55ckQi8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#f3efe4">
+<script>
+try{if(localStorage.getItem("santa-site-mode")==="rebel"){document.documentElement.dataset.siteMode="rebel";document.querySelector('meta[name="theme-color"]').content="#171613";}}catch{}
+</script>
 <link rel="icon" href="favicon.ico?v=logo2026" sizes="any">
 <link rel="icon" href="favicon-32.png?v=logo2026" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=logo2026">
@@ -134,29 +137,92 @@ main{scroll-margin-top:72px}
 .video-toggle:focus-visible{outline:3px solid #b7ff00;outline-offset:3px}
 
 .hero-tagline{font-size:clamp(1.3rem,3.5vw,2.2rem);font-weight:900;line-height:1.2;margin:20px 0 0;max-width:30ch}
+/* One page, two voices. No alternate media, fonts, or dependencies. */
+html:not([data-site-mode="rebel"]) .rebel-copy,html[data-site-mode="rebel"] .default-copy{display:none!important}
+.header-actions{display:flex;align-items:center;gap:12px}
+.mode-toggle{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:8px 10px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);font:900 .72rem Arial,sans-serif;cursor:pointer;white-space:nowrap}
+.mode-toggle[hidden]{display:none}
+.mode-switch{position:relative;width:28px;height:16px;flex-shrink:0;border:1px solid currentColor;border-radius:20px}
+.mode-switch:after{content:"";position:absolute;top:2px;left:2px;width:10px;height:10px;border-radius:50%;background:currentColor}
+.mode-toggle[aria-pressed="true"] .mode-switch{background:var(--red)}
+.mode-toggle[aria-pressed="true"] .mode-switch:after{left:auto;right:2px}
+.mode-status{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.hero-invitation{font-size:1.05rem;line-height:1.6;max-width:40ch;margin:20px 0 0}
+.hero-invitation strong{display:block;margin-top:12px}
+.rebel-response{font:700 clamp(1.2rem,3vw,1.65rem)/1.4 'Courier New',monospace;margin:22px 0 18px}
+.resistance-banner{margin:0 0 22px;padding:9px 12px;background:var(--red);color:#fff3e3;font-size:.8rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase}
+.hero-join{margin-bottom:14px}
+.site-build{display:block;margin:14px 0 0;font:700 .7rem/1.4 'Courier New',monospace;letter-spacing:.04em;color:var(--muted)}
+.site-build span{display:block}
+html[data-site-mode="rebel"]{--paper:#171613;--ink:#f3efe4;--red:#e33d34;--green:#f3efe4;--muted:#c3bcad;--line:#5e584d;color-scheme:dark}
+html[data-site-mode="rebel"] header{background:rgba(23,22,19,.97);border-bottom-color:var(--line)}
+html[data-site-mode="rebel"] .hero h1{font-size:clamp(3rem,7.2vw,5.2rem);color:var(--ink)}
+html[data-site-mode="rebel"] .hero h1 em{font-style:normal;color:var(--red)}
+html[data-site-mode="rebel"] .hero-tagline{font-size:1rem;line-height:1.5;max-width:40ch;color:var(--muted)}
+html[data-site-mode="rebel"] .hero-invitation{font-size:1rem;color:var(--muted)}
+html[data-site-mode="rebel"] .hero-invitation strong{color:var(--ink)}
+html[data-site-mode="rebel"] .hero-since{font-size:.7rem;color:var(--muted)}
+html[data-site-mode="rebel"] .hero-photo{border:1px solid var(--line);padding:6px;box-shadow:none;margin:0;transform:rotate(-1deg)}
+html[data-site-mode="rebel"] .hero-event{background:var(--paper);color:var(--ink);border:0;border-top:4px solid var(--red);box-shadow:none;transform:none;padding:18px 0 0;margin:24px 0}
+html[data-site-mode="rebel"] .hero-event strong{font-size:clamp(2rem,4vw,3rem)}
+html[data-site-mode="rebel"] .hero-event p{font-size:1.05rem}
+html[data-site-mode="rebel"] .hero-event .ride-plan{font-size:.9rem;color:var(--muted);line-height:1.6}
+html[data-site-mode="rebel"] .hero-event .kicker{color:var(--red)}
+html[data-site-mode="rebel"] .calendar-button{box-shadow:none;font-size:.78rem}
+html[data-site-mode="rebel"] .hero-event .calendar-button:not(.facebook-button){background:var(--red);color:#fff3e3;border-color:var(--red)}
+html[data-site-mode="rebel"] .facebook-button{background:var(--ink);color:var(--paper)}
+html[data-site-mode="rebel"] .facebook-button:hover{background:#ded7c6}
+html[data-site-mode="rebel"] .cta{border-color:var(--red);box-shadow:4px 4px 0 var(--ink);color:#fff3e3}
+html[data-site-mode="rebel"] .facts,html[data-site-mode="rebel"] .first-ride-card,html[data-site-mode="rebel"] .artifact{background:#211f1a}
+html[data-site-mode="rebel"] .gift-drive,html[data-site-mode="rebel"] .spectator-invite{background:#211f1a;color:var(--ink)}
+html[data-site-mode="rebel"] .gift-drive .kicker,html[data-site-mode="rebel"] .spectator-invite .kicker{color:var(--red)}
+html[data-site-mode="rebel"] .lights-reminder,html[data-site-mode="rebel"] .schedule-link{color:#171613}
+html[data-site-mode="rebel"] .vibe,html[data-site-mode="rebel"] .pack-loop,html[data-site-mode="rebel"] footer{background:#100f0d;color:var(--ink)}
+html[data-site-mode="rebel"] .vibe .section-title,html[data-site-mode="rebel"] .dress h3,html[data-site-mode="rebel"] .hero-film .video-credit,html[data-site-mode="rebel"] .hero-film figcaption{color:var(--ink)}
+html[data-site-mode="rebel"] .dress,html[data-site-mode="rebel"] .vibe-story #ride-day-film{border-color:var(--ink)}
+html[data-site-mode="rebel"] .hero-film{background:#100f0d;border-color:var(--line)}
+html[data-site-mode="rebel"] .pack-loop-caption{background:var(--paper);color:var(--ink)}
+html[data-site-mode="rebel"] .follow .cta{background:var(--paper);color:var(--ink)}
+html[data-site-mode="rebel"] .footer-brand img{background:#f3efe4}
+@media(min-width:1050px){header .brand span{max-width:180px}.desktop-nav{gap:11px;font-size:.7rem}}
+@media(min-width:760px) and (max-width:1049px){.desktop-nav{display:none}.menu{display:flex}.mobile-nav:not([hidden]){display:flex}}
+@media(min-width:900px){html[data-site-mode="rebel"] .hero-layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);grid-template-areas:"intro photo" "intro event";gap:0 38px;align-items:start}html[data-site-mode="rebel"] .hero-intro{grid-area:intro}html[data-site-mode="rebel"] .hero-photo{grid-area:photo}html[data-site-mode="rebel"] .hero-event{grid-area:event}html[data-site-mode="rebel"] .hero .event-essentials{font-size:.9rem}}
+@media(max-width:600px){header .bar{height:auto;min-height:64px;gap:8px;padding:8px 0}.header-actions{gap:8px}.mode-toggle{font-size:.65rem;padding:7px;gap:6px}.brand{flex:1;max-width:none;gap:6px;font-size:.68rem}.brand span{max-width:140px}.brand-logo{width:30px;height:34px}.mode-switch{width:24px}.menu{width:44px;transform:none}.hero-invitation{font-size:1rem}.mobile-nav{max-height:calc(100vh - 80px)}}
+@media(max-width:360px){.mode-toggle{white-space:normal;width:77px}.mode-switch{display:none}.brand span{max-width:115px}}
 </style>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to content</a>
-<header><div class="wrap bar"><div class="brand"><img class="brand-logo" alt="" src="assets/optimized/santa-logo-80.webp" width="600" height="595" decoding="async" loading="eager"><span>TWIN CITIES SANTA CYCLE RAMPAGE</span></div><nav class="desktop-nav" aria-label="Main navigation"><a href="#about">What is this?</a><a href="#gifts">Toy drive</a><a href="#how">How it works</a><a class="schedule-link" href="#stops">Schedule</a><a href="#history">History</a><a href="#faq">FAQ</a><a href="press.html">Press</a></nav><button class="menu" type="button" aria-label="Open menu" aria-controls="mobile-nav" aria-expanded="false"><span></span><span></span><span></span></button></div><nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><div class="wrap"><a href="#about">What is this?</a><a href="#gifts">Toy drive</a><a href="#how">How it works</a><a class="schedule-link" href="#stops">Schedule</a><a href="#history">History</a><a href="#faq">FAQ</a><a href="press.html">Press</a></div></nav></header>
+<header><div class="wrap bar"><div class="brand"><img class="brand-logo" alt="" src="assets/optimized/santa-logo-80.webp" width="600" height="595" decoding="async" loading="eager"><span>TWIN CITIES SANTA CYCLE RAMPAGE</span></div><nav class="desktop-nav" aria-label="Main navigation"><a href="#about">What is this?</a><a href="#gifts">Toy drive</a><a href="#how">How it works</a><a class="schedule-link" href="#stops">Schedule</a><a href="#history">History</a><a href="#faq">FAQ</a><a href="press.html">Press</a></nav><div class="header-actions"><button class="mode-toggle" type="button" aria-label="Rebel Mode" aria-pressed="false" hidden><span class="mode-switch" aria-hidden="true"></span><span class="mode-label">Rebel Mode</span></button><button class="menu" type="button" aria-label="Open menu" aria-controls="mobile-nav" aria-expanded="false"><span></span><span></span><span></span></button></div></div><nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><div class="wrap"><a href="#about">What is this?</a><a href="#gifts">Toy drive</a><a href="#how">How it works</a><a class="schedule-link" href="#stops">Schedule</a><a href="#history">History</a><a href="#faq">FAQ</a><a href="press.html">Press</a></div></nav></header>
+<div class="mode-status" role="status" aria-live="polite"></div>
 <main id="main-content" tabindex="-1">
 <section class="hero"><div class="wrap">
 
-<h1 class="display red"><span class="event-region">Twin Cities</span><span>Santa</span><span>Cycle</span><span>Rampage</span></h1>
+<div class="resistance-banner rebel-copy">Unofficial Santa Resistance</div>
+<div class="hero-layout"><div class="hero-intro">
+<h1 class="display red"><span class="default-copy"><span class="event-region">Twin Cities</span><span>Santa</span><span>Cycle</span><span>Rampage</span></span><span class="rebel-copy"><span>The machine</span><span>wants you</span><span><em>alone.</em></span></span></h1>
+<small class="site-build"><span>v1.1.0</span><span>REBEL MODE</span></small>
 <p class="hero-tagline">Minnesota’s jolliest brewery ride and toy drive.</p>
+<p class="rebel-response rebel-copy">Fudge that. Get together. Spread cheer.</p>
+<p class="hero-invitation rebel-copy">We ride bicycles from brewery to brewery across Minneapolis, dressed like Santas. <strong>But the destination is the people we meet along the way.</strong></p>
+<p class="hero-invitation rebel-copy">Work. Buy. Scroll. Repeat. We have other plans. For one day, we take our joy into the streets. Cheer isn’t the distraction. It’s how we fight back.</p>
+<p class="hero-invitation rebel-copy">The Santa suit isn’t there to hide who you are. It helps us lower the shields we put around our hearts—and helps strangers lower theirs. A chance to be open, playful, and more ourselves.</p>
+<a class="cta hero-join rebel-copy" href="#when-where">Join the resistance ↗</a>
 <div class="kicker hero-since">Since 2013</div>
 <p class="event-essentials"><a href="#when-where"><time datetime="2026-12-05">Saturday, December 5</time> · 10 AM · Starting location to be announced · Free</a></p>
+</div>
 <div class="hero-photo" id="hero-photo"><img alt="A smiling elf waves while riding with Santa-costumed cyclists in Minneapolis" src="assets/optimized/hero-waving-elf-composite-1023.webp" width="1023" height="1537" decoding="async" srcset="assets/optimized/hero-waving-elf-composite-480.webp 480w, assets/optimized/hero-waving-elf-composite-1023.webp 1023w" sizes="(min-width: 1152px) 1120px, calc(100vw - 32px)" loading="eager" fetchpriority="high"></div>
 
 
 <div class="hero-event" id="when-where"><div class="kicker">2026 ride day</div><strong><span>Saturday,</span><span>December 5, 2026</span></strong><p>Meet at 10 AM · New starting location to be announced</p><p class="ride-plan">The Loop will not be our starting point this year. We’re finding a replacement and will share the new location as soon as it’s confirmed.</p><p class="ride-plan">Free ride. No registration. Facebook RSVP is optional.</p><div class="event-actions"><a class="calendar-button facebook-button" href="https://www.facebook.com/events/1972798296683555/" target="_blank" rel="noopener">RSVP on Facebook ↗</a><a class="calendar-button" href="santa-cycle-rampage-2026.ics" download>Add to calendar +</a></div></div>
 
+</div>
 <div class="hero-film"><video id="hero-video" muted loop playsinline preload="none" poster="assets/rampage-loop-poster.jpg" aria-label="Santa Cycle Rampage riders moving through Minneapolis"><source src="assets/rampage-loop.mp4" type="video/mp4"></video><p class="video-credit">Footage: North Loop Neighborhood News</p></div>
 
 </div></section>
-<section class="ride-manifesto" aria-label="The spirit of the ride"><div class="wrap rule"><p>A little absurdity, a little beer, <mark>a gentle disregard for social norms</mark>, and a whole lot of bicycles, kindness, and holiday cheer.</p></div></section>
+<section class="ride-manifesto" aria-label="The spirit of the ride"><div class="wrap rule"><p class="default-copy">A little absurdity, a little beer, <mark>a gentle disregard for social norms</mark>, and a whole lot of bicycles, kindness, and holiday cheer.</p><p class="rebel-copy">Make a scene. Make a friend. Give something away.</p></div></section>
 
-<section id="about"><div class="wrap rule"><div class="kicker">The whole idea</div><h2 class="display section-title">Dress like Santa.<br>Bring a gift.<br>Decorate your bike.<br>Drink a beer.<br>Spread some cheer.</h2><p class="lede">The Twin Cities Santa Cycle Rampage is a free holiday bike ride through Minneapolis, with brewery stops for local craft beer. We decorate our bikes, bring toys for kids in need, and give the people we pass a little unexpected joy.</p><p class="lede">When we started in 2013, brewery taprooms were still a new thing in Minnesota. Some were just a little space carved out inside the brewery. A place to drink that felt almost like a speakeasy. The taprooms have grown, and so has the crowd. We still get together once a year to put on ridiculous suits, ride bikes through Minneapolis, and drink beer with friends. And for a moment, we become kids again.</p></div><div class="fullbleed"><img alt="A huge crowd of Santa Cycle Rampage riders gathered outdoors" src="assets/optimized/crowd-1120.webp" width="2048" height="1536" decoding="async" srcset="assets/optimized/crowd-480.webp 480w, assets/optimized/crowd-1120.webp 1120w" sizes="100vw" loading="lazy"><div class="caption">A little joy in the streets.</div></div><div class="fullbleed"><img alt="Santa and elf cyclists riding past the Prince mural in Minneapolis" src="assets/optimized/prince-1120.webp" width="1800" height="1198" decoding="async" srcset="assets/optimized/prince-480.webp 480w, assets/optimized/prince-1120.webp 1120w" sizes="100vw" loading="lazy"><div class="caption">Very Minneapolis.</div></div></section>
+<section id="about"><div class="wrap rule"><div class="kicker">The whole idea</div><h2 class="display section-title">Dress like Santa.<br>Bring a gift.<br>Decorate your bike.<br>Drink a beer.<br>Spread some cheer.</h2><p class="lede">The Twin Cities Santa Cycle Rampage is a free holiday bike ride through Minneapolis, with brewery stops for local craft beer. We decorate our bikes, bring toys for kids in need, and give the people we pass a little unexpected joy.</p><p class="lede">When we started in 2013, brewery taprooms were still a new thing in Minnesota. Some were just a little space carved out inside the brewery. A place to drink that felt almost like a speakeasy. The taprooms have grown, and so has the crowd. We still get together once a year to put on Santa suits, ride bikes through Minneapolis, and drink beer with friends. And for a moment, we become kids again.</p></div><div class="fullbleed"><img alt="A huge crowd of Santa Cycle Rampage riders gathered outdoors" src="assets/optimized/crowd-1120.webp" width="2048" height="1536" decoding="async" srcset="assets/optimized/crowd-480.webp 480w, assets/optimized/crowd-1120.webp 1120w" sizes="100vw" loading="lazy"><div class="caption">A little joy in the streets.</div></div><div class="fullbleed"><img alt="Santa and elf cyclists riding past the Prince mural in Minneapolis" src="assets/optimized/prince-1120.webp" width="1800" height="1198" decoding="async" srcset="assets/optimized/prince-480.webp 480w, assets/optimized/prince-1120.webp 1120w" sizes="100vw" loading="lazy"><div class="caption">Very Minneapolis.</div></div></section>
 
 
 
@@ -188,7 +254,7 @@ main{scroll-margin-top:72px}
 
 
 
-<section class="vibe" id="vibe"><div class="wrap"><div class="kicker">Joy in the wild</div><h2 class="display section-title">The vibe</h2><p class="lede">There’s something about dressing like Santa. People drop their guard. The things that usually separate us seem unimportant. It feels like being a little kid again, when you could walk up to another kid and ask, “Want to play?”</p><div class="vibe-story"><figure class="hero-film" id="ride-day-film"><video id="ride-day-video" muted playsinline preload="none" poster="assets/ride-day-promo-portrait-poster.jpg" aria-label="A portrait highlight video of Santa Cycle Rampage ride day"><source src="assets/optimized/ride-day-promo-portrait.mp4" type="video/mp4"></video><figcaption>This is what ride day feels like.</figcaption></figure><div class="collage">
+<section class="vibe" id="vibe"><div class="wrap"><div class="kicker">Joy in the wild</div><h2 class="display section-title">The vibe</h2><p class="lede">The costumes help us lower the shields we put around our hearts. They make it easier to be kind to strangers—and easier for strangers to open up to us. Like little kids meeting each other and asking, “Want to play?” A Santa suit doesn’t have to hide your true self. Sometimes it lets that self come out.</p><div class="vibe-story"><figure class="hero-film" id="ride-day-film"><video id="ride-day-video" muted playsinline preload="none" poster="assets/ride-day-promo-portrait-poster.jpg" aria-label="A portrait highlight video of Santa Cycle Rampage ride day"><source src="assets/optimized/ride-day-promo-portrait.mp4" type="video/mp4"></video><figcaption>This is what ride day feels like.</figcaption></figure><div class="collage">
 <div class="polaroid"><div class="polaroid-photo polaroid-photo--buddy"><img alt="Buddy the Elf with two festive riders in the snow" src="assets/optimized/elf-624.webp" width="624" height="836" decoding="async" srcset="assets/optimized/elf-480.webp 480w, assets/optimized/elf-624.webp 624w" sizes="(min-width: 760px) 350px, calc((100vw - 48px) / 2)" loading="lazy"></div><b>A few misfits</b></div>
 <div class="polaroid polaroid--decorate"><img alt="A Santa rider smiling beside a bicycle covered in garland, ornaments and a reindeer decoration" src="assets/optimized/decorated-bike-rider-960.webp" width="960" height="1280" decoding="async" srcset="assets/optimized/decorated-bike-rider-480.webp 480w, assets/optimized/decorated-bike-rider-960.webp 960w" sizes="(min-width: 760px) 350px, calc((100vw - 48px) / 2)" loading="lazy"><b>Decorate your bike</b></div>
 <div class="polaroid"><img alt="A brewery crowded with Santa-costumed riders" src="assets/optimized/brewery-1115.webp" width="1115" height="1487" decoding="async" srcset="assets/optimized/brewery-480.webp 480w, assets/optimized/brewery-1115.webp 1115w" sizes="(min-width: 760px) 350px, calc((100vw - 48px) / 2)" loading="lazy"><b>Raise a little cheer</b></div>
@@ -220,7 +286,7 @@ main{scroll-margin-top:72px}
 <details><summary>Do I need to register?</summary><p>No. The ride is free and there is no registration. Show up and ride. You can <a href="https://www.facebook.com/events/1972798296683555/" target="_blank" rel="noopener">RSVP on Facebook</a>—it’s optional, but appreciated!</p></details>
 <details><summary>Can I come alone?</summary><p>Yes. You don’t need to know anyone to join us. Come on your own or bring a friend. Put on your Santa suit, say hello, and ride with the group.</p></details>
 <details><summary>Do I have to dress like Santa?</summary><p>A Santa suit is the idea, and most of us wear one. You’re still welcome if you turn up as something else. We’ve had Christmas trees, Krampus, and a whole assortment of characters from the old stop-motion Christmas specials.</p></details>
-<details><summary>Do I have to drink?</summary><p>Nope. Drinking is entirely optional. You're here to ride bikes, wear ridiculous clothes, and spread some holiday cheer.</p><p>If you do get smashed, lock up your bike and call a Lyft. Seriously.</p><p>One infamous year, we had half a dozen college students who were completely trashed by the second stop, riding down the middle of the road in a blizzard.</p><p>We'd prefer not to repeat that particular Christmas miracle.</p></details>
+<details><summary>Do I have to drink?</summary><p>Nope. Drinking is entirely optional. You're here to ride bikes, wear festive costumes, and spread some holiday cheer.</p><p>If you do get smashed, lock up your bike and call a Lyft. Seriously.</p><p>One infamous year, we had half a dozen college students who were completely trashed by the second stop, riding down the middle of the road in a blizzard.</p><p>We'd prefer not to repeat that particular Christmas miracle.</p></details>
 <details><summary>Can I come if I don’t ride?</summary><p>Absolutely. Check the schedule and meet your friends at a brewery. You can join the roomful of Santas without riding between stops.</p><p>Or invite some unsuspecting friends out for lunch at one of our stops. Plan to arrive about 30 minutes before we do.</p><p><strong>Don’t tell them about the Santas.</strong> Let us be the surprise.</p></details>
 <details><summary>Can I join partway through?</summary><p>Yes. Meet the group at any brewery stop. Many riders join at the first brewery. We’ll announce its location and meetup time when confirmed.</p></details>
 <details><summary>What if there’s snow?</summary>
@@ -239,6 +305,28 @@ main{scroll-margin-top:72px}
 </main>
 <footer><div class="wrap footerline"><strong>TWIN CITIES SANTA CYCLE RAMPAGE</strong><span>Dress like Santa. Bring a gift. Decorate your bike. Drink a beer. Spread some cheer.</span><span>Minneapolis, Minnesota</span><a href="https://www.instagram.com/santa_cycle_rampage_msp/" target="_blank" rel="noopener">Instagram ↗</a><a href="https://www.facebook.com/SantaCycleRampageMSP/" target="_blank" rel="noopener">Facebook ↗</a><a href="mailto:santacyclerampagemsp@gmail.com">Contact</a><a href="press.html">Press &amp; media</a></div></footer>
 <script>
+(()=>{
+  const root=document.documentElement;
+  const toggle=document.querySelector(".mode-toggle");
+  const status=document.querySelector(".mode-status");
+  const applyMode=(mode,announce=false)=>{
+    const rebel=mode==="rebel";
+    if(rebel)root.dataset.siteMode="rebel";
+    else delete root.dataset.siteMode;
+    toggle.setAttribute("aria-pressed",String(rebel));
+    toggle.querySelector(".mode-label").textContent=rebel?"Default Mode":"Rebel Mode";
+    toggle.setAttribute("aria-label",rebel?"Rebel Mode on. Switch to Default Mode":"Rebel Mode off. Switch to Rebel Mode");
+    document.querySelector('meta[name="theme-color"]').content=rebel?"#171613":"#f3efe4";
+    if(announce)status.textContent=rebel?"Rebel Mode active. Same ride, different attitude.":"Default Mode active.";
+  };
+  applyMode(root.dataset.siteMode);
+  toggle.hidden=false;
+  toggle.addEventListener("click",()=>{
+    const mode=root.dataset.siteMode==="rebel"?"default":"rebel";
+    applyMode(mode,true);
+    try{localStorage.setItem("santa-site-mode",mode);}catch{}
+  });
+})();
 const menuButton=document.querySelector(".menu");
 const mobileNav=document.querySelector("#mobile-nav");
 const closeMenu=()=>{mobileNav.hidden=true;menuButton.setAttribute("aria-expanded","false");menuButton.setAttribute("aria-label","Open menu");};
