@@ -90,9 +90,16 @@ test('event details, calendar and media remain single shared elements', () => {
   assert.equal(event.isAccessibleForFree, true);
   assert.match(html, /Fudge that\. Get together\. Spread cheer\./);
   assert.match(html, /Join the resistance/);
+  assert.doesNotMatch(html, /<a[^>]*>Join the resistance/);
+  assert.match(html, /<h2 class="join-heading rebel-copy">Join the resistance\.<\/h2>/);
+  const heroIntro = html.split('<div class="hero-layout"><div class="hero-intro">')[1].split('<div class="hero-photo"')[0];
+  assert.match(heroIntro, /class="event-actions"/);
+  assert.match(heroIntro, /https:\/\/www\.facebook\.com\/events\/1972798296683555\//);
+  assert.match(heroIntro, /href="santa-cycle-rampage-2026\.ics" download/);
   assert.match(html, /brewery to brewery across Minneapolis/);
   assert.match(html, /the destination is the people we meet along the way/);
   assert.match(html, /lower the shields we put around our hearts/);
+  assert.match(html, /<h2 class="rebel-response rebel-copy">Fudge that\. Get together\. Spread cheer\.<\/h2>\s*<p class="hero-tagline">Minnesota’s jolliest brewery ride and toy drive\.<\/p>/);
   assert.doesNotMatch(html, /The ride is still happening/);
   assert.doesNotMatch(html, /@import|fonts\.googleapis|fonts\.gstatic/);
 });
