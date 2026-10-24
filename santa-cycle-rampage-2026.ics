@@ -5,24 +5,23 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
 UID:20261205-meetup@santacyclerampagemsp.org
-DTSTAMP:20261024T161800Z
-SEQUENCE:4
+DTSTAMP:20261024T162946Z
+SEQUENCE:5
 DTSTART:20261205T160000Z
 DTEND:20261205T233000Z
 SUMMARY:Twin Cities Santa Cycle Rampage 2026
 LOCATION:New starting location to be announced\, Minneapolis\, MN
 DESCRIPTION:Meet at 10 AM. New starting location to be announced. The Loop 
- will not be our starting point this year. Saturday\, December 5\, 2026 at 
- 10 AM remains confirmed. Ride departure time will be announced when the sc
- hedule is settled. Dress festive and bring a new\, unwrapped toy for kids 
- in need. Come alone or bring a friend. The brewery-to-brewery ride continu
- es through the afternoon. Brewery stops and the final brewery will be anno
- unced closer to ride day. The calendar blocks time through 5:30 PM as an e
- stimate; the actual finish time may vary.\n\nWebsite and ride updates: htt
- ps://scrmsp.org\n\nFacebook RSVP (optional but appreciated): https://www.f
- acebook.com/events/1972798296683555/\n\nThe ride is free and no registrati
- on is required. Ride at your own risk and follow traffic laws. If you’re
-  drinking, arrange a sober driver.
+ will not be our starting point this year. Ride departure time will be anno
+ unced when the schedule is settled. Dress festive and bring a new\, unwrap
+ ped toy for kids in need. Come alone or bring a friend. The brewery-to-bre
+ wery ride continues through the afternoon. Brewery stops and the final bre
+ wery will be announced closer to ride day. The calendar blocks time throug
+ h 5:30 PM as an estimate; the actual finish time may vary.\n\nWebsite and 
+ ride updates: https://scrmsp.org\n\nFacebook RSVP (optional but appreciate
+ d): https://www.facebook.com/events/1972798296683555/\n\nThe ride is free 
+ and no registration is required. Ride at your own risk and follow traffic 
+ laws. If you’re drinking, arrange a sober driver.
 URL:https://scrmsp.org/
 END:VEVENT
 END:VCALENDAR
