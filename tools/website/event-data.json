@@ -1,0 +1,170 @@
+{
+  "eventName": "Twin Cities Santa Cycle Rampage",
+  "shortName": "Santa Cycle Rampage MSP",
+  "foundingSentence": "In 2013, Brent called up a couple of friends, and ten Santas rode that first year.",
+  "quotes": [],
+  "foundedYear": 2013,
+  "latestRide": {"year": 2025, "riders": 178},
+  "startDate": "2026-12-05T10:00:00-06:00",
+  "timeZone": "America/Chicago",
+  "cost": "Free",
+  "announcementStatus": {
+    "summary": "Location, departure time and stops: announced early November, here and on Facebook.",
+    "startLocation": {
+    "status": "tba",
+    "name": "",
+    "address": "",
+    "mapUrl": "",
+    "previousName": "The Loop",
+    "pendingMessage": "The Loop is out this year. RSVP on Facebook and you'll hear the new location first."
+    },
+    "departure": {"status": "tba", "time": ""},
+    "stops": [
+    {"number": 2, "status": "tba", "name": "", "address": "", "mapUrl": "", "time": ""},
+    {"number": 3, "status": "tba", "name": "", "address": "", "mapUrl": "", "time": ""},
+    {"number": 4, "status": "tba", "name": "", "address": "", "mapUrl": "", "time": ""},
+    {"number": 5, "status": "tba", "name": "", "address": "", "mapUrl": "", "time": ""},
+    {"number": 6, "status": "tba", "name": "", "address": "", "mapUrl": "", "time": ""},
+    {"number": 7, "status": "tba", "name": "", "address": "", "mapUrl": "", "time": ""}
+    ],
+    "finish": {"status": "tba", "time": "", "endDate": ""},
+    "toyCollection": {"status": "tba", "stopNumber": null}
+  },
+  "route": {
+    "miles": 15,
+    "breweryCount": "five or six",
+    "breweryCountShort": "5 to 6",
+    "announcement": "early November"
+  },
+  "links": {
+    "canonical": "https://santacyclerampagemsp.org/",
+    "event": "https://www.facebook.com/events/1972798296683555/",
+    "facebook": "https://www.facebook.com/SantaCycleRampageMSP/",
+    "instagram": "https://www.instagram.com/santa_cycle_rampage_msp/",
+    "calendar": "../../santa-cycle-rampage-2026.ics",
+    "home": "index.html",
+    "press": "press.html",
+    "story": "story.html",
+    "ourStory": "our-story.html",
+    "contact": "mailto:santacyclerampagemsp@gmail.com"
+  },
+  "toyDrive": {
+    "item": "a new, unwrapped toy",
+    "collection": "a brewery stop along the route",
+    "recipient": "the Salvation Army",
+    "purpose": "Toys for kids in need.",
+    "tagline": "Your bike is your sleigh."
+  },
+  "email": {
+    "enabled": true,
+    "provider": "MailerLite",
+    "heading": "Get ride updates",
+    "buttonLabel": "Keep me posted",
+    "endpoint": "https://assets.mailerlite.com/jsonp/2739403/forms/202239538838374374/subscribe",
+    "emailField": "fields[email]",
+    "hiddenFields": {"ml-submit": "1", "anticsrf": "true"},
+    "signupUrl": "https://preview.mailerlite.io/forms/2739403/202239538838374374/share"
+  },
+  "organizer": {"url": "https://santacyclerampagemsp.org/"},
+  "build": {"version": "v1.5.6", "name": "SIGNUP FIX"},
+  "history": {
+    "heading": "How This Madness Started",
+    "subheading": "It started with a Suicide Club.",
+    "description": "From San Francisco pranksters to SantaCon and bicycles in Minneapolis: the roots of the ride, and how kindness became our kind of rebellion.",
+    "stripCaption": "Minneapolis sits between the coasts, and so does our idea.",
+    "imageRights": {"status": "confirmed_by_user", "confirmedDate": "2026-10-24"},
+    "homepage": {
+      "heading": "From anarchy to kindness.",
+      "cards": [
+        {"photoIndex": 0, "label": "San Francisco · 1994", "headline": "The rebellion.", "description": "Pranksters in cheap Santa suits turned Christmas into absurdist street theater. The point was to disrupt expectations."},
+        {"photoIndex": 1, "label": "New York", "headline": "The downfall.", "description": "The prank spread, but the purpose got lost. Anonymity, alcohol, and spectacle turned rebellion into drunken excess."},
+        {"photoIndex": 2, "label": "Minneapolis · 2013", "headline": "The reinvention.", "description": "We kept the costumes, the absurdity, and the beer. But we pointed the whole ridiculous thing toward spreading joy."}
+      ],
+      "narrative": "San Francisco taught us to disrupt. New York showed us what happens when the joke loses its purpose. Minneapolis found another way: keep the chaos, but make somebody's day better."
+    },
+    "stories": {
+      "santacon": {"linkKey": "story", "label": "The bigger story", "title": "The Strange History of Groups of People in Santa Suits", "description": "From the Suicide Club and Cacophony Society to SantaCon, and how the madness spread around the world.", "linkLabel": "Read the full story →", "paragraphIndexes": [0, 1, 2, 3, 4, 5, 6, 7], "timelineYears": ["1977", "1986", "1994", "Then"], "photoIndex": 0},
+      "minneapolis": {"linkKey": "ourStory", "label": "Our story", "title": "Our Story: {shortName}", "panelTitle": "{shortName}", "description": "How a handful of Minneapolis cyclists turned a strange idea into an annual tradition that spreads cheer.", "linkLabel": "Read our story →", "paragraphIndexes": [8, 9, 10, 11, 12, 13, 14], "timelineYears": ["2012", "2013", "2025"], "thumbnail": {"src": "../../assets/first-ride-group.png", "alt": "Original Minneapolis Santa riders posing together beside a Christmas tree", "credit": "Source: {shortName} collection", "position": "50% 60%"}}
+    },
+    "strip": [
+      {"place": "San Francisco", "line": "Prank the system.", "photo": {"src": "assets/history/san-francisco-cheap-suit-santas-1995.png", "alt": "Cacophony Society Cheap Suit Santas making irreverent gestures inside a bus in 1995", "caption": "Cacophony Society Cheap Suit Santas, 1995.", "credit": "Photo: Peter Field", "width": 800, "height": 579, "position": "50% 50%"}},
+      {"place": "New York", "line": "Party in the suit.", "photo": {"src": "assets/history/new-york-santacon.png", "alt": "A crowd of SantaCon participants in Santa costumes filling a New York City street", "caption": "SantaCon, New York.", "credit": "Photo: Craig T Fruchtman/Getty Images", "width": 1800, "height": 1800, "position": "50% 65%"}},
+      {"place": "Minneapolis", "line": "Fight sadness with joy.", "photo": {"src": "assets/history/minneapolis-prince-mural.png", "alt": "Santa-costumed cyclists waving as they ride past the Prince mural in Minneapolis", "caption": "Santas on bicycles, Minneapolis.", "credit": "Source: {shortName} Media Center", "creditStatus": "Individual creator not recorded in the Media Center", "sourceFilename": "Screenshot 2024-11-15 at 8.43.14 PM.png", "width": 1746, "height": 920, "position": "100% 50%"}}
+    ],
+    "timeline": [
+      {"year": "1977", "text": "The Suicide Club forms in San Francisco.", "anchor": "suicide-club"},
+      {"year": "1986", "text": "Its alumni start the Cacophony Society.", "anchor": "suicide-club"},
+      {"year": "1994", "text": "A busload of cheap-suit Santas hits San Francisco.", "anchor": "cheap-suit-santas"},
+      {"year": "Then", "text": "SantaCon goes global, and drunk.", "anchor": "drift"},
+      {"year": "2012", "text": "Brent rides the Milwaukee Santa Cycle Rampage.", "anchor": "bicycle"},
+      {"year": "2013", "text": "The first Minneapolis ride.", "anchor": "bicycle"},
+      {"year": "2025", "text": "178 riders. Kindness wins.", "anchor": "kindness"}
+    ],
+    "anchors": {"0": "suicide-club", "2": "cheap-suit-santas", "5": "drift", "8": "bicycle", "11": "kindness"},
+    "furtherReading": [
+      {"title": "An Oral History of SantaCon", "url": "https://melmagazine.com/en-us/story/an-oral-history-of-santacon"},
+      {"title": "Cheap Suit Santas, 1994", "url": "https://santarchy.com/cheap-suit-santas-1994/"},
+      {"title": "SantaCon’s history and 2014 funeral", "url": "https://sfist.com/2025/11/13/epic-new-santacon-documentary-traces-the-events-rise-and-fall-and-its-streaming-this-weekend/"}
+    ]
+  },
+  "press": {
+    "lastUpdated": "2026-10-24",
+    "contactName": "Joel Lueders",
+    "everythingBundle": {"enabled": false, "url": ""},
+    "description": "{eventName} is an annual holiday bicycle ride through Minneapolis. Riders dress as Santa or other festive characters, decorate their bikes, visit local breweries, bring toys to donate and spread cheer across the city.",
+    "angles": [
+      {"heading": "Yes, they really bike in December", "text": "Nearly 200 costumed riders take to Minneapolis streets in the middle of a Minnesota winter.", "extra": "How a small ride among friends grew into a Minneapolis holiday tradition. A tradition grows up with its riders. More than a decade later, longtime riders still come back, and some now bring their kids."},
+      {"heading": "Santas bring toys, too", "text": "Riders carry toys on their bikes to donate to kids in need."},
+      {"heading": "Local craft beer, ridiculous Santas", "text": "A brewery-to-brewery bike ride celebrating Minneapolis taprooms and local craft beer."},
+      {"heading": "From Santa mayhem to Minneapolis cheer.", "text": "The Santa Rampage started with San Francisco pranksters, turned into SantaCon, and ended up on bicycles in Minneapolis.", "story": true}
+    ]
+  },
+  "copy": {
+    "tagline": "Minnesota's jolliest brewery ride and toy drive.",
+    "description": "We ride bicycles from brewery to brewery across Minneapolis, dressed like Santas. The destination is the people we meet along the way.",
+    "historyParagraphs": [
+      "That was the name of a secret society of San Francisco urban daredevils (active from 1977 to 1982, and often called the first modern urban explorers) whose spirit of mischief eventually gave rise to the Cacophony Society, an influential collection of subversive pranksters, artists, and playful adventurers. Despite the name, it was never about death. It was about facing your fears.",
+      "The group helped inspire Chuck Palahniuk’s <em>Fight Club</em> and the creation of Burning Man, while pioneering the kind of organized chaos that would later become flash mobs.",
+      "Then, in 1994, they put a busload of Santas in cheap red suits onto the streets of San Francisco to rattle the holidays. Palahniuk himself would become involved in the early Santa mayhem.",
+      "These weren’t your ordinary Santas. They stormed department stores, crashed Christmas parties, packed children’s rides, and visited strip clubs. By 1995, Santas were climbing lampposts, blocking traffic, staging a mock public hanging in downtown San Francisco, and getting arrested.",
+      "The madness spread across the country and eventually around the world under names like Santarchy, Santa Rampage, and SantaCon.",
+      "But somewhere along the way, the joke changed.",
+      "What began as counterculture performance art gradually became, in many cities, an excuse to get spectacularly drunk in a Santa suit. New York City’s SantaCon became particularly notorious, earning the nickname “America’s Most Hated Christmas Party” and attracting national headlines for public drunkenness and general bad behavior.",
+      "The whole thing had drifted so far from its absurdist roots that some of its original creators held a mock funeral for it.",
+      "But somewhere along the way, somebody also put Santa on a bicycle.",
+      "In 2012, a guy named Brent attended the Milwaukee Santa Cycle Rampage and decided Minneapolis needed one too. He called up a couple of friends, and in December 2013, they put on Santa suits and rode their bikes around Minneapolis for the day.",
+      "More than a decade later, that little ride has grown into nearly 200 Santas rolling through Minneapolis every December.",
+      "Minneapolis sits somewhere between the two coasts, and so does our idea. San Francisco brought the anarchy. New York brought the Santa suit as a disguise, a way to be anonymous, get trashed, and behave badly. We took a little of each, and pointed it at the sadness of the season.",
+      "The Suicide Club and the Cacophony Society used absurdity to jolt mainstream culture. SantaCon turned Santa suits, alcohol, and anonymity into an ugly combination. We kept the absurdity, the Santa suits, and the beer. But somewhere along the way, we found something better: <mark>kindness</mark>. (Okay, the beer helps.)",
+      "There’s something about wearing a Santa suit that makes it easier to be kind to strangers. And something about seeing a Santa suit that makes strangers more willing to accept that kindness. You can wave, make someone laugh, or brighten their day without anyone thinking twice about it. At SantaCon, the suit is a disguise to hide in the crowd and act out. For us, the costume is still a disguise, but we use it to blend in with a group and spread cheer. The suit helps strangers lower their guard, and the group lets us be openly joyful without feeling exposed.",
+      "Maybe that’s our particular brand of mayhem. In a weary world, kindness is its own kind of rebellion."
+    ],
+    "rebel": {
+      "headline": ["The machine", "Wants you", "Alone."],
+      "response": "Fudge that. Get together. Spread cheer.",
+      "manifestoTitle": "JOIN THE RESISTANCE.",
+      "manifestoClosing": "That’s our particular brand of mayhem: in a weary world, kindness is its own kind of rebellion.",
+      "manifestoSince": "SINCE 2013",
+      "sectionHeadings": {
+        "how": "The five-step uprising.",
+        "gifts": "Give a damn. Bring a gift.",
+        "faq": "Question everything.",
+        "join": "Don’t just scroll. Show up."
+      },
+      "manifesto": [
+        "Work. Buy. Scroll. Repeat. Keep your head down. Keep to yourself.",
+        "Fudge that! There’s something about wearing a Santa suit that makes it easier to be kind to strangers and makes strangers more willing to accept that kindness.",
+        "The suit helps them lower their guard, while being part of a whole ridiculous group of Santas lets us lower ours and be openly joyful.",
+        "We bring toys for kids and ride from brewery to brewery through Minneapolis, but the people we meet are the destination."
+      ],
+      "vibeHeading": "Make a scene. Make a friend. Give something away."
+    }
+  },
+  "media": {
+    "hero": {"src": "../../assets/rampage-loop.mp4", "poster": "../../assets/hero-waving-elf-composite.jpg", "label": "Santa-costumed cyclists riding through Minneapolis", "credit": "Footage: North Loop Neighborhood News"},
+    "brewery": {"src": "../../assets/ladona-room-pan-slower.mp4", "poster": "../../assets/ladona-room-pan-poster.jpg", "label": "A roomful of Santas at La Doña brewery", "credit": "Footage: Vitaly Katasonov"},
+    "history": {"src": "../../assets/trail-ride-2024.mp4", "poster": "../../assets/trail-ride-2024-poster.jpg", "label": "The Santas keep rolling on a Minneapolis trail in 2024", "credit": "Footage: North Loop Neighborhood News"},
+    "vibe": {"src": "../../assets/ride-day-promo-portrait.mp4", "poster": "../../assets/ride-day-promo-portrait-poster.jpg", "label": "This is what Santa Cycle Rampage ride day feels like", "credit": "Santa Cycle Rampage ride-day highlights", "creditStatus": "Original page did not name a creator"},
+    "crew": {"src": "../../assets/santa-pack-loop.mp4", "poster": "../../assets/santa-pack-loop-poster.jpg", "label": "A large group of Santa cyclists filling a Minneapolis street", "credit": "The whole crew rolls together", "creditStatus": "Original page did not name a creator"}
+  }
+}
