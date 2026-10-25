@@ -57,8 +57,7 @@ ${pressAngles(c)}${retainedMedia(c, 'poster')}${retainedMedia(c, 'photos')}${ret
 export { renderStory, renderOurStory } from './stories.mjs';
 
 export function renderSitemap(c) {
-  return ['story', 'ourStory'].reduce((xml, key) => {
-    const url = escape(new URL(c.links[key], c.links.canonical).href);
-    return xml.includes(`<loc>${url}</loc>`) ? xml : xml.replace('</urlset>', `  <url><loc>${url}</loc></url>\n</urlset>`);
-  }, originalSitemap);
+  const cleaned = originalSitemap.replace(/\s*<url><loc>[^<]*our-story\.html<\/loc><\/url>/g, '');
+  const url = escape(new URL(c.links.story, c.links.canonical).href);
+  return cleaned.includes(`<loc>${url}</loc>`) ? cleaned : cleaned.replace('</urlset>', `  <url><loc>${url}</loc></url>\n</urlset>`);
 }

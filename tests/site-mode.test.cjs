@@ -39,7 +39,7 @@ test('all public pages have production metadata and no visible version stamp', (
     assert.doesNotMatch(text, /Local redesign test|class="build-stamp"|\.\.\//);
     assert.match(text, /static\.cloudflareinsights\.com\/beacon\.min\.js/);
     assert.match(text, /<link rel="canonical" href="https:\/\/santacyclerampagemsp.org\//);
-    if (name !== 'rebel.html') assert.match(text, /name="robots" content="index,follow"/);
+    if (!['rebel.html', 'our-story.html'].includes(name)) assert.match(text, /name="robots" content="index,follow"/);
     assert.doesNotMatch(text, /class="badge"/);
   }
 });
@@ -51,14 +51,22 @@ test('signup stays inline and uses the direct provider endpoint', () => {
   assert.match(controller, /redirect: 'error'/);
   assert.match(controller, /result.success === true/);
 });
-test('history pages have distinct copy and no removed navigation/section', () => {
+test('one continuous history page and old bookmarks forward correctly', () => {
   assert.match(page('story.html'), /The Strange History of Groups of People in Santa Suits/);
   assert.doesNotMatch(page('story.html'), /Continue to the Milwaukee ride|Read about Minneapolis and kindness/);
   assert.doesNotMatch(page('our-story.html'), /The whole idea|local-idea-title/);
-  for (const name of ['story.html', 'our-story.html']) {
-    const timeline = page(name).match(/<ol class="history-timeline"[\s\S]*?<\/ol>/)[0];
+  assert.match(html, /href="story.html#minneapolis"/);
+  assert.match(page('story.html'), /id="minneapolis"/);
+  assert.match(page('our-story.html'), /location.replace\(destination.href\)/);
+  assert.match(page('our-story.html'), /destination.hash = location.hash/);
+  for (const match of page('story.html').matchAll(/<ol class="history-timeline"[\s\S]*?<\/ol>/g)) {
+    const timeline = match[0];
     assert.doesNotMatch(timeline, /<a\b/);
   }
+  assert.doesNotMatch(page('story.html'), /Getty Images|new-york-santacon\.png/);
+  assert.match(page('story.html'), /Photo: Jim Henderson \/ CC0/);
+  const schedule = html.match(/<section class="content-section schedule-section"[\s\S]*?<\/section>/)[0];
+  assert.doesNotMatch(schedule, /Location TBA|TBA EARLY|Stops announced|to be announced/);
 });
 test('local dependencies and cross-page anchors resolve', () => {
   const tracked = new Set(execFileSync('git', ['-C', root, 'ls-tree', '-r', '--name-only', 'HEAD'], { encoding: 'utf8' }).trim().split('\n'));

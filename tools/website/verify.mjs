@@ -18,7 +18,6 @@ const fullHistory = source.match(/<div class="mayhem-story">([\s\S]*?)<\/div><\/
 const defaultText = normal(html);
 const rebelText = normal(rebel);
 const expectedManifesto = [
-  'Work. Buy. Scroll. Repeat. Keep your head down. Keep to yourself.',
   'Fudge that! There’s something about wearing a Santa suit that makes it easier to be kind to strangers and makes strangers more willing to accept that kindness.',
   'The suit helps them lower their guard, while being part of a whole ridiculous group of Santas lets us lower ours and be openly joyful.',
   'We bring toys for kids and ride from brewery to brewery through Minneapolis, but the people we meet are the destination.'
@@ -26,12 +25,15 @@ const expectedManifesto = [
 check(JSON.stringify(content.copy.rebel.manifesto) === JSON.stringify(expectedManifesto), 'Exact approved Rebel paragraphs stored in shared content in order');
 const manifesto = rebel.match(/<section class="wrap manifesto-section rebel-only"[\s\S]*?<\/section>/)[0];
 const expectedClosing = 'That’s our particular brand of mayhem: in a weary world, kindness is its own kind of rebellion.';
-check(content.copy.rebel.manifestoClosing === expectedClosing && JSON.stringify(paragraphs(manifesto)) === JSON.stringify([...expectedManifesto, expectedClosing, 'SINCE 2013']), 'Updated manifesto, closing, and since appear in exact requested order');
-check(!manifesto.includes('manifesto-subline') && !manifesto.includes('manifesto-pull'), 'Superseded subline and pull line removed');
+const expectedSubline = 'Work. Buy. Scroll. Repeat. Keep your head down. Keep to yourself.';
+check(content.copy.rebel.manifestoClosing === expectedClosing && JSON.stringify(paragraphs(manifesto)) === JSON.stringify([expectedSubline, ...expectedManifesto, expectedClosing]), 'Updated subheading, manifesto, and closing appear in exact requested order');
+check(manifesto.includes(`<h2 class="display" id="manifesto-title">JOIN THE RESISTANCE.</h2><p class="manifesto-subline">${expectedSubline}</p>`) && !manifesto.includes('SINCE 2013'), 'Requested subheading directly below title and Since removed');
 check(manifesto.includes('id="manifesto-title">JOIN THE RESISTANCE.</h2>') && !/[—'"]/.test(normal(manifesto)), 'Exact heading and curly apostrophes without em dashes');
-check(manifesto.includes(`<p class="manifesto-closing"><strong>${expectedClosing}</strong></p><p class="manifesto-since">SINCE 2013</p>`), 'Final sentence is bold and since remains directly below it');
+check(manifesto.includes(`<p class="manifesto-closing"><strong>${expectedClosing}</strong></p>`), 'Final sentence remains bold');
 const biggerStory = renderStory(content);
-const ourStory = renderOurStory(content);
+const ourStory = biggerStory;
+const legacyStory = renderOurStory(content);
+check(legacyStory.includes('location.replace(destination.href)') && legacyStory.includes('story.html#minneapolis'), 'Old Our Story URL redirects to the combined Minneapolis section');
 check(!ourStory.includes('The whole idea') && !ourStory.includes('When we started in 2013, brewery taprooms') && !ourStory.includes('local-idea-title'), 'Whole idea section and paragraphs removed from Our Story');
 check(ourStory.includes('aria-labelledby="local-archive-title"') && ourStory.includes('id="local-archive-title"'), 'Remaining archive retains a valid section heading');
 const historyText = normal(biggerStory + ourStory);
@@ -79,7 +81,8 @@ check(!html.includes('The unofficial Santa resistance cut'), 'Old navigation hin
 check(!html.includes('Switch to default') && !rebel.includes('mode-return'), 'Redundant Rebel return link removed; shared switch remains');
 check(html.includes('aria-controls="mobile-nav"') && html.includes('id="mobile-nav"'), 'Mobile menu markup provided in both themes');
 check(html.includes('Brewery stops 2 to 7'), 'Brewery stop status label updated');
-check(html.includes('<span class="status-badge">TBA EARLY NOV</span>'), 'Brewery status badge includes TBA');
+const pendingSchedule = html.match(/<section class="content-section schedule-section"[\s\S]*?<\/section>/)[0];
+check((pendingSchedule.match(/class="status-badge">TBA<\/span>/g) || []).length === 3 && !/Location TBA|TBA EARLY|Stops announced|to be announced/.test(pendingSchedule), 'All pending schedule labels are plain TBA');
 check(html.includes('<figure class="misfits-photo"><img src="../../assets/elf.jpg"'), 'Misfits photo has its own crop hook');
 check(readFileSync(path.join(directory, 'components.css'), 'utf8').includes('.misfits-photo img{object-position:center 18%}'), 'Misfits crop favors the faces near the top');
 const siteScript = readFileSync(path.join(directory, 'site.js'), 'utf8');
@@ -153,7 +156,7 @@ rescheduled.startDate = '2027-01-09T11:00:00-06:00';
 rescheduled.route.announcement = 'early January';
 rescheduled.announcementStatus.startLocation.previousName = 'Fixture previous venue';
 const rescheduledHtml = renderDefault(rescheduled);
-check(rescheduledHtml.includes('Meet at 11 AM') && rescheduledHtml.includes('TBA EARLY JAN'), 'Date and pending brewery label still read from shared content');
+check(rescheduledHtml.includes('Meet at 11 AM') && !rescheduledHtml.includes('TBA EARLY'), 'Date changes still share facts while pending schedule labels stay plain TBA');
 check(renderFaq(rescheduled) === renderFaq(content), 'Reduced FAQ does not duplicate dates, places, or announcement timing');
 
 // Cover URL priority, fresh visits, persistence, and denied storage in the actual boot script.

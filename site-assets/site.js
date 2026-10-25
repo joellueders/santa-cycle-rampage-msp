@@ -58,14 +58,6 @@
     });
   };
   applyMode(root.dataset.siteMode || 'default');
-  const localStory = document.body.dataset.localStory;
-  if (localStory && document.body.dataset.legacyLocalAnchors.split(' ').includes(location.hash.slice(1))) {
-    const url = new URL(localStory, location.href);
-    url.searchParams.set('mode', root.dataset.siteMode);
-    url.hash = location.hash;
-    location.replace(url.href);
-    return;
-  }
   if (modeButton) {
     modeButton.addEventListener('click', () => applyMode(root.dataset.siteMode === 'rebel' ? 'default' : 'rebel', { save: true, updateUrl: true, preservePosition: true }));
   }

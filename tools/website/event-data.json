@@ -45,7 +45,7 @@
     "home": "index.html",
     "press": "press.html",
     "story": "story.html",
-    "ourStory": "our-story.html",
+    "ourStory": "story.html#minneapolis",
     "contact": "mailto:santacyclerampagemsp@gmail.com"
   },
   "toyDrive": {
@@ -88,7 +88,7 @@
     },
     "strip": [
       {"place": "San Francisco", "line": "Prank the system.", "photo": {"src": "assets/history/san-francisco-cheap-suit-santas-1995.png", "alt": "Cacophony Society Cheap Suit Santas making irreverent gestures inside a bus in 1995", "caption": "Cacophony Society Cheap Suit Santas, 1995.", "credit": "Photo: Peter Field", "width": 800, "height": 579, "position": "50% 50%"}},
-      {"place": "New York", "line": "Party in the suit.", "photo": {"src": "assets/history/new-york-santacon.png", "alt": "A crowd of SantaCon participants in Santa costumes filling a New York City street", "caption": "SantaCon, New York.", "credit": "Photo: Craig T Fruchtman/Getty Images", "width": 1800, "height": 1800, "position": "50% 65%"}},
+      {"place": "New York", "line": "Party in the suit.", "photo": {"src": "assets/history/new-york-santacon-2010-cc0.jpg", "alt": "A large gathering of Santas at Bethesda Terrace in New York’s Central Park", "caption": "SantaCon, Central Park, New York, 2010.", "credit": "Photo: Jim Henderson / CC0", "width": 4083, "height": 2997, "position": "50% 65%", "sourceUrl": "https://commons.wikimedia.org/wiki/File:Santacon_2010_Bethesda_jeh.jpg", "license": "CC0 1.0", "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"}},
       {"place": "Minneapolis", "line": "Fight sadness with joy.", "photo": {"src": "assets/history/minneapolis-prince-mural.png", "alt": "Santa-costumed cyclists waving as they ride past the Prince mural in Minneapolis", "caption": "Santas on bicycles, Minneapolis.", "credit": "Source: {shortName} Media Center", "creditStatus": "Individual creator not recorded in the Media Center", "sourceFilename": "Screenshot 2024-11-15 at 8.43.14 PM.png", "width": 1746, "height": 920, "position": "100% 50%"}}
     ],
     "timeline": [
@@ -143,8 +143,8 @@
       "headline": ["The machine", "Wants you", "Alone."],
       "response": "Fudge that. Get together. Spread cheer.",
       "manifestoTitle": "JOIN THE RESISTANCE.",
+      "manifestoSubline": "Work. Buy. Scroll. Repeat. Keep your head down. Keep to yourself.",
       "manifestoClosing": "That’s our particular brand of mayhem: in a weary world, kindness is its own kind of rebellion.",
-      "manifestoSince": "SINCE 2013",
       "sectionHeadings": {
         "how": "The five-step uprising.",
         "gifts": "Give a damn. Bring a gift.",
@@ -152,7 +152,6 @@
         "join": "Don’t just scroll. Show up."
       },
       "manifesto": [
-        "Work. Buy. Scroll. Repeat. Keep your head down. Keep to yourself.",
         "Fudge that! There’s something about wearing a Santa suit that makes it easier to be kind to strangers and makes strangers more willing to accept that kindness.",
         "The suit helps them lower their guard, while being part of a whole ridiculous group of Santas lets us lower ours and be openly joyful.",
         "We bring toys for kids and ride from brewery to brewery through Minneapolis, but the people we meet are the destination."

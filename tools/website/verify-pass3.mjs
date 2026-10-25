@@ -11,11 +11,11 @@ let assertions = 0;
 const check = (value, label) => { assert.ok(value, label); assertions++; };
 const normal = html => html.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
 const body = html => html.match(/<body[^>]*>([\s\S]*)<\/body>/)[1];
-const extractCopy = html => html.match(/<div class="history-copy" data-history-copy>([\s\S]*?)<\/div>/)[1];
+const extractCopy = html => [...html.matchAll(/<div class="history-copy" data-history-copy>([\s\S]*?)<\/div>/g)].map(match => match[1]).join('\n');
 const pages = { 'index.html': renderDefault(content), 'rebel.html': renderRebel(content), 'press.html': renderPress(content), 'story.html': renderStory(content), 'our-story.html': renderOurStory(content) };
 const press = pages['press.html'];
 const story = pages['story.html'];
-const ourStory = pages['our-story.html'];
+const ourStory = story;
 const home = pages['index.html'];
 const pressBody = normal(body(press));
 const source = readFileSync(path.join(directory, 'source/press-before-pass3.html'), 'utf8');
@@ -56,7 +56,8 @@ for (const item of content.history.strip) {
   check(home.includes(item.photo.src) && press.includes(item.photo.src), 'Shared city photo retained with original credit: ' + item.place);
   check(item.photo.alt && item.photo.credit && item.photo.width && item.photo.height, 'Photo alt, credit, and stable dimensions: ' + item.place);
 }
-check(home.includes('Photo: Peter Field') && home.includes('Photo: Craig T Fruchtman/Getty Images'), 'User-supplied historical credits displayed');
+check(home.includes('Photo: Peter Field') && home.includes('Photo: Jim Henderson / CC0') && !home.includes('Getty Images'), 'Historical credits include the CC0 New York replacement');
+check(content.history.strip[1].photo.license === 'CC0 1.0' && content.history.strip[1].photo.sourceUrl.includes('Santacon_2010_Bethesda'), 'Verified CC0 source and license retained in shared data');
 check(content.history.imageRights.status === 'confirmed_by_user', 'Publication rights confirmed by the user');
 check(home.includes('class="decorated-bike-photo"><img src="../../assets/decorated-bike-rider.jpg"') && !home.includes('sarah-mayer-2024-ladona-12.jpg'), 'Original decorated-bike photo retained, replacement request superseded');
 check(readFileSync(path.join(directory, 'pages.css'), 'utf8').includes('.decorated-bike-photo img{object-position:center bottom}'), 'Original bike photo crops down toward the bicycle');
@@ -77,15 +78,15 @@ for (const id of ['poster', 'photos', 'broll', 'logos', 'coverage']) {
 for (const broadcaster of ['fox9', 'kstp5']) check(press.includes(`../../assets/coverage/${broadcaster}-2025.mp4`) && existsSync(path.resolve(directory, `../../assets/coverage/${broadcaster}-2025.mp4`)), 'Playable local TV embed exists: ' + broadcaster);
 check(!press.includes('data-ambient'), 'Newsroom videos retain native playback, no ambient autoplay');
 
-const combinedHistory = extractCopy(story) + '\n' + extractCopy(ourStory);
+const combinedHistory = extractCopy(story);
 check(combinedHistory === extractCopy(storyCopy(content)), 'Reorganized histories reconstruct all 15 final paragraphs byte for byte');
-check((extractCopy(story).match(/<p\b/g) || []).length === 8 && (extractCopy(ourStory).match(/<p\b/g) || []).length === 7, 'Eight international and seven Minneapolis paragraphs, no duplication');
+check((combinedHistory.match(/<p\b/g) || []).length === 15 && !pages['our-story.html'].includes('data-history-copy'), 'All 15 paragraphs appear once on one page, old page only redirects');
 check(!home.includes('data-history-copy') && !home.includes('story-disclosure') && !home.includes('history-timeline'), 'No giant inline history, accordion, or timeline on home');
 check(story.includes('<em>Fight Club</em>'), 'Fight Club italics preserved');
 for (const [index, anchor] of Object.entries(content.history.anchors)) check((Number(index) < 8 ? story : ourStory).includes(`<p id="${anchor}">${content.copy.historyParagraphs[index]}</p>`), 'Correct destination paragraph anchor: ' + anchor);
 for (const beat of content.history.timeline) {
   const part = content.history.stories.minneapolis.timelineYears.includes(beat.year) ? 'minneapolis' : 'santacon';
-  const url = part === 'minneapolis' ? 'our-story.html' : 'story.html';
+  const url = 'story.html';
   const timeline = historyTimeline(content, part);
   check(timeline.includes(`<strong>${beat.year}:</strong> <span>${beat.text}</span>`) && !timeline.includes('<a ') && pages[url].includes(`id="${beat.anchor}"`), 'Dates and summaries retained as plain text, without jump links: ' + beat.year);
 }
@@ -94,9 +95,9 @@ check(JSON.stringify(content.history.timeline.map(beat => `${beat.year}: ${beat.
 for (const page of [home, pages['rebel.html']]) check((page.match(/class="history-cards"/g) || []).length === 1 && (page.match(/class="history-path"/g) || []).length === 2, 'One shared card section and exactly two story panels in each theme');
 check(home.indexOf('id="history"') > home.indexOf('id="vibe"'), 'History stays below the event sections in both themes');
 check(home.includes('id="santa-mayhem"') && home.includes('id="origins"'), 'Old homepage history anchors still land in the new section');
-check(story.includes('data-local-story="our-story.html"') && story.includes('data-legacy-local-anchors="bicycle kindness"'), 'Legacy local-history fragments carry a forwarding destination');
+check(story.includes('id="minneapolis"') && !story.includes('data-local-story=') && pages['our-story.html'].includes('destination.hash = location.hash'), 'Combined page keeps local fragments and legacy URL preserves existing bookmarks');
 check(!story.includes('Continue to the Milwaukee ride and Minneapolis beginning') && !story.includes('Read about Minneapolis and kindness') && !story.includes('class="legacy-story-links"'), 'Requested redundant history links removed');
-check(story.includes('Read our Minneapolis story'), 'Main cross-link to Our Story remains');
+check(home.includes('href="story.html#minneapolis"') && home.includes('href="story.html"'), 'Both homepage panels link to the same page at the appropriate starting point');
 check(story.includes(`<title>${content.history.stories.santacon.title} | ${content.eventName}</title>`), 'Bigger-story title');
 for (const card of content.history.homepage.cards) check(home.includes(card.label) && home.includes(card.headline) && home.includes(card.description), 'Exact requested homepage card copy: ' + card.label);
 check(home.includes(content.history.homepage.narrative) && home.includes('class="display history-rebellion"'), 'Exact bridge copy and prominent red statement');
@@ -105,7 +106,7 @@ check(ourStory.includes('../../assets/trail-ride-2024.mp4') && ourStory.includes
 for (const tag of ['name="description"', 'rel="canonical"', 'property="og:title"', 'property="og:description"', 'property="og:url"', 'property="og:image"', 'name="twitter:title"', 'name="twitter:description"', 'name="twitter:image"']) check(story.includes(tag), 'Story SEO tag: ' + tag);
 check(story.includes(`href="${content.links.canonical}story.html"`), 'Story canonical uses HTML URL pattern');
 check(renderSitemap(content).includes(`<loc>${content.links.canonical}story.html</loc>`), 'Local sitemap includes story');
-check(renderSitemap(content).includes(`<loc>${content.links.canonical}our-story.html</loc>`), 'Local sitemap includes Our Story');
+check(!renderSitemap(content).includes('our-story.html') && !renderSitemap(content).includes('#minneapolis'), 'Sitemap indexes only the combined history destination');
 check(story.includes('id="sticky-rsvp"') && story.includes('class="mode-toggle"'), 'Story reuses sticky RSVP and mode switch');
 const styles = readFileSync(path.join(directory, 'pages.css'), 'utf8');
 check(styles.includes('@media print') && styles.includes('color-scheme:light') && styles.includes('.print-url{display:block}'), 'Black/white print rules and footer URL');

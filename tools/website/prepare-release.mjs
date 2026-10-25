@@ -40,7 +40,7 @@ const pages = {
 };
 for (const [name, original] of Object.entries(pages)) {
   let html = original.replaceAll('../../', '').replaceAll(' | Local redesign test', '')
-    .replace('content="noindex,nofollow"', `content="${name === 'rebel.html' ? 'noindex,follow' : 'index,follow'}"`);
+    .replace('content="noindex,nofollow"', `content="${['rebel.html', 'our-story.html'].includes(name) ? 'noindex,follow' : 'index,follow'}"`);
   for (const resource of runtime) html = html.replaceAll(new RegExp(`((?:src|href)=")${resource.replace('.', '\\.')}\\?v=[a-f0-9]+"`, 'g'), `$1site-assets/${resource}?v=${versions[resource]}"`);
   html = html.replace('</body>', analytics + '</body>');
   if (html.includes('build-stamp') || html.includes('Local redesign test') || html.includes('../../')) throw new Error('Test artifacts remain in ' + name);
@@ -48,7 +48,7 @@ for (const [name, original] of Object.entries(pages)) {
 }
 write('sitemap.xml', renderSitemap(content));
 const robots = execFileSync('git', ['-C', target, 'show', baseline + ':robots.txt'], { encoding: 'utf8' });
-write('robots.txt', robots.replace('Allow: /', 'Allow: /\nDisallow: /tools/website/'));
+write('robots.txt', robots.includes('Disallow: /tools/website/') ? robots : robots.replace('Allow: /', 'Allow: /\nDisallow: /tools/website/'));
 
 // Only add media absent from the live tree. Existing deployed media stays untouched.
 const tracked = new Set(git('ls-tree', '-r', '--name-only', baseline).split('\n'));
@@ -70,7 +70,7 @@ for (const html of Object.keys(pages).map(name => readFileSync(path.join(target,
 for (const name of readdirSync(directory)) if (/\.(?:mjs|cjs|js|css|json)$/.test(name)) copy(path.join(directory, name), 'tools/website/' + name);
 copy(path.join(directory, 'release-tests.cjs'), 'tests/site-mode.test.cjs');
 for (const name of ['current-site.html', 'press-before-pass3.html']) copy(path.join(directory, 'source', name), 'tools/website/source/' + name);
-for (const name of readdirSync(path.join(directory, 'assets/history'))) copy(path.join(directory, 'assets/history', name), 'tools/website/assets/history/' + name);
+for (const { photo } of content.history.strip) if (photo.src.startsWith('assets/history/')) copy(path.join(directory, photo.src), 'tools/website/' + photo.src);
 write('tools/website/LAUNCH.md', `# Website release\n\nShared editable content is event-data.json and faq-data.json.\n\nBuild and check source with Node:\n\n    node tools/website/build.mjs\n    node tools/website/verify.mjs\n    node tools/website/verify-pass3.mjs\n    node tools/website/verify-email.mjs\n\nFor publication, use a separate clean worktree at current origin/main, then run:\n\n    node tools/website/prepare-release.mjs /absolute/path/to/release-worktree\n\nStage only files listed by the release manifest. Do not publish local QA outputs. Preserve current media, CNAME, analytics, and the existing calendar. No API credentials are used. A user reported the local MailerLite signup worked; the welcome automation is separate and was not activated by this release.\n\nRollback baseline: ${baseline}. Reverting the release commit restores the earlier website.\n`);
 write('SITE_MODES.md', '# Website modes and source\n\nDefault is the fresh-visitor landing mode. Rebel uses the same page structure, facts, media and FAQ, with a dark theme and editorial copy overrides. Use ?mode=rebel, ?mode=default, or rebel.html for direct links. The toggle remembers the choice and switches in place. Standalone histories default to cream unless a mode is explicitly supplied. Press stays cream.\n\nEditable shared source and release instructions: tools/website/LAUNCH.md. Published styles and scripts: site-assets/. The MailerLite signup uses a direct CORS POST and inline response messages, without API credentials. Welcome-email automation is separate and has not been activated by this release.\n\nRun production checks with node --test tests/site-mode.test.cjs.\n');
 const manifest = { baseline, files: [...files].sort(), references: [...references].sort(), publicPages: Object.keys(pages), signupTest: 'User reported local website signup worked', published: false };
