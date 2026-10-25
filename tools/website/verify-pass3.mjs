@@ -78,12 +78,14 @@ for (const id of ['poster', 'photos', 'broll', 'logos', 'coverage']) {
 for (const broadcaster of ['fox9', 'kstp5']) check(press.includes(`../../assets/coverage/${broadcaster}-2025.mp4`) && existsSync(path.resolve(directory, `../../assets/coverage/${broadcaster}-2025.mp4`)), 'Playable local TV embed exists: ' + broadcaster);
 check(!press.includes('data-ambient'), 'Newsroom videos retain native playback, no ambient autoplay');
 
-const combinedHistory = extractCopy(story);
-check(combinedHistory === extractCopy(storyCopy(content)), 'Reorganized histories reconstruct all 15 final paragraphs byte for byte');
-check((combinedHistory.match(/<p\b/g) || []).length === 15 && !pages['our-story.html'].includes('data-history-copy'), 'All 15 paragraphs appear once on one page, old page only redirects');
+const paragraphHtml = html => [...extractCopy(html).matchAll(/<p\b[^>]*>[\s\S]*?<\/p>/g)].map(match => match[0]);
+const combinedHistory = paragraphHtml(story).join('\n');
+check(JSON.stringify(paragraphHtml(story)) === JSON.stringify(paragraphHtml(storyCopy(content))), 'Eight preserved international paragraphs and sixteen approved local paragraphs remain in order around the media');
+check(paragraphHtml(story).length === 24 && !pages['our-story.html'].includes('data-history-copy'), 'All 24 current paragraphs appear once on the combined page, old page only redirects');
 check(!home.includes('data-history-copy') && !home.includes('story-disclosure') && !home.includes('history-timeline'), 'No giant inline history, accordion, or timeline on home');
 check(story.includes('<em>Fight Club</em>'), 'Fight Club italics preserved');
-for (const [index, anchor] of Object.entries(content.history.anchors)) check((Number(index) < 8 ? story : ourStory).includes(`<p id="${anchor}">${content.copy.historyParagraphs[index]}</p>`), 'Correct destination paragraph anchor: ' + anchor);
+for (const [index, anchor] of Object.entries(content.history.anchors).filter(([index]) => Number(index) < 8)) check(story.includes(`<p id="${anchor}">${content.copy.historyParagraphs[index]}</p>`), 'Preserved international paragraph anchor: ' + anchor);
+for (const [index, anchor] of Object.entries(content.history.stories.minneapolis.anchors)) check(ourStory.includes(`<p id="${anchor}">${content.history.stories.minneapolis.paragraphs[index]}</p>`), 'Current Minneapolis paragraph anchor: ' + anchor);
 for (const beat of content.history.timeline) {
   const part = content.history.stories.minneapolis.timelineYears.includes(beat.year) ? 'minneapolis' : 'santacon';
   const url = 'story.html';
@@ -92,7 +94,7 @@ for (const beat of content.history.timeline) {
 }
 const expectedBeats = ['1977: The Suicide Club forms in San Francisco.', '1986: Its alumni start the Cacophony Society.', '1994: A busload of cheap-suit Santas hits San Francisco.', 'Then: SantaCon goes global, and drunk.', '2012: Brent rides the Milwaukee Santa Cycle Rampage.', '2013: The first Minneapolis ride.', '2025: 178 riders. Kindness wins.'];
 check(JSON.stringify(content.history.timeline.map(beat => `${beat.year}: ${beat.text}`)) === JSON.stringify(expectedBeats), 'Exact seven requested timeline beats');
-for (const page of [home, pages['rebel.html']]) check((page.match(/class="history-cards"/g) || []).length === 1 && (page.match(/class="history-path"/g) || []).length === 2, 'One shared card section and exactly two story panels in each theme');
+for (const page of [home, pages['rebel.html']]) check((page.match(/class="history-cards"/g) || []).length === 1 && (page.match(/class="history-path story-feature"/g) || []).length === 2, 'One shared history card section and exactly two feature panels in each theme');
 check(home.indexOf('id="history"') > home.indexOf('id="vibe"'), 'History stays below the event sections in both themes');
 check(home.includes('id="santa-mayhem"') && home.includes('id="origins"'), 'Old homepage history anchors still land in the new section');
 check(story.includes('id="minneapolis"') && !story.includes('data-local-story=') && pages['our-story.html'].includes('destination.hash = location.hash'), 'Combined page keeps local fragments and legacy URL preserves existing bookmarks');
@@ -136,7 +138,7 @@ check(renderPress(fixture).includes('data-everything-download href="../../downlo
 fixture.foundingSentence = '[CONFIRM: founding fact]';
 check(!renderPress(fixture).includes('class="founding-sentence"') && !renderDefault(fixture).includes('class="founding-sentence"'), 'Unconfirmed founding field is never public');
 check(content.foundingSentence === 'In 2013, Brent called up a couple of friends, and ten Santas rode that first year.', 'User-confirmed exact founding sentence');
-check(press.includes(content.foundingSentence) && ourStory.includes(content.foundingSentence), 'Confirmed founding sentence retained in press and Our Story');
+check(press.includes(content.foundingSentence) && !ourStory.includes('class="founding-sentence"') && ourStory.includes(content.history.stories.minneapolis.title), 'Press founding field is unchanged; Our Story uses the newly approved headline and narrative');
 
 const boot = readFileSync(path.join(directory, 'mode-boot.js'), 'utf8');
 for (const [query, expected] of [['', 'default'], ['?mode=rebel', 'rebel'], ['?mode=default', 'default']]) {
@@ -146,4 +148,4 @@ for (const [query, expected] of [['', 'default'], ['?mode=rebel', 'rebel'], ['?m
 }
 
 const digest = createHash('sha256').update(combinedHistory).digest('hex');
-console.log(`${assertions} checks passed. Recombined history diff: no differences, 15 preserved paragraphs, SHA256 ${digest}.`);
+console.log(`${assertions} checks passed. Combined history contains 8 unchanged international paragraphs and 16 new local paragraphs, SHA256 ${digest}.`);

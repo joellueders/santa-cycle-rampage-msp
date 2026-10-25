@@ -1,4 +1,23 @@
 /* Shared navigation, FAQ, and media controls. Theme variables supply the colors. */
+/* Shared page order matches the navigation at every width. */
+html{scroll-padding-top:0;scroll-padding-bottom:100px}
+.content-sections>.content-section{order:0;position:relative;scroll-margin-top:112px;scroll-margin-bottom:100px}
+.legacy-section-anchor{position:absolute;top:0;width:0;height:0;scroll-margin-top:112px}
+.what-section .manifesto-section{padding:0;margin:0;border:0}
+.what-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:start}
+.what-copy>p{font-size:18px;line-height:1.6;margin:0 0 18px}
+.what-copy>.what-lead{font-size:23px;line-height:1.4;font-weight:800}
+.participation-steps{list-style:none;margin:28px 0 0;padding:0}
+.participation-steps>li{display:grid;grid-template-columns:48px minmax(190px,.8fr) minmax(0,2.2fr);gap:22px;align-items:start;border-top:1px solid var(--line);padding:23px 0}
+.participation-number{font:400 36px/1 Impact,Haettenschweiler,sans-serif;color:var(--small-red,var(--action))}
+.participation-steps h3{font-size:29px;line-height:1.1;margin:0}
+.participation-steps p{font-size:17px;line-height:1.55;margin:0}
+.lights-reminder{background:#b7ff00;color:#171717;padding:0 .15em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.farewell-film{margin:28px 0 0}.farewell-film video{aspect-ratio:16/9;object-fit:cover;object-position:center}
+.what-layout .brewery-film video{aspect-ratio:2.2;object-position:center}
+.schedule-route>.ride-smart{margin:16px 0}
+@media(min-width:901px){.schedule-route{display:contents}.schedule-route>.schedule-card{grid-column:2;grid-row:1}.schedule-route>.ride-smart{grid-column:1/-1;grid-row:2;margin:0}.schedule-route>.schedule-logistics,.schedule-route>.schedule-join-note{grid-column:1/-1;margin:0}}
+@media(max-width:900px){.what-layout{grid-template-columns:1fr;gap:6px}.what-copy>p{font-size:16px}.what-copy>.what-lead{font-size:20px}.participation-steps>li{grid-template-columns:1fr;gap:10px;padding:20px 0}.participation-number{font-size:30px}.participation-steps h3{font-size:27px}.participation-steps p{font-size:16px}}
 html:not([data-site-mode="rebel"]) .rebel-only,html[data-site-mode="rebel"] .default-only{display:none!important}
 html{scroll-behavior:auto}.site-header{position:sticky;top:0;z-index:20}@media(max-width:900px){html{scroll-padding-top:96px}}
 .header-actions{display:flex;align-items:center;gap:12px}.mode-control{display:flex;align-items:center;gap:10px}

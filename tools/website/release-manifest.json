@@ -1,5 +1,5 @@
 {
-  "baseline": "f2284226787e06751899fe02ea8199256f5026e4",
+  "baseline": "81b64288631f0007faff1738492875a5a04a5129",
   "files": [
     "SITE_MODES.md",
     "index.html",
@@ -18,6 +18,7 @@
     "story.html",
     "tests/site-mode.test.cjs",
     "tools/website/LAUNCH.md",
+    "tools/website/RETIRED_STEP_COPY.md",
     "tools/website/assets/history/minneapolis-prince-mural.png",
     "tools/website/assets/history/new-york-santacon-2010-cc0.jpg",
     "tools/website/assets/history/san-francisco-cheap-suit-santas-1995.png",
@@ -36,6 +37,7 @@
     "tools/website/prepare-release.mjs",
     "tools/website/preview.mjs",
     "tools/website/rebel.css",
+    "tools/website/release-manifest.json",
     "tools/website/release-tests.cjs",
     "tools/website/shared.mjs",
     "tools/website/site.js",
@@ -43,7 +45,9 @@
     "tools/website/source/press-before-pass3.html",
     "tools/website/stories.mjs",
     "tools/website/verify-email.mjs",
+    "tools/website/verify-homepage.mjs",
     "tools/website/verify-pass3.mjs",
+    "tools/website/verify-story.mjs",
     "tools/website/verify.mjs"
   ],
   "references": [

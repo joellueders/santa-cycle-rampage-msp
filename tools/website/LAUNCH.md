@@ -8,6 +8,8 @@ Build and check source with Node:
     node tools/website/verify.mjs
     node tools/website/verify-pass3.mjs
     node tools/website/verify-email.mjs
+    node tools/website/verify-homepage.mjs
+    node tools/website/verify-story.mjs
 
 For publication, use a separate clean worktree at current origin/main, then run:
 
@@ -15,4 +17,4 @@ For publication, use a separate clean worktree at current origin/main, then run:
 
 Stage only files listed by the release manifest. Do not publish local QA outputs. Preserve current media, CNAME, analytics, and the existing calendar. No API credentials are used. A user reported the local MailerLite signup worked; the welcome automation is separate and was not activated by this release.
 
-Rollback baseline: f2284226787e06751899fe02ea8199256f5026e4. Reverting the release commit restores the earlier website.
+Rollback baseline: 81b64288631f0007faff1738492875a5a04a5129. Reverting the release commit restores the earlier website.

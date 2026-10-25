@@ -80,3 +80,26 @@ test('local dependencies and cross-page anchors resolve', () => {
     }
   }
 });
+
+test('homepage uses one shared set of step rows and the requested nav anchors', () => {
+  for (const name of ['index.html', 'rebel.html']) {
+    const text = page(name);
+    assert.equal((text.match(/data-step-rows/g) || []).length, 1);
+    assert.doesNotMatch(text, /ride-chips|data-ride-steps|how-section|How it works/);
+    const nav = text.match(/<nav class="desktop-nav"[\s\S]*?<\/nav>/)[0];
+    assert.deepEqual([...nav.matchAll(/<a href="([^"]+)"[^>]*>(.*?)<\/a>/g)].map(x => [x[1], x[2]]), [['#what','What is this?'],['#schedule','Schedule'],['#toy','Toy drive'],['#faq','FAQ'],['#history','History'],['press.html','Press']]);
+    for (const id of ['what','schedule','toy','faq','history']) assert.ok(text.includes(`id="${id}"`));
+    assert.match(text, /<mark class="lights-reminder">bring front and rear lights<\/mark>/);
+    assert.match(text, /meet at 10 AM for breakfast\. Note: Many riders join/);
+    assert.match(text, /Drinking is optional\.<\/p>/);
+  }
+});
+test('both themes end with the correctly credited trail farewell video', () => {
+  for (const name of ['index.html', 'rebel.html']) {
+    const join = page(name).match(/<section class="content-section join-section"[\s\S]*?<\/section>/)[0];
+    assert.match(join, /class="wide-film farewell-film"/);
+    assert.match(join, /data-src="assets\/trail-ride-2024.mp4"/);
+    assert.match(join, /Footage: Mike Binkley/);
+  }
+  assert.match(page('story.html'), /Footage: Mike Binkley/);
+});

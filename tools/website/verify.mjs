@@ -23,7 +23,7 @@ const expectedManifesto = [
   'We bring toys for kids and ride from brewery to brewery through Minneapolis, but the people we meet are the destination.'
 ];
 check(JSON.stringify(content.copy.rebel.manifesto) === JSON.stringify(expectedManifesto), 'Exact approved Rebel paragraphs stored in shared content in order');
-const manifesto = rebel.match(/<section class="wrap manifesto-section rebel-only"[\s\S]*?<\/section>/)[0];
+const manifesto = rebel.match(/<div class="manifesto-section rebel-only"[\s\S]*?<\/div><\/div>/)[0];
 const expectedClosing = 'That’s our particular brand of mayhem: in a weary world, kindness is its own kind of rebellion.';
 const expectedSubline = 'Work. Buy. Scroll. Repeat. Keep your head down. Keep to yourself.';
 check(content.copy.rebel.manifestoClosing === expectedClosing && JSON.stringify(paragraphs(manifesto)) === JSON.stringify([expectedSubline, ...expectedManifesto, expectedClosing]), 'Updated subheading, manifesto, and closing appear in exact requested order');
@@ -35,7 +35,7 @@ const ourStory = biggerStory;
 const legacyStory = renderOurStory(content);
 check(legacyStory.includes('location.replace(destination.href)') && legacyStory.includes('story.html#minneapolis'), 'Old Our Story URL redirects to the combined Minneapolis section');
 check(!ourStory.includes('The whole idea') && !ourStory.includes('When we started in 2013, brewery taprooms') && !ourStory.includes('local-idea-title'), 'Whole idea section and paragraphs removed from Our Story');
-check(ourStory.includes('aria-labelledby="local-archive-title"') && ourStory.includes('id="local-archive-title"'), 'Remaining archive retains a valid section heading');
+check(ourStory.includes('aria-labelledby="first-ride-title"') && ourStory.includes('id="posters-title"'), 'Interspersed archive media retains valid section headings');
 const historyText = normal(biggerStory + ourStory);
 for (const page of [html, rebel, biggerStory, ourStory]) check(!page.includes('class="badge"'), 'Top navigation announcement badge removed from desktop and mobile');
 check(html.includes('The Strange History of Groups of People in Santa Suits') && biggerStory.includes('<h1 class="display" id="story-title">The Strange History of Groups of People in Santa Suits</h1>'), 'Updated bigger-story title shared by homepage panel and story destination');
@@ -44,8 +44,8 @@ const visibleFaqItems = faqContent.displayOrder.map(id => faqContent.items.find(
 
 check((html.match(/<h1\b/g) || []).length === 1, 'One default H1');
 check((rebel.match(/<h1\b/g) || []).length === 1, 'One Rebel H1');
-check((html.match(/<video\b/g) || []).length === 4 && (ourStory.match(/<video\b/g) || []).length === 1, 'All five media slots retained across home and local history');
-check((rebel.match(/<video\b/g) || []).length === 4, 'Rebel retains the four non-history videos');
+check((html.match(/<video\b/g) || []).length === 5 && (ourStory.match(/<video\b/g) || []).length === 1, 'All existing media retained, with the farewell trail video restored at the end');
+check((rebel.match(/<video\b/g) || []).length === 5, 'Rebel also includes the farewell trail video');
 check((html.match(/<details data-faq-id=/g) || []).length === 6, 'Only the six requested FAQs are displayed');
 for (const paragraph of paragraphs(faq)) {
   // This opening paragraph was explicitly replaced in the kids FAQ.
@@ -66,7 +66,8 @@ check(updatedHistory[0].includes('(active from 1977 to 1982, and often called th
 check(updatedHistory[1] === previousHistory[1].replace(' and urban exploration.', '.'), 'Only urban exploration removed from paragraph 2');
 check(updatedHistory[11].startsWith('Minneapolis sits somewhere between the two coasts, and so does our idea.'), 'New Minneapolis paragraph in the requested position');
 check(updatedHistory[13].startsWith(previousHistory[12] + ' At SantaCon, the suit is a disguise') && updatedHistory[13].endsWith('the group lets us be openly joyful without feeling exposed.'), 'Santa-suit paragraph extended without rewriting its opening');
-for (const paragraph of updatedHistory) check(historyText.includes(paragraph), 'Final paragraph retained on the appropriate history page: ' + paragraph.slice(0, 60));
+for (const paragraph of updatedHistory.slice(0, 8)) check(historyText.includes(paragraph), 'International history paragraph remains unchanged: ' + paragraph.slice(0, 60));
+for (const paragraph of content.history.stories.minneapolis.paragraphs) check(historyText.includes(normal(paragraph)), 'New approved Minneapolis paragraph is rendered: ' + normal(paragraph).slice(0, 60));
 check(content.copy.historyParagraphs[1].includes('<em>Fight Club</em>'), 'Fight Club retains italics');
 check(biggerStory.includes(source.match(/<p class="mayhem-sources">[\s\S]*?<\/p>/)[0]), 'Further reading links and wording unchanged');
 check(html.includes(content.history.homepage.heading) && biggerStory.includes(content.history.subheading), 'New homepage heading and preserved bigger-story subheading');
@@ -74,9 +75,10 @@ check(!html.includes('—') && !rebel.includes('—'), 'No em dashes in generate
 check(defaultText.includes('Your bike is your sleigh.'), 'Toy drive voice retained');
 check(defaultText.includes('the Salvation Army'), 'Toy recipient present');
 check(rebelText.toLowerCase().includes('the machine') && rebelText.toLowerCase().includes('wants you') && rebelText.toLowerCase().includes('alone.'), 'Existing Rebel headline retained');
-check(html.replace('data-page-mode="default" data-site-mode="default"', '').replace('aria-pressed="false"', 'aria-pressed="MODE"') === rebel.replace('data-page-mode="rebel" data-site-mode="rebel"', '').replace('aria-pressed="true"', 'aria-pressed="MODE"'), 'Both themes share identical page markup and facts');
+const sharedLayout = page => page.replace(/<ol class="participation-steps"[\s\S]*?<\/ol>/, '').replace(/<figure class="wide-film brewery-film"[\s\S]*?<\/figure>/, '').replace(/data-page-mode="(?:default|rebel)" data-site-mode="(?:default|rebel)"/, '').replace(/aria-pressed="(?:true|false)"/, 'aria-pressed="MODE"');
+check(sharedLayout(html) === sharedLayout(rebel), 'Both themes share identical templates and facts, with single movable step rows and video');
 check(!rebel.includes('shared.css'), 'Legacy Rebel-only stylesheet removed from output');
-check((html.match(/data-ride-steps/g) || []).length === 1, 'One shared steps component');
+check((html.match(/data-step-rows/g) || []).length === 1 && !html.includes('data-ride-chips'), 'One shared five-row steps component, without chips or duplicate cards');
 check(!html.includes('The unofficial Santa resistance cut'), 'Old navigation hint removed');
 check(!html.includes('Switch to default') && !rebel.includes('mode-return'), 'Redundant Rebel return link removed; shared switch remains');
 check(html.includes('aria-controls="mobile-nav"') && html.includes('id="mobile-nav"'), 'Mobile menu markup provided in both themes');
@@ -112,7 +114,7 @@ for (const page of [html, rebel]) {
   check(!page.includes('Optional ride updates.') && !page.includes('Use the MailerLite form') && !page.includes('aria-describedby="location-email-note"'), 'Requested signup fine print removed without dangling description');
   check(page.includes(content.email.signupUrl), 'Hosted signup fallback available');
 }
-for (const [key, id, normalHeading] of [['how', 'how-title', 'How it works'], ['gifts', 'gift-title', 'Bring a gift.'], ['faq', 'faq-title', 'FAQ'], ['join', 'join-title', 'Join the joy']]) {
+for (const [key, id, normalHeading] of [['gifts', 'gift-title', 'Bring a gift.'], ['faq', 'faq-title', 'FAQ'], ['join', 'join-title', 'Join the joy']]) {
   const expected = `<span class="default-only">${normalHeading}</span><span class="rebel-only">${content.copy.rebel.sectionHeadings[key]}</span>`;
   for (const page of [html, rebel]) check(page.includes(`id="${id}">${expected}</h2>`), 'One shared heading switches between default and Rebel copy: ' + key);
 }

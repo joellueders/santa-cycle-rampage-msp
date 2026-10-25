@@ -23,17 +23,27 @@ function localMedia(html) {
       const actual = ['jpg', 'png', 'webp'].map(ext => `assets/${stem}.${ext}`).find(candidate => existsSync(path.join(repository, candidate)));
       if (!actual) throw new Error('Missing original archive photo: ' + filename);
       return actual;
-    }).replace(/(["'])assets\//g, '$1../../assets/').replaceAll('<video ', '<video data-ambient ');
+    }).replace(/(["'])assets\//g, '$1../../assets/').replaceAll('<video ', '<video data-ambient ').replaceAll('<source src=', '<source data-src=');
 }
 
-export function localArchive(c) {
+export function localArchiveParts(c) {
   const thenNow = div('history-grid').replace(/<p class="lede">[\s\S]*?<\/p>/, '');
-  const early = div('early-history');
+  const trail = div('history-film').replace(/(<p class="video-credit">)[\s\S]*?(<\/p>)/, (_, open, close) => open + escape(c.media.history.credit) + close);
   const extras = [
     ['crowd.jpg', 'A huge crowd of Santa Cycle Rampage riders outdoors', 'A little joy in the streets.'],
     ['prince.jpg', 'Santa and elf cyclists riding past the Prince mural in Minneapolis', 'Very Minneapolis.'],
     ['sarah-mayer-friends-2024.jpg', 'Five friends in Santa costumes at La Doña during the 2024 ride', 'Free. Festive. Full of cheer.', 'Photo: Sarah Mayer'],
     ['patio.jpg', 'Santa riders relaxing outside a brewery', 'December patio weather.']
   ];
-  return `<section class="local-archive" aria-labelledby="local-archive-title"><h2 class="display archive-title" id="local-archive-title">From the ride’s archive</h2><p>${c.latestRide.riders} riders joined in ${c.latestRide.year}, our biggest year yet.</p>${localMedia(thenNow + early)}<div class="vibe-grid">${extras.map(([src, alt, caption, credit]) => `<figure><img src="../../assets/${src}" alt="${escape(alt)}" loading="lazy" decoding="async"><figcaption>${caption}${credit ? ' · ' + credit : ''}</figcaption></figure>`).join('')}</div></section>`;
+  return {
+    firstRide: `<section class="story-media" data-story-media="firstRide" aria-labelledby="first-ride-title"><h3 class="display" id="first-ride-title">The first ride.</h3>${localMedia(div('first-ride-grid'))}</section>`,
+    posters: `<section class="story-media" data-story-media="posters" aria-labelledby="posters-title"><h3 class="display" id="posters-title">Previous posters</h3>${localMedia(div('artifact-grid early-posters'))}</section>`,
+    trail: `<div class="story-media" data-story-media="trail">${localMedia(trail)}</div>`,
+    thenNow: `<section class="story-media" data-story-media="thenNow" aria-labelledby="then-now-title"><h3 class="display" id="then-now-title">Then and now.</h3>${localMedia(thenNow)}</section>`,
+    extras: `<div class="vibe-grid story-media" data-story-media="extras">${extras.map(([src, alt, caption, credit]) => `<figure><img src="../../assets/${src}" alt="${escape(alt)}" loading="lazy" decoding="async"><figcaption>${caption}${credit ? ' · ' + credit : ''}</figcaption></figure>`).join('')}</div>`
+  };
+}
+
+export function localArchive(c) {
+  return `<section class="local-archive" aria-labelledby="local-archive-title"><h2 class="display archive-title" id="local-archive-title">From the ride’s archive</h2>${Object.values(localArchiveParts(c)).join('')}</section>`;
 }

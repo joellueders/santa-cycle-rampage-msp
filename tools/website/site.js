@@ -1,24 +1,23 @@
 (() => {
   const root = document.documentElement;
   const phoneLayout = matchMedia('(max-width: 900px)');
-  const sections = document.querySelector('.content-sections');
   const heroLayout = document.querySelector('.hero-layout');
   const heading = document.querySelector('.hero-heading');
   const response = document.querySelector('.hero-response');
   const tagline = document.querySelector('.hero-tagline');
-  const rideSteps = document.querySelector('[data-ride-steps]');
+  const participationSteps = document.querySelector('[data-step-rows]');
+  const breweryFilm = document.querySelector('.brewery-film');
+  const moveShared = (node, slot) => {
+    if (!node || !slot || node.parentNode === slot) return;
+    // State-preserving moves keep an already loaded video alive where supported.
+    if (slot.moveBefore) slot.moveBefore(node, null);
+    else slot.append(node);
+  };
   const updateLayout = () => {
     const rebel = root.dataset.siteMode === 'rebel';
-    if (sections) {
-      const order = phoneLayout.matches ? ['schedule', 'gifts', 'how', 'faq', 'vibe', 'history', 'join'] : ['how', 'schedule', 'gifts', 'faq', 'vibe', 'history', 'join'];
-      if (order.some((name, index) => !sections.children[index].classList.contains(name + '-section'))) {
-        order.forEach(name => sections.append(sections.querySelector('.' + name + '-section')));
-      }
-    }
-    if (rideSteps) {
-      const slot = document.querySelector(phoneLayout.matches || rebel ? '.how-steps-slot' : '.steps-overview');
-      if (rideSteps.parentNode !== slot) slot.append(rideSteps);
-    }
+    const slotMode = rebel ? 'rebel' : 'default';
+    moveShared(participationSteps, document.querySelector(`[data-steps-slot="${slotMode}"]`));
+    moveShared(breweryFilm, document.querySelector(`[data-brewery-slot="${slotMode}"]`));
     if (heroLayout && heading) {
       if (phoneLayout.matches && rebel) {
         if (response.parentNode !== heroLayout) tagline.after(response);

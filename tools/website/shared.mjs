@@ -25,7 +25,7 @@ export const manifestoLine = c => c.copy.historyParagraphs.at(-1).match(/In a we
 
 export function header(c, { page = 'home', mode = 'default', themeable = true } = {}) {
   const homeSection = id => page === 'home' ? '#' + id : c.links.home + '#' + id;
-  const items = [[homeSection('about'), 'What is this?'], [homeSection('gifts'), 'Toy drive'], [homeSection('how'), 'How it works'], [homeSection('stops'), 'Schedule'], [homeSection('history'), 'History'], [homeSection('faq'), 'FAQ'], [c.links.story, 'Story'], [c.links.press, 'Press']];
+  const items = [[homeSection('what'), 'What is this?'], [homeSection('schedule'), 'Schedule'], [homeSection('toy'), 'Toy drive'], [homeSection('faq'), 'FAQ'], [homeSection('history'), 'History'], [c.links.press, 'Press']];
   const nav = items.map(([href, label]) => `<a href="${escape(href)}"${label === 'Schedule' ? ' class="schedule-link"' : ''}${(page === 'press' && label === 'Press') || (page === 'story' && label === 'Story') ? ' aria-current="page"' : ''}${themeable && label !== 'Press' ? ' data-mode-link' : ''}>${label}</a>`).join('');
   const words = c.eventName.split(/\s+/);
   const brand = [words.slice(0, -3).join(' '), words.at(-3), words.slice(-2).join(' ')].map(part => `<span>${escape(part.toUpperCase())}</span>`).join(' ');
@@ -47,9 +47,18 @@ export function sticky(c) {
   return `<aside class="sticky-rsvp" id="sticky-rsvp" aria-label="Ride day RSVP" hidden><div class="sticky-inner"><strong>${escape(d.shortDate)} · ${escape(d.time)} · ${escape(c.cost)}</strong><a class="button" href="${escape(c.links.event)}" target="_blank" rel="noopener">RSVP<span class="sticky-long"> on Facebook</span></a></div></aside>`;
 }
 
+export function storyParagraphs(c, part) {
+  const story = c.history.stories[part];
+  return story.paragraphs
+    ? story.paragraphs.map((html, index) => ({ html, anchor: story.anchors?.[index] }))
+    : story.paragraphIndexes.map(index => ({ html: c.copy.historyParagraphs[index], anchor: c.history.anchors[index] }));
+}
+
+export const renderHistoryParagraph = ({ html, anchor }) => `<p${anchor ? ` id="${escape(anchor)}"` : ''}>${html}</p>`;
+
 export function storyCopy(c, part = null) {
-  const indexes = part ? c.history.stories[part].paragraphIndexes : c.copy.historyParagraphs.map((_, index) => index);
-  return `<div class="history-copy" data-history-copy>${indexes.map(index => `<p${c.history.anchors[index] ? ` id="${escape(c.history.anchors[index])}"` : ''}>${c.copy.historyParagraphs[index]}</p>`).join('\n')}</div>`;
+  const paragraphs = part ? storyParagraphs(c, part) : Object.keys(c.history.stories).flatMap(key => storyParagraphs(c, key));
+  return `<div class="history-copy" data-history-copy>${paragraphs.map(renderHistoryParagraph).join('\n')}</div>`;
 }
 
 export function furtherReading(c) {
@@ -70,12 +79,12 @@ export function renderHistoryHub(c) {
   const h = c.history.homepage;
   const paths = Object.entries(c.history.stories).map(([key, story]) => {
     const thumbnail = story.thumbnail || c.history.strip[story.photoIndex].photo;
-    return `<article class="history-path-panel"><a class="history-path" data-mode-link href="${escape(c.links[story.linkKey])}" aria-labelledby="${key}-path-title ${key}-path-link"><figure class="history-path-photo"><img src="${escape(thumbnail.src)}" alt="${escape(thumbnail.alt)}" loading="lazy" decoding="async" style="object-position:${escape(thumbnail.position)}"><figcaption>${escape(namedCopy(c, thumbnail.credit))}</figcaption></figure><div><p class="history-path-kicker">${escape(story.label)}</p><h3 id="${key}-path-title">${escape(namedCopy(c, story.panelTitle || story.title))}</h3><p>${escape(story.description)}</p><span class="history-path-link" id="${key}-path-link">${escape(story.linkLabel)}</span></div></a></article>`;
+    return `<article class="history-path-panel"><a class="history-path story-feature" data-mode-link href="${escape(c.links[story.linkKey])}" aria-labelledby="${key}-path-title ${key}-path-link"><figure class="history-path-photo"><img src="${escape(thumbnail.src)}" alt="${escape(thumbnail.alt)}" loading="lazy" decoding="async" style="object-position:${escape(thumbnail.position)}"><figcaption>${escape(namedCopy(c, thumbnail.credit))}</figcaption></figure><div class="story-feature-copy"><p class="history-path-kicker">${escape(story.panelLabel || story.label)}</p><h4 id="${key}-path-title">${escape(namedCopy(c, story.panelTitle || story.title))}</h4><p>${escape(story.description)}</p><span class="history-path-link" id="${key}-path-link"><span>${escape(story.linkLabel.replace(/ →$/, ''))}</span><span class="story-arrow" aria-hidden="true">→</span></span></div></a></article>`;
   }).join('');
   return `<section class="content-section history-section history-hub" id="history" aria-labelledby="history-title"><span id="santa-mayhem" class="legacy-history-anchor" aria-hidden="true"></span><p class="eyebrow">History</p><h2 class="display section-title" id="history-title">${escape(h.heading)}</h2><ol class="history-cards" id="origins" aria-label="From San Francisco to New York to Minneapolis">${h.cards.map(card => {
     const photo = c.history.strip[card.photoIndex].photo;
-    return `<li><p class="history-card-place">${escape(card.label)}</p><h3 class="display">${escape(card.headline)}</h3><figure><img src="${escape(photo.src)}" alt="${escape(photo.alt)}" width="${photo.width}" height="${photo.height}" loading="lazy" decoding="async" style="object-position:${escape(photo.position)}"><p class="history-card-description">${escape(card.description)}</p><figcaption><span>${escape(photo.caption)}</span><strong>${escape(namedCopy(c, photo.credit))}</strong></figcaption></figure></li>`;
-  }).join('')}</ol><p class="history-bridge">${escape(h.narrative)}</p><p class="display history-rebellion">${escape(manifestoLine(c))}</p><nav class="history-paths" aria-label="Choose a complete history">${paths}</nav></section>`;
+    return `<li><p class="history-card-place">${escape(card.label)}</p><h3 class="display">${escape(card.headline)}</h3><figure><img src="${escape(photo.src)}" alt="${escape(photo.alt)}" width="${photo.width}" height="${photo.height}" loading="lazy" decoding="async" style="object-position:${escape(photo.position)}"><p class="history-card-description">${escape(card.description)}</p><figcaption><span>${escape(card.caption || photo.caption)}</span><strong>${escape(namedCopy(c, photo.credit))}</strong></figcaption></figure></li>`;
+  }).join('')}</ol><p class="history-bridge">${escape(h.narrative)}</p><p class="display history-rebellion">${escape(manifestoLine(c))}</p><div class="two-stories-band" id="two-stories" role="group" aria-labelledby="two-stories-title"><h3 class="display" id="two-stories-title">${escape(c.history.storyBandHeading)}</h3><nav class="history-paths" aria-label="Choose a complete history">${paths}</nav></div></section>`;
 }
 
 export function locationMarkup(c) {

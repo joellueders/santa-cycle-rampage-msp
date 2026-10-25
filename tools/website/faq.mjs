@@ -57,7 +57,7 @@ export function renderFaq(c) {
     let answer = item.answerType === 'location' ? locationAnswer(c) : item.answerType === 'participation' ? participationAnswer(c) : item.answerHtml;
     answer = answer.replaceAll('https://www.facebook.com/events/1972798296683555/', esc(c.links.event));
     if (item.id === 'not-riding' && status.firstConfirmed) answer += `<p>${status.arrival}</p>`;
-    if (item.id === 'toys') answer += '<p><a href="#gifts">See the toy drive details.</a></p>';
+    if (item.id === 'toys') answer += '<p><a href="#toy">See the toy drive details.</a></p>';
     return `<details data-faq-id="${item.id}"><summary><span>${esc(item.question)}</span>${indicator}</summary><div class="faq-answer">${answer}</div></details>`;
   };
   return faqContent.displayOrder.map(id => {
