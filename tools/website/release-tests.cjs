@@ -91,7 +91,7 @@ test('homepage uses one shared set of step rows and the requested nav anchors', 
     for (const id of ['what','schedule','toy','faq','history']) assert.ok(text.includes(`id="${id}"`));
     assert.match(text, /<mark class="lights-reminder">bring front and rear lights<\/mark>/);
     assert.match(text, /meet at 10 AM for breakfast\. Note: Many riders join/);
-    assert.match(text, /Drinking is optional\.<\/p>/);
+    assert.match(text.replace(/<[^>]+>/g, ''), /Drinking is optional\./);
   }
 });
 test('both themes end with the correctly credited trail farewell video', () => {

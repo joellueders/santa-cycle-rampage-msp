@@ -1,5 +1,5 @@
 {
-  "baseline": "81b64288631f0007faff1738492875a5a04a5129",
+  "baseline": "09246be9ffc274edc1e74fd3f3962b9577ce17e5",
   "files": [
     "SITE_MODES.md",
     "index.html",
@@ -37,7 +37,6 @@
     "tools/website/prepare-release.mjs",
     "tools/website/preview.mjs",
     "tools/website/rebel.css",
-    "tools/website/release-manifest.json",
     "tools/website/release-tests.cjs",
     "tools/website/shared.mjs",
     "tools/website/site.js",

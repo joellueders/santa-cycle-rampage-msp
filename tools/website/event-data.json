@@ -90,7 +90,7 @@
       {"title": "Spread some cheer", "advice": "Wave to the people on the sidewalk and watching from their cars. Ring your bell. Give them something to smile about. Keep riding."}
     ]
   },
-  "build": {"version": "v1.5.6", "name": "SIGNUP FIX"},
+  "build": {"version": "v1.5.7", "name": "REBEL FOR JOY"},
   "history": {
     "heading": "How This Madness Started",
     "subheading": "It started with a Suicide Club.",
@@ -213,7 +213,28 @@
         "The suit helps them lower their guard, while being part of a whole ridiculous group of Santas lets us lower ours and be openly joyful.",
         "We bring toys for kids and ride from brewery to brewery through Minneapolis, but the people we meet are the destination."
       ],
-      "vibeHeading": "Make a scene. Make a friend. Give something away."
+      "vibeHeading": "Make a scene. Make a friend. Give something away.",
+      "body": {
+        "steps": [
+          "Put on the suit. Give people something other than bad news to stare at. Meet at 10 AM for breakfast, or join at the first brewery, our second stop. Plenty of us start there.",
+          "Give a damn about somebody you may never meet. Bring {gift} for kids in need and carry it on your bike. We collect at {collection}. Your bike is your sleigh.",
+          "Tinsel. Lights. An unreasonable amount of holiday nonsense. Make your bike look like somebody still knows how to have fun.",
+          "Drink local craft beer with a roomful of ridiculous Santas. We ride from taproom to taproom across Minneapolis. The beer is part of the bash. Drinking is optional.",
+          "Wave first. Ring your bell. Be the ridiculous thing that snaps somebody out of a lousy day. We spread cheer, not fear."
+        ],
+        "gifts": "The world gives kids enough to worry about. Bring {gift} and carry it on your bike. We collect at {collection}, and the toys go to {recipient}. Your bike is your sleigh.",
+        "spectatorHeading": "No bike? You can still be in on it.",
+        "spectator": "Meet us at a brewery or travel between stops by car. If you drink, have someone sober drive. Invite friends to lunch at one of our stops. Say nothing about the Santas. Let a roomful of weirdos restore a little of their faith in people.",
+        "vibe": "The news can have the doom. We’re taking a day for Santa suits, bicycles, local craft beer, and making strangers grin. A little mayhem pointed in a good direction.",
+        "costume": "A Santa suit is the idea. Christmas trees, Krampus, and characters from the old stop-motion Christmas specials have all joined us. Bring your particular brand of ridiculous.",
+        "connection": "We spend enough of our lives keeping our heads down. The suit gives strangers permission to smile at us. The whole ridiculous group gives us permission to smile back. For a day, we get to be little kids again and ask, “Want to play?”",
+        "historyBridge": "We kept the absurdity, the suits, and the beer. Then we pointed them at the sadness of the season. A wave. A laugh. A gift for a kid. A whole city full of people worth being kind to.",
+        "faq": {
+          "register": "<p>No tickets. No registration. The ride is free. Show up and ride. An <a href=\"https://www.facebook.com/events/1972798296683555/\" target=\"_blank\" rel=\"noopener\">RSVP on Facebook</a> is optional, but appreciated. That’s the entire entrance exam.</p>",
+          "alone": "<p>Yes. You don’t need a crew or an introduction. Put on your Santa suit, say hello, and ride with us. We’re all strangers until somebody waves first.</p>",
+          "costume": "<p>A Santa suit is the idea, and most of us wear one. But a Christmas tree, Krampus, or a character from the old stop-motion Christmas specials can join the mayhem too. You’re welcome as something else. Give us something to grin at.</p>"
+        }
+      }
     }
   },
   "media": {

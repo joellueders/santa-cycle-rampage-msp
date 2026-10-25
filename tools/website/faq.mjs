@@ -58,6 +58,8 @@ export function renderFaq(c) {
     answer = answer.replaceAll('https://www.facebook.com/events/1972798296683555/', esc(c.links.event));
     if (item.id === 'not-riding' && status.firstConfirmed) answer += `<p>${status.arrival}</p>`;
     if (item.id === 'toys') answer += '<p><a href="#toy">See the toy drive details.</a></p>';
+    const rebelAnswer = c.copy.rebel.body?.faq?.[item.id];
+    if (rebelAnswer) answer = `<div class="default-only">${answer}</div><div class="rebel-only">${rebelAnswer.replaceAll('https://www.facebook.com/events/1972798296683555/', esc(c.links.event))}</div>`;
     return `<details data-faq-id="${item.id}"><summary><span>${esc(item.question)}</span>${indicator}</summary><div class="faq-answer">${answer}</div></details>`;
   };
   return faqContent.displayOrder.map(id => {
