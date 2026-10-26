@@ -1,9 +1,9 @@
 // Milliseconds. One pending timeout, never an interval or a media reload.
 const BURST_MS = 900;
-const FREQUENCY_MULTIPLIER = 1.5;
+const FREQUENCY_MULTIPLIER = 2.25;
 export const TAKEOVER_TIMING = Object.freeze({
   initialMin: 650, initialMax: 1000,
-  // Include the burst itself so start-to-start frequency is exactly 50% higher.
+  // Include the burst: 1.5 times the previous rate, 2.25 times the original.
   repeatMin: (5000 + BURST_MS) / FREQUENCY_MULTIPLIER - BURST_MS,
   repeatMax: (9000 + BURST_MS) / FREQUENCY_MULTIPLIER - BURST_MS,
   burst: BURST_MS

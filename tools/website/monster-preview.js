@@ -17,7 +17,7 @@
   placeFilm();
   const placementObserver = new window.MutationObserver(placeFilm);
   placementObserver.observe(root, { attributes: true, attributeFilter: ['data-site-mode'] });
-  import('./monster-takeover.mjs').then(({ mountTakeover }) => mountTakeover({
+  import('./monster-takeover.mjs?v=1.7.3').then(({ mountTakeover }) => mountTakeover({
     root, media: destination, video: film.querySelector('video'),
     image: destination.querySelector('.mockup-monster')
   }));

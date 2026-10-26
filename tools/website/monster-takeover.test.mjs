@@ -67,7 +67,7 @@ test('first VHS burst starts within one second and returns to video after 900ms'
   h.advance(T.burst - 1); assert.equal(h.media.dataset.takeover, 'burst');
   h.advance(1); assert.equal(h.media.dataset.takeover, 'video');
   const rest = [...h.tasks.values()][0].at - h.now();
-  assert.ok(Math.abs((7000 + T.burst) / (rest + T.burst) - 1.5) < 1e-10);
+  assert.ok(Math.abs(((7000 + T.burst) / 1.5) / (rest + T.burst) - 1.5) < 1e-10);
   assert.ok(T.initialMax + T.burst * .45 < 2000, 'readable monster cut is within the first two seconds');
   h.controller.destroy();
 });
@@ -80,7 +80,7 @@ test('random delay boundaries are modest and within the requested ranges', () =>
     h.advance(first + T.burst);
     const next = [...h.tasks.values()][0].at - h.now();
     const previousRest = random() === 0 ? 5000 : 9000;
-    assert.ok(Math.abs((previousRest + T.burst) / (next + T.burst) - 1.5) < 1e-10);
+    assert.ok(Math.abs(((previousRest + T.burst) / 1.5) / (next + T.burst) - 1.5) < 1e-10);
     h.controller.destroy();
   }
 });
