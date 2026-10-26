@@ -6,7 +6,7 @@ const inkFlow = '<span class="cast-flow rebel-only" aria-hidden="true"></span>';
 function cutout(name, role) {
   const item = artwork.find(item => item.name === name);
   if (!item) throw new Error('Missing cutout artwork: ' + name);
-  return `<figure class="site-cutout cast-${role} rebel-only" aria-hidden="true"><span class="cutout-print" style="--cast-art:url('assets/monster/${item.file}')"><img src="assets/monster/${item.file}" width="${item.width}" height="${item.height}" alt="" loading="lazy" decoding="async" draggable="false"></span></figure>`;
+  return `<figure class="site-cutout cast-${role} rebel-only" aria-hidden="true"><span class="cutout-print"><img src="assets/monster/${item.file}" width="${item.width}" height="${item.height}" alt="" loading="lazy" decoding="async" draggable="false"></span></figure>`;
 }
 
 // Decorative cast only. Shared text, links, controls and original footage stay

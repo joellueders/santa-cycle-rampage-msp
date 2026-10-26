@@ -1,3 +1,12 @@
+/* Reserve the same default-theme first frame before/after its shared DOM move. */
+.default-hero-slot { position: relative; grid-column: 2; grid-row: 1/5; align-self: start; width: 100%; order: 3; }
+.default-hero-slot::before { content: ''; display: block; aspect-ratio: 1.72; }
+.default-hero-slot::after { content: ''; display: block; height: 24px; }
+.default-hero-slot .hero-film { position: absolute; inset: 0; width: 100%; margin: 0; }
+@media (max-width: 900px) {
+  .default-hero-slot { margin-bottom: 21px; }
+  .default-hero-slot::after { height: 19px; }
+}
 /* Layer changes only: the established .monster-art grid box never resizes. */
 html[data-site-mode="rebel"] [data-monster-media] { isolation: isolate; clip-path: inset(0); }
 html[data-site-mode="rebel"] [data-monster-media] .hero-film {

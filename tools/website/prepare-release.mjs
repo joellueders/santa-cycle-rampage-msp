@@ -54,14 +54,16 @@ write('robots.txt', robots.includes('Disallow: /tools/website/') ? robots : robo
 const tracked = new Set(git('ls-tree', '-r', '--name-only', baseline).split('\n'));
 const references = new Set();
 for (const html of Object.keys(pages).map(name => readFileSync(path.join(target, name), 'utf8'))) {
-  for (const match of html.matchAll(/(?:src|poster|href|data-src)="([^"#]+)"/g)) {
-    if (/^(?:https?:|mailto:|data:)/.test(match[1])) continue;
-    const relative = match[1].split(/[?#]/)[0];
+  const urls = [...html.matchAll(/(?:src|poster|data-poster|href|data-src)="([^"#]+)"/g)].map(match => match[1]);
+  for (const match of html.matchAll(/\ssrcset="([^"]+)"/g)) urls.push(...match[1].split(',').map(item => item.trim().split(/\s+/)[0]));
+  for (const url of urls) {
+    if (/^(?:https?:|mailto:|data:)/.test(url)) continue;
+    const relative = url.split(/[?#]/)[0];
     if (!relative) continue;
     if (relative.includes('..') || path.isAbsolute(relative)) throw new Error('Unsafe release reference: ' + relative);
     references.add(relative);
     if (files.has(relative) || tracked.has(relative)) continue;
-    const source = relative.startsWith('assets/history/') || relative.startsWith('assets/monster/') ? path.join(directory, relative) : path.join(repository, relative);
+    const source = /^assets\/(?:history|monster|mobile)\//.test(relative) ? path.join(directory, relative) : path.join(repository, relative);
     if (!existsSync(source)) throw new Error('Missing release dependency: ' + relative);
     copy(source, relative);
   }
@@ -71,6 +73,8 @@ for (const name of readdirSync(directory)) if (/\.(?:mjs|cjs|js|css|json)$/.test
 copy(path.join(directory, 'release-tests.cjs'), 'tests/site-mode.test.cjs');
 copy(path.join(directory, 'RETIRED_STEP_COPY.md'), 'tools/website/RETIRED_STEP_COPY.md');
 copy(path.join(directory, 'CUTOUT_CAST.md'), 'tools/website/CUTOUT_CAST.md');
+copy(path.join(directory, 'PERFORMANCE.md'), 'tools/website/PERFORMANCE.md');
+copy(path.join(directory, 'optimize-media.py'), 'tools/website/optimize-media.py');
 for (const name of ['current-site.html', 'press-before-pass3.html']) copy(path.join(directory, 'source', name), 'tools/website/source/' + name);
 for (const { photo } of content.history.strip) if (photo.src.startsWith('assets/history/')) copy(path.join(directory, photo.src), 'tools/website/' + photo.src);
 for (const name of ['hero-monster-user.png', 'chocolate-clean.png', 'anton-regular.ttf', 'ANTON-OFL.txt', 'grain.svg', 'print-grain.svg', 'paper-edge.svg']) {
@@ -80,6 +84,15 @@ for (const name of ['hero-monster-user.png', 'chocolate-clean.png', 'anton-regul
 for (const name of readdirSync(path.join(directory, 'assets/monster')).filter(name => name.startsWith('cast-') && name.endsWith('.webp'))) {
   copy(path.join(directory, 'assets/monster', name), 'assets/monster/' + name);
   copy(path.join(directory, 'assets/monster', name), 'tools/website/assets/monster/' + name);
+}
+const optimizedMedia = JSON.parse(readFileSync(path.join(directory, 'media-performance.json')));
+const optimizedPaths = new Set([
+  ...Object.values(optimizedMedia.images).flatMap(image => image.variants.map(variant => variant.src)),
+  ...Object.values(optimizedMedia.videos).flatMap(video => [video.mobile.src, video.desktop.src])
+].filter(name => name.startsWith('assets/mobile/')));
+for (const relative of optimizedPaths) {
+  copy(path.join(directory, relative), relative);
+  copy(path.join(directory, relative), 'tools/website/' + relative);
 }
 write('tools/website/LAUNCH.md', `# Website release\n\nShared editable content is event-data.json and faq-data.json.\n\nBuild and check source with Node:\n\n    node tools/website/build.mjs\n    node tools/website/verify.mjs\n    node tools/website/verify-pass3.mjs\n    node tools/website/verify-email.mjs\n    node tools/website/verify-homepage.mjs\n    node tools/website/verify-story.mjs\n\nFor publication, use a separate clean worktree at current origin/main, then run:\n\n    node tools/website/prepare-release.mjs /absolute/path/to/release-worktree\n\nStage only files listed by the release manifest. Do not publish local QA outputs. Preserve current media, CNAME, analytics, and the existing calendar. No API credentials are used. A user reported the local MailerLite signup worked; the welcome automation is separate and was not activated by this release.\n\nRollback baseline: ${baseline}. Reverting the release commit restores the earlier website.\n`);
 write('SITE_MODES.md', '# Website modes and source\n\nRebel is the fresh-visitor landing mode. It uses the shared page structure, facts, media and FAQ, with a dark theme, monster visual layer, and editorial copy overrides. Use ?mode=rebel, ?mode=default, or rebel.html for direct links. The toggle remembers the choice and switches in place; turning Rebel Mode off reveals the regular cream version. Both history paths share story.html; Our Story links to #minneapolis. Press stays cream.\n\nEditable shared source and release instructions: tools/website/LAUNCH.md. Published styles and scripts: site-assets/. The MailerLite signup uses a direct CORS POST and inline response messages, without API credentials. Welcome-email automation is separate and has not been activated by this release.\n\nRun production checks with node --test tests/site-mode.test.cjs.\n');

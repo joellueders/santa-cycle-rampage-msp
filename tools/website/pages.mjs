@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import { optimizePage } from './media-performance.mjs';
 import { escape, cleanCopy, dates, header, pageHead, footer, historyStrip, manifestoLine, foundingSentence, namedCopy, announcementDetails, locationMarkup } from './shared.mjs';
 
 const pressSource = readFileSync(new URL('./source/press-before-pass3.html', import.meta.url), 'utf8');
@@ -45,13 +46,13 @@ function coveringLine(c) {
 export function renderPress(c) {
   const description = namedCopy(c, c.press.description);
   const bundle = c.press.everythingBundle;
-  return cleanCopy(`<!doctype html><html lang="en" data-page-mode="default" data-site-mode="default" data-theme-fixed="default"><head>${pageHead(c, { page: 'press', title: `Media Resources | ${c.eventName}`, description, themeable: false })}</head><body class="press-page"><a class="skip-link" href="#main-content">Skip to content</a>${header(c, { page: 'press', themeable: false })}<main id="main-content" tabindex="-1">
+  return optimizePage(cleanCopy(`<!doctype html><html lang="en" data-page-mode="default" data-site-mode="default" data-theme-fixed="default"><head>${pageHead(c, { page: 'press', title: `Media Resources | ${c.eventName}`, description, themeable: false })}</head><body class="press-page"><a class="skip-link" href="#main-content">Skip to content</a>${header(c, { page: 'press', themeable: false })}<main id="main-content" tabindex="-1">
 <section class="press-hero"><div class="wrap press-hero-layout"><div><p class="eyebrow">${escape(c.eventName)} · Media resources</p><h1 class="display">A sea of<br>Santas.</h1><h2>A Minneapolis holiday tradition since ${c.foundedYear}.</h2><p class="press-lede">Every December, a sea of Santas takes over the streets of Minneapolis, not in sleighs, but on bicycles.</p><p>${c.latestRide.riders} riders in ${c.latestRide.year}. Santa suits, festive misfits, decorated bikes and a city full of cheer.</p>${foundingSentence(c)}<nav class="press-jumps" aria-label="Media resources"><a class="button button-outline" href="#facts">Essentials</a><a class="button button-outline" href="#angles">Story angles</a><a class="button button-outline" href="#photos">Photos</a><a class="button button-outline" href="#broll">B-roll</a><a class="button button-outline" href="#logos">Logos</a><a class="button button-outline" href="#coverage">Coverage</a><a class="button button-outline" href="#contact">Contact</a><a class="button" data-everything-download${bundle.enabled && bundle.url ? ` href="${escape(bundle.url)}" download` : ' hidden'}>Download everything</a></nav></div>${pressStatus(c)}</div></section>
 ${pressEssentials(c)}
 <section class="press-section" id="description"><div class="wrap"><p class="eyebrow">For introductions and listings</p><h2 class="display section-title">Copy-paste description</h2><div class="description-box"><p id="press-description">${escape(description)}</p><button class="button button-secondary" type="button" data-copy-target="press-description">Copy description</button><p class="copy-feedback" role="status" aria-live="polite"></p></div></div></section>
 ${pressAngles(c)}${retainedMedia(c, 'poster')}${retainedMedia(c, 'photos')}${retainedMedia(c, 'broll')}${retainedMedia(c, 'logos')}${retainedMedia(c, 'coverage')}
 <section class="press-section press-contact" id="contact"><div class="wrap contact-layout"><div><p class="eyebrow">Interviews, photos, footage</p><h2 class="display section-title">Media contact</h2><p><strong>${escape(c.press.contactName)}</strong></p><p>For interviews, original files, credits or publication permission, email us.</p><a class="text-link contact-email" href="${escape(c.links.contact)}">${escape(c.links.contact.replace('mailto:', ''))} ↗</a></div><aside class="covering-box" aria-labelledby="covering-title"><h3 id="covering-title">Covering the ride</h3><p>Ride-day contact: <a href="${escape(c.links.contact)}">${escape(c.press.contactName)}</a>.</p><p class="covering-meetup">${coveringLine(c)}</p><p>Drinking is optional. If you drink, have a sober driver or call a ride. Riders go at their own pace.</p><p class="media-note">Check <a href="#ride-status">Ride status</a> before coming.</p></aside></div></section>
-</main>${footer(c)}</body></html>`);
+</main>${footer(c)}</body></html>`));
 }
 
 export { renderStory, renderOurStory } from './stories.mjs';

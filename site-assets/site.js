@@ -99,6 +99,21 @@
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
   const states = [];
   const limited = () => motion.matches || !!connection?.saveData;
+  const loadPoster = video => {
+    if (!video.dataset.poster) return;
+    video.poster = video.dataset.poster;
+    delete video.dataset.poster;
+  };
+  const posters = [...document.querySelectorAll('video[data-poster]')];
+  if ('IntersectionObserver' in window) {
+    const posterObserver = new IntersectionObserver(entries => {
+      for (const entry of entries) if (entry.isIntersecting) {
+        loadPoster(entry.target);
+        posterObserver.unobserve(entry.target);
+      }
+    }, { rootMargin: '300px 0px' });
+    posters.forEach(video => posterObserver.observe(video));
+  } else posters.forEach(loadPoster);
   const sync = state => {
     const playing = !state.video.paused && !state.video.ended;
     state.button.innerHTML = '<svg class="video-control-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="' + (playing ? 'M6 4h4v16H6zM14 4h4v16h-4z' : 'm8 4 12 8-12 8Z') + '"/></svg>';
@@ -107,13 +122,15 @@
   };
   const load = state => {
     if (state.loaded) return;
-    const source = state.video.querySelector('source');
-    if (source?.dataset.src) { source.src = source.dataset.src; delete source.dataset.src; }
+    loadPoster(state.video);
+    state.video.querySelectorAll('source').forEach(source => {
+      if (source.dataset.src) { source.src = source.dataset.src; delete source.dataset.src; }
+    });
     state.video.load();
     state.loaded = true;
   };
   const update = state => {
-    if (state.visible && !document.hidden && !state.pausedByUser && (!limited() || state.startedByUser)) {
+    if (state.visible && state.posterReady !== false && !document.hidden && !state.pausedByUser && (!limited() || state.startedByUser)) {
       load(state);
       state.video.play().catch(() => sync(state));
     } else state.video.pause();
@@ -127,8 +144,9 @@
     video.playsInline = true;
     video.controls = false;
     video.tabIndex = -1;
-    const source = video.querySelector('source');
-    if (source?.hasAttribute('src')) { source.dataset.src = source.getAttribute('src'); source.removeAttribute('src'); }
+    video.querySelectorAll('source').forEach(source => {
+      if (source.hasAttribute('src')) { source.dataset.src = source.getAttribute('src'); source.removeAttribute('src'); }
+    });
     video.id ||= 'ride-video-' + index;
     const shell = document.createElement('div');
     shell.className = 'video-shell';
@@ -147,6 +165,22 @@
     ['play', 'pause', 'ended', 'error'].forEach(event => video.addEventListener(event, () => sync(state)));
     states.push(state);
     sync(state);
+    if (video.id === 'video-hero' && video.poster && window.Image) {
+      // Paint the small first frame before video buffering competes for the
+      // connection. The same URL is preloaded in <head>, so it is not fetched twice.
+      state.posterReady = false;
+      const poster = new window.Image();
+      let ready = false;
+      const firstFrame = () => {
+        if (ready) return;
+        ready = true;
+        requestAnimationFrame(() => requestAnimationFrame(() => { state.posterReady = true; update(state); }));
+      };
+      poster.addEventListener('load', firstFrame, { once: true });
+      poster.addEventListener('error', firstFrame, { once: true });
+      poster.src = video.poster;
+      if (poster.complete && poster.naturalWidth) firstFrame();
+    }
   });
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
@@ -158,8 +192,9 @@
     if (limited()) {
       state.startedByUser = false;
       state.video.pause();
-      const source = state.video.querySelector('source');
-      if (source?.hasAttribute('src')) { source.dataset.src = source.getAttribute('src'); source.removeAttribute('src'); }
+      state.video.querySelectorAll('source').forEach(source => {
+        if (source.hasAttribute('src')) { source.dataset.src = source.getAttribute('src'); source.removeAttribute('src'); }
+      });
       state.loaded = false;
       state.video.load();
     }

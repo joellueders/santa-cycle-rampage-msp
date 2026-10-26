@@ -1,0 +1,916 @@
+{
+  "images": {
+    "assets/2025-costume-crew.jpg": {
+      "width": 1600,
+      "height": 1200,
+      "originalBytes": 453016,
+      "variants": [
+        {
+          "src": "assets/optimized/2025-costume-crew-480.webp",
+          "width": 480,
+          "bytes": 39036
+        },
+        {
+          "src": "assets/optimized/2025-costume-crew-1120.webp",
+          "width": 1120,
+          "bytes": 170946
+        }
+      ]
+    },
+    "assets/2025-decorated-bikes.jpg": {
+      "width": 1600,
+      "height": 1200,
+      "originalBytes": 268797,
+      "variants": [
+        {
+          "src": "assets/optimized/2025-decorated-bikes-480.webp",
+          "width": 480,
+          "bytes": 33980
+        },
+        {
+          "src": "assets/optimized/2025-decorated-bikes-1120.webp",
+          "width": 1120,
+          "bytes": 99826
+        }
+      ]
+    },
+    "assets/2025-street-procession.jpg": {
+      "width": 1600,
+      "height": 1200,
+      "originalBytes": 408777,
+      "variants": [
+        {
+          "src": "assets/optimized/2025-street-procession-480.webp",
+          "width": 480,
+          "bytes": 37908
+        },
+        {
+          "src": "assets/optimized/2025-street-procession-1120.webp",
+          "width": 1120,
+          "bytes": 165418
+        }
+      ]
+    },
+    "assets/2026_poster_santa_cycle_rampage_WEB.jpg": {
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 592078,
+      "variants": [
+        {
+          "src": "assets/mobile/2026_poster_santa_cycle_rampage_WEB-640-11a1f28a.webp",
+          "width": 640,
+          "bytes": 188626
+        }
+      ]
+    },
+    "assets/aerial.jpg": {
+      "width": 1059,
+      "height": 590,
+      "originalBytes": 162134,
+      "variants": [
+        {
+          "src": "assets/optimized/aerial-480.webp",
+          "width": 480,
+          "bytes": 35724
+        },
+        {
+          "src": "assets/optimized/aerial-1059.webp",
+          "width": 1059,
+          "bytes": 132582
+        }
+      ]
+    },
+    "assets/all-santas-preview-poster.jpg": {
+      "width": 540,
+      "height": 960,
+      "originalBytes": 70976,
+      "variants": [
+        {
+          "src": "assets/mobile/all-santas-preview-poster-540-a3f9ac4f.webp",
+          "width": 540,
+          "bytes": 44310
+        }
+      ]
+    },
+    "assets/brewery.jpg": {
+      "width": 1115,
+      "height": 1487,
+      "originalBytes": 180561,
+      "variants": [
+        {
+          "src": "assets/optimized/brewery-480.webp",
+          "width": 480,
+          "bytes": 46704
+        },
+        {
+          "src": "assets/optimized/brewery-1115.webp",
+          "width": 1115,
+          "bytes": 123442
+        }
+      ]
+    },
+    "assets/buddy-maple-syrup.jpg": {
+      "width": 900,
+      "height": 1200,
+      "originalBytes": 291108,
+      "variants": [
+        {
+          "src": "assets/mobile/buddy-maple-syrup-480-dafdd380.webp",
+          "width": 480,
+          "bytes": 35544
+        },
+        {
+          "src": "assets/mobile/buddy-maple-syrup-900-dafdd380.webp",
+          "width": 900,
+          "bytes": 83906
+        }
+      ]
+    },
+    "assets/coverage/fox9-2025-poster.jpg": {
+      "width": 1280,
+      "height": 720,
+      "originalBytes": 92933,
+      "variants": [
+        {
+          "src": "assets/mobile/coverage-fox9-2025-poster-640-707772f8.webp",
+          "width": 640,
+          "bytes": 24614
+        }
+      ]
+    },
+    "assets/coverage/kstp5-2025-poster.jpg": {
+      "width": 1280,
+      "height": 540,
+      "originalBytes": 95668,
+      "variants": [
+        {
+          "src": "assets/mobile/coverage-kstp5-2025-poster-640-3378c5aa.webp",
+          "width": 640,
+          "bytes": 23424
+        }
+      ]
+    },
+    "assets/crowd.jpg": {
+      "width": 2048,
+      "height": 1536,
+      "originalBytes": 1434952,
+      "variants": [
+        {
+          "src": "assets/optimized/crowd-480.webp",
+          "width": 480,
+          "bytes": 54626
+        },
+        {
+          "src": "assets/optimized/crowd-1120.webp",
+          "width": 1120,
+          "bytes": 285552
+        }
+      ]
+    },
+    "assets/decorated-bike-rider.jpg": {
+      "width": 960,
+      "height": 1280,
+      "originalBytes": 406673,
+      "variants": [
+        {
+          "src": "assets/optimized/decorated-bike-rider-480.webp",
+          "width": 480,
+          "bytes": 80274
+        },
+        {
+          "src": "assets/optimized/decorated-bike-rider-960.webp",
+          "width": 960,
+          "bytes": 235538
+        }
+      ]
+    },
+    "assets/elf.jpg": {
+      "width": 624,
+      "height": 836,
+      "originalBytes": 69641,
+      "variants": [
+        {
+          "src": "assets/optimized/elf-480.webp",
+          "width": 480,
+          "bytes": 47580
+        }
+      ]
+    },
+    "assets/first-avenue-riders-poster.jpg": {
+      "width": 568,
+      "height": 320,
+      "originalBytes": 38531,
+      "variants": [
+        {
+          "src": "assets/mobile/first-avenue-riders-poster-568-2caebf7c.webp",
+          "width": 568,
+          "bytes": 24706
+        }
+      ]
+    },
+    "assets/first-ride-brewery-table.jpg": {
+      "width": 360,
+      "height": 480,
+      "originalBytes": 34579,
+      "variants": [
+        {
+          "src": "assets/mobile/first-ride-brewery-table-360-51081714.webp",
+          "width": 360,
+          "bytes": 33180
+        }
+      ]
+    },
+    "assets/first-ride-costumes.jpg": {
+      "width": 720,
+      "height": 960,
+      "originalBytes": 61675,
+      "variants": [
+        {
+          "src": "assets/optimized/first-ride-costumes-480.webp",
+          "width": 480,
+          "bytes": 25730
+        },
+        {
+          "src": "assets/optimized/first-ride-costumes-720.webp",
+          "width": 720,
+          "bytes": 46814
+        }
+      ]
+    },
+    "assets/first-ride-group.png": {
+      "width": 720,
+      "height": 960,
+      "originalBytes": 841804,
+      "variants": [
+        {
+          "src": "assets/optimized/first-ride-group-480.webp",
+          "width": 480,
+          "bytes": 46578
+        },
+        {
+          "src": "assets/optimized/first-ride-group-720.webp",
+          "width": 720,
+          "bytes": 88984
+        }
+      ]
+    },
+    "assets/first-ride-santas-1.jpg": {
+      "width": 720,
+      "height": 960,
+      "originalBytes": 86082,
+      "variants": [
+        {
+          "src": "assets/optimized/first-ride-santas-1-480.webp",
+          "width": 480,
+          "bytes": 31150
+        },
+        {
+          "src": "assets/optimized/first-ride-santas-1-720.webp",
+          "width": 720,
+          "bytes": 60270
+        }
+      ]
+    },
+    "assets/first-ride-santas-2.jpg": {
+      "width": 720,
+      "height": 960,
+      "originalBytes": 72288,
+      "variants": [
+        {
+          "src": "assets/optimized/first-ride-santas-2-480.webp",
+          "width": 480,
+          "bytes": 28436
+        },
+        {
+          "src": "assets/optimized/first-ride-santas-2-720.webp",
+          "width": 720,
+          "bytes": 52452
+        }
+      ]
+    },
+    "assets/group.jpg": {
+      "width": 1536,
+      "height": 1026,
+      "originalBytes": 453081,
+      "variants": [
+        {
+          "src": "assets/optimized/group-480.webp",
+          "width": 480,
+          "bytes": 53824
+        },
+        {
+          "src": "assets/optimized/group-1120.webp",
+          "width": 1120,
+          "bytes": 201168
+        }
+      ]
+    },
+    "assets/hero-waving-elf-composite.jpg": {
+      "width": 1023,
+      "height": 1537,
+      "originalBytes": 302739,
+      "variants": [
+        {
+          "src": "assets/optimized/hero-waving-elf-composite-480.webp",
+          "width": 480,
+          "bytes": 49220
+        },
+        {
+          "src": "assets/optimized/hero-waving-elf-composite-1023.webp",
+          "width": 1023,
+          "bytes": 117902
+        }
+      ]
+    },
+    "assets/hero.jpg": {
+      "width": 1800,
+      "height": 1007,
+      "originalBytes": 307987,
+      "variants": [
+        {
+          "src": "assets/optimized/hero-480.webp",
+          "width": 480,
+          "bytes": 30726
+        },
+        {
+          "src": "assets/optimized/hero-1120.webp",
+          "width": 1120,
+          "bytes": 105732
+        }
+      ]
+    },
+    "assets/history/minneapolis-prince-mural.png": {
+      "width": 1746,
+      "height": 920,
+      "originalBytes": 2406557,
+      "variants": [
+        {
+          "src": "assets/mobile/history-minneapolis-prince-mural-480-af3e53ae.webp",
+          "width": 480,
+          "bytes": 29380
+        },
+        {
+          "src": "assets/mobile/history-minneapolis-prince-mural-960-af3e53ae.webp",
+          "width": 960,
+          "bytes": 76154
+        },
+        {
+          "src": "assets/mobile/history-minneapolis-prince-mural-1440-af3e53ae.webp",
+          "width": 1440,
+          "bytes": 120600
+        }
+      ]
+    },
+    "assets/history/new-york-santacon-2010-cc0.jpg": {
+      "width": 4083,
+      "height": 2997,
+      "originalBytes": 2396024,
+      "variants": [
+        {
+          "src": "assets/mobile/history-new-york-santacon-2010-cc0-480-f39b6158.webp",
+          "width": 480,
+          "bytes": 56870
+        },
+        {
+          "src": "assets/mobile/history-new-york-santacon-2010-cc0-960-f39b6158.webp",
+          "width": 960,
+          "bytes": 185054
+        },
+        {
+          "src": "assets/mobile/history-new-york-santacon-2010-cc0-1440-f39b6158.webp",
+          "width": 1440,
+          "bytes": 364808
+        }
+      ]
+    },
+    "assets/history/san-francisco-cheap-suit-santas-1995.png": {
+      "width": 800,
+      "height": 579,
+      "originalBytes": 690792,
+      "variants": [
+        {
+          "src": "assets/mobile/history-san-francisco-cheap-suit-santas-1995-479-a4a3a9d0.webp",
+          "width": 479,
+          "bytes": 17014
+        },
+        {
+          "src": "assets/mobile/history-san-francisco-cheap-suit-santas-1995-800-a4a3a9d0.webp",
+          "width": 800,
+          "bytes": 32390
+        }
+      ]
+    },
+    "assets/ladona-room-pan-poster.jpg": {
+      "width": 720,
+      "height": 1280,
+      "originalBytes": 112006,
+      "variants": [
+        {
+          "src": "assets/mobile/ladona-room-pan-poster-640-ef654288.webp",
+          "width": 640,
+          "bytes": 59162
+        }
+      ]
+    },
+    "assets/monster/cast-crayon-wave.webp": {
+      "width": 1129,
+      "height": 1393,
+      "originalBytes": 360528,
+      "variants": [
+        {
+          "src": "assets/mobile/monster-cast-crayon-wave-240-9e44b4a9.webp",
+          "width": 240,
+          "bytes": 29108
+        },
+        {
+          "src": "assets/mobile/monster-cast-crayon-wave-360-9e44b4a9.webp",
+          "width": 360,
+          "bytes": 51232
+        },
+        {
+          "src": "assets/mobile/monster-cast-crayon-wave-640-9e44b4a9.webp",
+          "width": 640,
+          "bytes": 124288
+        }
+      ]
+    },
+    "assets/monster/cast-dinner-invasion.webp": {
+      "width": 1254,
+      "height": 1254,
+      "originalBytes": 459388,
+      "variants": [
+        {
+          "src": "assets/mobile/monster-cast-dinner-invasion-320-d72ff415.webp",
+          "width": 320,
+          "bytes": 32454
+        },
+        {
+          "src": "assets/mobile/monster-cast-dinner-invasion-640-d72ff415.webp",
+          "width": 640,
+          "bytes": 100728
+        },
+        {
+          "src": "assets/mobile/monster-cast-dinner-invasion-960-d72ff415.webp",
+          "width": 960,
+          "bytes": 215718
+        }
+      ]
+    },
+    "assets/monster/cast-dinosaur-santa.webp": {
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 274856,
+      "variants": [
+        {
+          "src": "assets/mobile/monster-cast-dinosaur-santa-240-434c18f6.webp",
+          "width": 240,
+          "bytes": 32976
+        },
+        {
+          "src": "assets/mobile/monster-cast-dinosaur-santa-360-434c18f6.webp",
+          "width": 360,
+          "bytes": 57708
+        },
+        {
+          "src": "assets/mobile/monster-cast-dinosaur-santa-640-434c18f6.webp",
+          "width": 640,
+          "bytes": 128106
+        }
+      ]
+    },
+    "assets/monster/cast-longhair-santa.webp": {
+      "width": 1228,
+      "height": 1281,
+      "originalBytes": 211782,
+      "variants": [
+        {
+          "src": "assets/mobile/monster-cast-longhair-santa-320-d57defc6.webp",
+          "width": 320,
+          "bytes": 31284
+        },
+        {
+          "src": "assets/mobile/monster-cast-longhair-santa-480-d57defc6.webp",
+          "width": 480,
+          "bytes": 50694
+        },
+        {
+          "src": "assets/mobile/monster-cast-longhair-santa-800-d57defc6.webp",
+          "width": 800,
+          "bytes": 100292
+        }
+      ]
+    },
+    "assets/monster/cast-many-eyed-santa.webp": {
+      "width": 1217,
+      "height": 1293,
+      "originalBytes": 456932,
+      "variants": [
+        {
+          "src": "assets/mobile/monster-cast-many-eyed-santa-240-f7ba1350.webp",
+          "width": 240,
+          "bytes": 26604
+        },
+        {
+          "src": "assets/mobile/monster-cast-many-eyed-santa-360-f7ba1350.webp",
+          "width": 360,
+          "bytes": 50080
+        },
+        {
+          "src": "assets/mobile/monster-cast-many-eyed-santa-480-f7ba1350.webp",
+          "width": 480,
+          "bytes": 81566
+        }
+      ]
+    },
+    "assets/monster/cast-stick-bike.webp": {
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 153150,
+      "variants": [
+        {
+          "src": "assets/mobile/monster-cast-stick-bike-160-00cd9c91.webp",
+          "width": 160,
+          "bytes": 7578
+        },
+        {
+          "src": "assets/mobile/monster-cast-stick-bike-240-00cd9c91.webp",
+          "width": 240,
+          "bytes": 12778
+        },
+        {
+          "src": "assets/mobile/monster-cast-stick-bike-319-00cd9c91.webp",
+          "width": 319,
+          "bytes": 18638
+        }
+      ]
+    },
+    "assets/monster/cast-vintage-friends.webp": {
+      "width": 1333,
+      "height": 1180,
+      "originalBytes": 316272,
+      "variants": [
+        {
+          "src": "assets/mobile/monster-cast-vintage-friends-320-5890c11e.webp",
+          "width": 320,
+          "bytes": 33846
+        },
+        {
+          "src": "assets/mobile/monster-cast-vintage-friends-640-5890c11e.webp",
+          "width": 640,
+          "bytes": 92372
+        },
+        {
+          "src": "assets/mobile/monster-cast-vintage-friends-960-5890c11e.webp",
+          "width": 960,
+          "bytes": 168136
+        }
+      ]
+    },
+    "assets/monster/cast-vintage-podium.webp": {
+      "width": 1420,
+      "height": 1108,
+      "originalBytes": 328544,
+      "variants": [
+        {
+          "src": "assets/mobile/monster-cast-vintage-podium-320-73d5d3b3.webp",
+          "width": 320,
+          "bytes": 31062
+        },
+        {
+          "src": "assets/mobile/monster-cast-vintage-podium-640-73d5d3b3.webp",
+          "width": 640,
+          "bytes": 90442
+        },
+        {
+          "src": "assets/mobile/monster-cast-vintage-podium-960-73d5d3b3.webp",
+          "width": 960,
+          "bytes": 167578
+        }
+      ]
+    },
+    "assets/monster/cast-watercolor-rider.webp": {
+      "width": 1217,
+      "height": 1293,
+      "originalBytes": 235114,
+      "variants": [
+        {
+          "src": "assets/mobile/monster-cast-watercolor-rider-160-7533bb44.webp",
+          "width": 160,
+          "bytes": 9466
+        },
+        {
+          "src": "assets/mobile/monster-cast-watercolor-rider-240-7533bb44.webp",
+          "width": 240,
+          "bytes": 16950
+        },
+        {
+          "src": "assets/mobile/monster-cast-watercolor-rider-320-7533bb44.webp",
+          "width": 320,
+          "bytes": 25518
+        }
+      ]
+    },
+    "assets/monster/chocolate-clean.png": {
+      "width": 1356,
+      "height": 1160,
+      "originalBytes": 1965857,
+      "variants": [
+        {
+          "src": "assets/mobile/monster-chocolate-clean-480-546a2b81.webp",
+          "width": 480,
+          "bytes": 69276
+        },
+        {
+          "src": "assets/mobile/monster-chocolate-clean-800-546a2b81.webp",
+          "width": 800,
+          "bytes": 152232
+        },
+        {
+          "src": "assets/mobile/monster-chocolate-clean-1200-546a2b81.webp",
+          "width": 1200,
+          "bytes": 274160
+        }
+      ]
+    },
+    "assets/monster/hero-monster-user.png": {
+      "width": 1122,
+      "height": 1402,
+      "originalBytes": 2956952,
+      "variants": [
+        {
+          "src": "assets/mobile/monster-hero-monster-user-480-9d047e62.webp",
+          "width": 480,
+          "bytes": 127342
+        },
+        {
+          "src": "assets/mobile/monster-hero-monster-user-800-9d047e62.webp",
+          "width": 800,
+          "bytes": 308852
+        },
+        {
+          "src": "assets/mobile/monster-hero-monster-user-1122-9d047e62.webp",
+          "width": 1122,
+          "bytes": 506290
+        }
+      ]
+    },
+    "assets/patio.jpg": {
+      "width": 1115,
+      "height": 1494,
+      "originalBytes": 314494,
+      "variants": [
+        {
+          "src": "assets/optimized/patio-480.webp",
+          "width": 480,
+          "bytes": 70966
+        },
+        {
+          "src": "assets/optimized/patio-1115.webp",
+          "width": 1115,
+          "bytes": 302242
+        }
+      ]
+    },
+    "assets/poster-2013.jpg": {
+      "width": 1536,
+      "height": 2048,
+      "originalBytes": 316582,
+      "variants": [
+        {
+          "src": "assets/optimized/poster-2013-480.webp",
+          "width": 480,
+          "bytes": 56580
+        },
+        {
+          "src": "assets/optimized/poster-2013-1120.webp",
+          "width": 1120,
+          "bytes": 151934
+        }
+      ]
+    },
+    "assets/poster-2014.jpg": {
+      "width": 768,
+      "height": 960,
+      "originalBytes": 146500,
+      "variants": [
+        {
+          "src": "assets/optimized/poster-2014-480.webp",
+          "width": 480,
+          "bytes": 70788
+        },
+        {
+          "src": "assets/optimized/poster-2014-768.webp",
+          "width": 768,
+          "bytes": 142982
+        }
+      ]
+    },
+    "assets/poster-2017.png": {
+      "width": 1536,
+      "height": 2048,
+      "originalBytes": 2750305,
+      "variants": [
+        {
+          "src": "assets/optimized/poster-2017-480.webp",
+          "width": 480,
+          "bytes": 52064
+        },
+        {
+          "src": "assets/optimized/poster-2017-1120.webp",
+          "width": 1120,
+          "bytes": 168468
+        }
+      ]
+    },
+    "assets/poster-2023.jpg": {
+      "width": 1086,
+      "height": 1536,
+      "originalBytes": 364871,
+      "variants": [
+        {
+          "src": "assets/optimized/poster-2023-480.webp",
+          "width": 480,
+          "bytes": 89710
+        },
+        {
+          "src": "assets/optimized/poster-2023-1086.webp",
+          "width": 1086,
+          "bytes": 238632
+        }
+      ]
+    },
+    "assets/prince.jpg": {
+      "width": 1800,
+      "height": 1198,
+      "originalBytes": 463164,
+      "variants": [
+        {
+          "src": "assets/optimized/prince-480.webp",
+          "width": 480,
+          "bytes": 40604
+        },
+        {
+          "src": "assets/optimized/prince-1120.webp",
+          "width": 1120,
+          "bytes": 158412
+        }
+      ]
+    },
+    "assets/rampage-loop-poster.jpg": {
+      "width": 1280,
+      "height": 720,
+      "originalBytes": 141410,
+      "variants": [
+        {
+          "src": "assets/mobile/rampage-loop-poster-640-d39c8586.webp",
+          "width": 640,
+          "bytes": 39598
+        }
+      ]
+    },
+    "assets/ride-day-promo-portrait-poster.jpg": {
+      "width": 1080,
+      "height": 1920,
+      "originalBytes": 125226,
+      "variants": [
+        {
+          "src": "assets/mobile/ride-day-promo-portrait-poster-640-fc680e07.webp",
+          "width": 640,
+          "bytes": 83136
+        }
+      ]
+    },
+    "assets/santa-pack-loop-poster.jpg": {
+      "width": 1280,
+      "height": 720,
+      "originalBytes": 149395,
+      "variants": [
+        {
+          "src": "assets/mobile/santa-pack-loop-poster-640-3a416301.webp",
+          "width": 640,
+          "bytes": 37334
+        }
+      ]
+    },
+    "assets/sarah-mayer-friends-2024.jpg": {
+      "width": 1600,
+      "height": 900,
+      "originalBytes": 320838,
+      "variants": [
+        {
+          "src": "assets/optimized/sarah-mayer-friends-2024-480.webp",
+          "width": 480,
+          "bytes": 27464
+        },
+        {
+          "src": "assets/optimized/sarah-mayer-friends-2024-1120.webp",
+          "width": 1120,
+          "bytes": 105156
+        }
+      ]
+    },
+    "assets/snowy-360-elf-preview-poster.jpg": {
+      "width": 540,
+      "height": 960,
+      "originalBytes": 106591,
+      "variants": [
+        {
+          "src": "assets/mobile/snowy-360-elf-preview-poster-540-4de75ca7.webp",
+          "width": 540,
+          "bytes": 76504
+        }
+      ]
+    },
+    "assets/snowy-brewery-beers.jpg": {
+      "width": 836,
+      "height": 627,
+      "originalBytes": 93826,
+      "variants": [
+        {
+          "src": "assets/optimized/snowy-brewery-beers-480.webp",
+          "width": 480,
+          "bytes": 22532
+        },
+        {
+          "src": "assets/optimized/snowy-brewery-beers-836.webp",
+          "width": 836,
+          "bytes": 48838
+        }
+      ]
+    },
+    "assets/trail-ride-2024-poster.jpg": {
+      "width": 1280,
+      "height": 720,
+      "originalBytes": 215565,
+      "variants": [
+        {
+          "src": "assets/mobile/trail-ride-2024-poster-640-a0632722.webp",
+          "width": 640,
+          "bytes": 55164
+        }
+      ]
+    }
+  },
+  "videos": {
+    "assets/rampage-loop.mp4": {
+      "duration": 9.5,
+      "originalBytes": 3385306,
+      "mobile": {
+        "src": "assets/mobile/rampage-loop-mobile-720-q29-90d1db01.mp4",
+        "bytes": 972519
+      },
+      "desktop": {
+        "src": "assets/mobile/rampage-loop-desktop-90d1db01.mp4",
+        "bytes": 2810323
+      }
+    },
+    "assets/ladona-room-pan-slower.mp4": {
+      "duration": 10.666667,
+      "originalBytes": 5503656,
+      "mobile": {
+        "src": "assets/mobile/ladona-room-pan-slower-mobile-6201dfd1.mp4",
+        "bytes": 2315626
+      },
+      "desktop": {
+        "src": "assets/mobile/ladona-room-pan-slower-desktop-6201dfd1.mp4",
+        "bytes": 3828664
+      }
+    },
+    "assets/trail-ride-2024.mp4": {
+      "duration": 7.348015,
+      "originalBytes": 5465532,
+      "mobile": {
+        "src": "assets/mobile/trail-ride-2024-mobile-02635df9.mp4",
+        "bytes": 1402001
+      },
+      "desktop": {
+        "src": "assets/mobile/trail-ride-2024-desktop-02635df9.mp4",
+        "bytes": 2611806
+      }
+    },
+    "assets/ride-day-promo-portrait.mp4": {
+      "duration": 22.633333,
+      "originalBytes": 25185909,
+      "mobile": {
+        "src": "assets/mobile/ride-day-promo-portrait-mobile-9ab7595e.mp4",
+        "bytes": 4525227
+      },
+      "desktop": {
+        "src": "assets/mobile/ride-day-promo-portrait-desktop-9ab7595e.mp4",
+        "bytes": 7663983
+      }
+    },
+    "assets/santa-pack-loop.mp4": {
+      "duration": 8.0,
+      "originalBytes": 2281504,
+      "mobile": {
+        "src": "assets/mobile/santa-pack-loop-mobile-7b593aee.mp4",
+        "bytes": 858499
+      },
+      "desktop": {
+        "src": "assets/mobile/santa-pack-loop-desktop-7b593aee.mp4",
+        "bytes": 1611357
+      }
+    }
+  }
+}

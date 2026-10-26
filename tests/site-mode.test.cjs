@@ -58,18 +58,17 @@ test('all nine archive cutouts are decorative, lazy loaded and Rebel-only', () =
       assert.match(figure, /rebel-only/);
       assert.match(figure, /alt="" loading="lazy" decoding="async"/);
     }
-    for (const item of cast) assert.equal(text.split(`src="assets/monster/${item.file}"`).length - 1, 1);
+    for (const item of cast) assert.equal(text.split(`data-media-source="assets/monster/${item.file}"`).length - 1, 1);
   }
   assert.match(page('site-assets/cutout-cast.css'), /\.site-cutout \{ display: none; \}/);
 });
-test('cutout print layers reuse source alpha and stay static and decorative', () => {
+test('cutout print layers stay decorative without failed duplicate alpha-mask requests', () => {
   const text = page('index.html');
-  const art = JSON.parse(page('tools/website/cutout-cast.json'));
   assert.equal((text.match(/class="cutout-print"/g) || []).length, 9);
-  for (const item of art) assert.ok(text.includes("--cast-art:url('assets/monster/" + item.file + "')"));
+  assert.doesNotMatch(text, /--cast-art/);
   const css = page('site-assets/cutout-cast.css');
   assert.match(css, /filter: url\('#screenprint'\)/);
-  assert.match(css, /mask: var\(--cast-art\) center top\/contain no-repeat/);
+  assert.doesNotMatch(css, /--cast-art|\.cutout-print::after/);
   assert.match(css, /\.cast-flow::before/);
   assert.match(css, /\.cast-flow::after/);
   assert.doesNotMatch(css, /\.site-cutout::(?:before|after)/);
@@ -137,7 +136,7 @@ test('both themes end with the correctly credited trail farewell video', () => {
   for (const name of ['index.html', 'rebel.html']) {
     const join = page(name).match(/<section class="content-section join-section"[\s\S]*?<\/section>/)[0];
     assert.match(join, /class="wide-film farewell-film"/);
-    assert.match(join, /data-src="assets\/trail-ride-2024.mp4"/);
+    assert.match(join, /data-media-source="assets\/trail-ride-2024.mp4"/);
     assert.match(join, /Footage: Mike Binkley/);
   }
   assert.match(page('story.html'), /Footage: Mike Binkley/);

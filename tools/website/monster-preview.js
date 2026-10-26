@@ -3,11 +3,12 @@
   const film = document.querySelector('.hero-film');
   const hero = document.querySelector('.hero-layout');
   const destination = document.querySelector('[data-monster-media]');
+  const regularSlot = document.querySelector('[data-default-hero-slot]');
   const date = document.querySelector('.date-card');
   if (!film || !hero || !destination || !date) return;
 
   const placeFilm = () => {
-    const slot = root.dataset.siteMode === 'rebel' ? destination : hero;
+    const slot = root.dataset.siteMode === 'rebel' ? destination : regularSlot || hero;
     const before = slot === hero ? date : null;
     if (film.parentNode === slot) return;
     // Keep the existing video, controller, currentTime and manual pause state.

@@ -2,7 +2,6 @@
 .site-cutout { display: none; }
 .cast-flow { display: none; }
 html[data-site-mode="rebel"] .site-cutout {
-  --halftone-opacity: .24;
   --print-contrast: 1.16;
   --print-saturation: .78;
   display: block;
@@ -18,17 +17,6 @@ html[data-site-mode="rebel"] .cutout-print {
   position: relative;
   z-index: 1;
   filter: url('#screenprint') contrast(var(--print-contrast)) saturate(var(--print-saturation)) drop-shadow(2px 2px #efebdc) drop-shadow(-2px -1px #efebdc) drop-shadow(4px 3px #161412);
-}
-/* This texture follows the artwork alpha; the broad ink wash below does not. */
-html[data-site-mode="rebel"] .cutout-print::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle,#161412 .8px,transparent 1.2px) 0 0/4px 4px;
-  opacity: var(--halftone-opacity);
-  -webkit-mask: var(--cast-art) center top/contain no-repeat;
-  mask: var(--cast-art) center top/contain no-repeat;
-  pointer-events: none;
 }
 html[data-site-mode="rebel"] .site-cutout img { display: block; width: 100%; height: auto; max-width: 100%; }
 
