@@ -70,8 +70,15 @@ test('cutout print layers reuse source alpha and stay static and decorative', ()
   const css = page('site-assets/cutout-cast.css');
   assert.match(css, /filter: url\('#screenprint'\)/);
   assert.match(css, /mask: var\(--cast-art\) center top\/contain no-repeat/);
-  assert.match(css, /\.site-cutout::before/);
-  assert.match(css, /\.site-cutout::after/);
+  assert.match(css, /\.cast-flow::before/);
+  assert.match(css, /\.cast-flow::after/);
+  assert.doesNotMatch(css, /\.site-cutout::(?:before|after)/);
+  assert.equal((text.match(/class="cast-flow rebel-only" aria-hidden="true"/g) || []).length, 8);
+  const gifts = text.match(/<section class="content-section gifts-section"[\s\S]*?<\/section>/)[0];
+  assert.equal((gifts.match(/class="cast-flow /g) || []).length, 1);
+  for (const [figure] of text.matchAll(/<figure class="site-cutout [\s\S]*?<\/figure>/g)) assert.doesNotMatch(figure, /class="cast-flow /);
+  const cutoutRule = css.match(/html\[data-site-mode="rebel"\] \.site-cutout \{([\s\S]*?)\}/)[1];
+  assert.doesNotMatch(cutoutRule, /overflow: (?:clip|hidden)/);
   assert.match(css, /pointer-events: none/);
   assert.doesNotMatch(css, /@keyframes|animation\s*:|transition\s*:/);
 });

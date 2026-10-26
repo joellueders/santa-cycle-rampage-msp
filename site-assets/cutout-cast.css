@@ -1,43 +1,17 @@
-/* Static print layers use the same ink, palette and filter as the candy collage. */
+/* Ink lives on shared sections, not inside individual cutout boxes. */
 .site-cutout { display: none; }
+.cast-flow { display: none; }
 html[data-site-mode="rebel"] .site-cutout {
-  --burst-ink: #ef372b;
-  --burst-inset: 8% -2% 6% 0;
-  --burst-angle: -9deg;
-  --flare-ink: #c8ff30;
-  --flare-inset: 27% -2% 5% 5%;
-  --flare-angle: 12deg;
   --halftone-opacity: .24;
   --print-contrast: 1.16;
   --print-saturation: .78;
   display: block;
   position: relative;
   isolation: isolate;
-  overflow: clip;
-  overflow-clip-margin: 8px;
+  z-index: 2;
   margin: 0;
   pointer-events: none;
   user-select: none;
-}
-html[data-site-mode="rebel"] .site-cutout::before,
-html[data-site-mode="rebel"] .site-cutout::after {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  pointer-events: none;
-  filter: url('#screenprint');
-}
-html[data-site-mode="rebel"] .site-cutout::before {
-  inset: var(--burst-inset);
-  background: radial-gradient(circle,#161412 1.1px,transparent 1.5px) 0 0/5px 5px,var(--burst-ink);
-  clip-path: polygon(2% 37%,17% 30%,6% 8%,30% 15%,39% 0,49% 20%,67% 4%,70% 24%,93% 16%,84% 39%,100% 50%,83% 58%,96% 81%,71% 76%,68% 100%,49% 82%,34% 99%,26% 78%,0 85%,13% 61%,0 51%);
-  transform: rotate(var(--burst-angle));
-}
-html[data-site-mode="rebel"] .site-cutout::after {
-  inset: var(--flare-inset);
-  background: radial-gradient(circle,#161412 1px,transparent 1.5px) 2px 1px/6px 6px,var(--flare-ink);
-  clip-path: polygon(0 25%,35% 31%,45% 0,55% 33%,100% 14%,72% 52%,100% 90%,60% 78%,55% 100%,36% 72%,0 90%,20% 56%);
-  transform: rotate(var(--flare-angle));
 }
 html[data-site-mode="rebel"] .cutout-print {
   display: block;
@@ -45,7 +19,7 @@ html[data-site-mode="rebel"] .cutout-print {
   z-index: 1;
   filter: url('#screenprint') contrast(var(--print-contrast)) saturate(var(--print-saturation)) drop-shadow(2px 2px #efebdc) drop-shadow(-2px -1px #efebdc) drop-shadow(4px 3px #161412);
 }
-/* Reuse the image's alpha so print dots cannot leak into the text around it. */
+/* This texture follows the artwork alpha; the broad ink wash below does not. */
 html[data-site-mode="rebel"] .cutout-print::after {
   content: '';
   position: absolute;
@@ -58,36 +32,147 @@ html[data-site-mode="rebel"] .cutout-print::after {
 }
 html[data-site-mode="rebel"] .site-cutout img { display: block; width: 100%; height: auto; max-width: 100%; }
 
-html[data-site-mode="rebel"] .cast-pointer { --burst-inset: 12% 3% 5% 2%; --flare-inset: 39% 8% 6% 0; width: 92%; margin: 12px 0 -10px; transform: scaleX(-1) rotate(3deg); }
+html[data-site-mode="rebel"] :is(.manifesto-section,.ride-smart,.gifts-section,.cast-faq-masthead,.cast-vibe-masthead,.participation-steps>li:nth-child(4),.two-stories-band,.cast-join-masthead) {
+  position: relative;
+  isolation: isolate;
+}
+html[data-site-mode="rebel"] .cast-flow {
+  display: block;
+  position: absolute;
+  inset: var(--flow-inset,-24px -24px -28px);
+  z-index: 0;
+  pointer-events: none;
+}
+html[data-site-mode="rebel"] .cast-flow::before,
+html[data-site-mode="rebel"] .cast-flow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  filter: url('#screenprint');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+html[data-site-mode="rebel"] .cast-flow::before {
+  background: radial-gradient(circle,#ef372b 1.3px,transparent 1.75px) 0 0/5px 5px,
+    linear-gradient(117deg,transparent 0 34%,#ef372b 34% 41%,transparent 41% 68%,#ef372b 68% 73%,transparent 73%);
+  -webkit-mask-image: var(--flow-red);
+  mask-image: var(--flow-red);
+}
+html[data-site-mode="rebel"] .cast-flow::after {
+  background: radial-gradient(circle,#c8ff30 1.1px,transparent 1.65px) 2px 1px/6px 6px,
+    linear-gradient(124deg,transparent 0 50%,#c8ff30 50% 56%,transparent 56%);
+  -webkit-mask-image: var(--flow-lime);
+  mask-image: var(--flow-lime);
+}
+/* Preserve the original text and controls above the decorative shared ink. */
+html[data-site-mode="rebel"] :is(.manifesto-heading,.manifesto-copy>p,.manifesto-preface,.manifesto-rebellion,.ride-smart>h3,.ride-smart>p,.cast-vibe-copy,.cast-join-copy,.cast-faq-masthead>.section-title,.two-stories-band>h3,.two-stories-band>.history-paths,.participation-steps>li:nth-child(4)>:not(.cast-flow,.site-cutout)) {
+  position: relative;
+  z-index: 2;
+}
+html[data-site-mode="rebel"] .gifts-section>.cast-flow { z-index: 1; }
+html[data-site-mode="rebel"] :is(.gift-panel,.spectator-card) { position: relative; }
+html[data-site-mode="rebel"] :is(.gift-panel,.spectator-card)>:not(.site-cutout) { position: relative; z-index: 2; }
+html[data-site-mode="rebel"] .two-stories-band>.cast-flow { transform: none; }
+
+html[data-site-mode="rebel"] .manifesto-section {
+  --flow-inset: 110px 39% -16px -24px;
+  --flow-red: radial-gradient(ellipse 46% 39% at 42% 48%,#000 20%,#000a 47%,transparent 90%),radial-gradient(ellipse 35% 20% at 75% 66%,#0009 8%,transparent 95%);
+  --flow-lime: radial-gradient(ellipse 46% 18% at 47% 64%,#000 13%,transparent 94%),radial-gradient(ellipse 18% 34% at 17% 45%,#000b 8%,transparent 95%);
+}
+html[data-site-mode="rebel"] .participation-steps>li:nth-child(4) {
+  --flow-inset: -12px -18px -12px 44%;
+  --flow-red: radial-gradient(ellipse 48% 31% at 64% 64%,#000b 15%,transparent 97%);
+  --flow-lime: radial-gradient(ellipse 40% 17% at 55% 75%,#000c 12%,transparent 94%);
+}
+html[data-site-mode="rebel"] .ride-smart {
+  --flow-inset: -19px -18px -15px 36%;
+  --flow-red: radial-gradient(ellipse 45% 36% at 66% 57%,#000a 12%,transparent 95%);
+  --flow-lime: radial-gradient(ellipse 48% 28% at 59% 42%,#000b 12%,transparent 96%);
+}
+html[data-site-mode="rebel"] .gifts-section {
+  --flow-inset: -34px -24px 25%;
+  --flow-red: radial-gradient(ellipse 34% 20% at 51% 31%,#000 12%,#000a 45%,transparent 100%),radial-gradient(ellipse 23% 46% at 78% 48%,#000 22%,transparent 96%),radial-gradient(ellipse 17% 41% at 40% 45%,#000 14%,transparent 96%);
+  --flow-lime: radial-gradient(ellipse 38% 13% at 59% 39%,#000 10%,transparent 100%),radial-gradient(ellipse 17% 45% at 89% 49%,#000 12%,transparent 94%);
+}
+html[data-site-mode="rebel"] .cast-faq-masthead {
+  --flow-inset: -30px -24px -6px 26%;
+  --flow-red: radial-gradient(ellipse 42% 43% at 73% 50%,#000 15%,transparent 96%),radial-gradient(ellipse 29% 16% at 33% 71%,#0009 10%,transparent 100%);
+  --flow-lime: radial-gradient(ellipse 40% 18% at 58% 65%,#000c 12%,transparent 96%);
+}
+html[data-site-mode="rebel"] .cast-vibe-masthead {
+  --flow-inset: -26px -24px -36px 12%;
+  --flow-red: radial-gradient(ellipse 39% 44% at 76% 48%,#000 22%,transparent 97%),radial-gradient(ellipse 34% 16% at 38% 79%,#000a 10%,transparent 99%);
+  --flow-lime: radial-gradient(ellipse 48% 17% at 56% 71%,#000 12%,transparent 100%);
+}
+html[data-site-mode="rebel"] .two-stories-band {
+  --flow-inset: 46% -20px -26px 32%;
+  --flow-red: radial-gradient(ellipse 39% 31% at 73% 72%,#000b 12%,transparent 97%);
+  --flow-lime: radial-gradient(ellipse 46% 22% at 61% 79%,#000 12%,transparent 98%);
+}
+html[data-site-mode="rebel"] .cast-join-masthead {
+  --flow-inset: -30px -24px -24px 8%;
+  --flow-red: radial-gradient(ellipse 36% 43% at 76% 47%,#000 20%,transparent 96%),radial-gradient(ellipse 42% 14% at 41% 81%,#000a 13%,transparent 99%);
+  --flow-lime: radial-gradient(ellipse 45% 18% at 58% 68%,#000 12%,transparent 100%);
+}
+
+@media (max-width: 900px) {
+  html[data-site-mode="rebel"] .manifesto-section {
+    --flow-inset: 120px -16px 24% 0;
+    --flow-red: radial-gradient(ellipse 42% 33% at 69% 32%,#000 12%,transparent 98%),radial-gradient(ellipse 37% 11% at 43% 55%,#0009 10%,transparent 98%);
+    --flow-lime: radial-gradient(ellipse 37% 14% at 56% 44%,#000 12%,transparent 98%);
+  }
+  html[data-site-mode="rebel"] .participation-steps>li:nth-child(4) { --flow-inset: 10% -16px -12px 8%; }
+  html[data-site-mode="rebel"] .ride-smart { --flow-inset: -16px -12px -12px 15%; }
+  html[data-site-mode="rebel"] .gifts-section {
+    --flow-inset: -26px -16px 15% 0;
+    --flow-red: radial-gradient(ellipse 34% 18% at 81% 12%,#000 15%,transparent 95%),radial-gradient(ellipse 17% 32% at 95% 37%,#0009 6%,transparent 98%),radial-gradient(ellipse 49% 24% at 54% 68%,#000 22%,transparent 98%);
+    --flow-lime: radial-gradient(ellipse 10% 24% at 100% 34%,#000b 10%,transparent 98%),radial-gradient(ellipse 45% 12% at 53% 58%,#000 10%,transparent 99%);
+  }
+  html[data-site-mode="rebel"] .cast-faq-masthead { --flow-inset: -20px -16px -6px 0; --flow-lime: radial-gradient(ellipse 30% 16% at 81% 61%,#000 10%,transparent 98%); }
+  html[data-site-mode="rebel"] .cast-vibe-masthead {
+    --flow-inset: 27% -16px -24px -16px;
+    --flow-red: radial-gradient(ellipse 47% 36% at 56% 62%,#000 20%,transparent 96%),radial-gradient(ellipse 36% 17% at 38% 33%,#0009 10%,transparent 98%);
+    --flow-lime: radial-gradient(ellipse 52% 17% at 52% 59%,#000 10%,transparent 98%);
+  }
+  html[data-site-mode="rebel"] .two-stories-band { --flow-inset: 59% -12px -18px 0; }
+  html[data-site-mode="rebel"] .cast-join-masthead {
+    --flow-inset: 15% -16px -24px -16px;
+    --flow-red: radial-gradient(ellipse 49% 35% at 55% 63%,#000 20%,transparent 97%);
+    --flow-lime: radial-gradient(ellipse 51% 19% at 53% 69%,#000 12%,transparent 99%);
+  }
+}
+
+html[data-site-mode="rebel"] .cast-pointer { width: 92%; margin: 12px 0 -10px; transform: scaleX(-1) rotate(3deg); }
 html[data-site-mode="rebel"] .cast-pointer img { width: auto; max-height: 350px; margin: auto; }
 
 html[data-site-mode="rebel"] .ride-smart { display: flow-root; }
-html[data-site-mode="rebel"] .cast-doodle { --burst-ink: #c8ff30; --flare-ink: #ef372b; --burst-inset: 22% -4% 4% 0; --flare-inset: 38% 3% 0 11%; --halftone-opacity: .12; --print-saturation: .9; float: right; width: 150px; margin: -14px 0 -12px 24px; transform: rotate(5deg); }
+html[data-site-mode="rebel"] .cast-doodle { --halftone-opacity: .12; --print-saturation: .9; float: right; width: 150px; margin: -14px 0 -12px 24px; transform: rotate(5deg); }
 html[data-site-mode="rebel"] :is(.cast-doodle,.cast-questioner) .cutout-print { filter: url('#cutout-alpha') url('#screenprint') contrast(1.12) saturate(.85) drop-shadow(2px 2px #efebdc) drop-shadow(-2px -1px #efebdc); }
 
 html[data-site-mode="rebel"] .gift-panel { display: flow-root; }
-html[data-site-mode="rebel"] .cast-wave { --burst-inset: 4% -2% 7% 0; --flare-ink: #efebdc; --flare-inset: 33% -4% 5% 8%; --halftone-opacity: .16; --print-contrast: 1.1; --print-saturation: .95; float: right; width: 44%; margin: -26px -12px 12px 14px; transform: rotate(5deg); }
+html[data-site-mode="rebel"] .cast-wave { --halftone-opacity: .16; --print-contrast: 1.1; --print-saturation: .95; float: right; width: 44%; margin: -26px -12px 12px 14px; transform: rotate(5deg); }
 html[data-site-mode="rebel"] .spectator-card { display: flex; flex-direction: column; justify-content: flex-end; }
-html[data-site-mode="rebel"] .cast-dinner { --burst-inset: 0 1% 9%; --flare-inset: 17% 4% 10%; --flare-angle: -13deg; --halftone-opacity: .34; --print-contrast: 1.22; --print-saturation: .7; width: calc(100% + 48px); max-width: none; margin: -48px -24px 18px; transform: rotate(-2deg); }
+html[data-site-mode="rebel"] .cast-dinner { --halftone-opacity: .34; --print-contrast: 1.22; --print-saturation: .7; width: calc(100% + 48px); max-width: none; margin: -48px -24px 18px; transform: rotate(-2deg); }
 html[data-site-mode="rebel"] .cast-dinner img { width: auto; max-height: 390px; margin-inline: auto; }
 
 html[data-site-mode="rebel"] .cast-faq-masthead { display: grid; grid-template-columns: minmax(0,1fr) 250px; gap: 24px; align-items: end; min-height: 220px; margin-bottom: 12px; }
 html[data-site-mode="rebel"] .cast-faq-masthead .section-title { margin-bottom: 12px; }
-html[data-site-mode="rebel"] .cast-questioner { --burst-inset: 3% -4% -8% 0; --flare-inset: 17% 0 -10% 7%; height: 220px; overflow: hidden; transform: scaleX(-1) rotate(-3deg); clip-path: polygon(0 0,100% 0,100% 96%,92% 100%,80% 96%,68% 100%,53% 96%,42% 100%,28% 96%,17% 100%,0 96%); }
+html[data-site-mode="rebel"] .cast-questioner { height: 220px; overflow: hidden; transform: scaleX(-1) rotate(-3deg); clip-path: polygon(0 0,100% 0,100% 96%,92% 100%,80% 96%,68% 100%,53% 96%,42% 100%,28% 96%,17% 100%,0 96%); }
 
 html[data-site-mode="rebel"] .cast-vibe-masthead { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,.95fr); gap: 36px; align-items: center; margin-bottom: 32px; }
-html[data-site-mode="rebel"] .cast-crew { --burst-inset: 4% -3% 8%; --flare-inset: 28% 0 6% 3%; --burst-angle: 5deg; --flare-angle: -4deg; --halftone-opacity: .3; --print-contrast: 1.22; transform: rotate(-3deg); }
+html[data-site-mode="rebel"] .cast-crew { --halftone-opacity: .3; --print-contrast: 1.22; transform: rotate(-3deg); }
 
 html[data-site-mode="rebel"] .participation-steps>li { position: relative; }
 html[data-site-mode="rebel"] .participation-steps>li:nth-child(4) { padding-right: 165px; min-height: 205px; }
-html[data-site-mode="rebel"] .cast-beer { --burst-inset: 3% -5% 10% -6%; --flare-inset: 40% -7% 0 -4%; --halftone-opacity: .15; --print-contrast: 1.12; --print-saturation: .95; position: absolute; width: 140px; right: 6px; bottom: 12px; transform: rotate(6deg); }
+html[data-site-mode="rebel"] .cast-beer { --halftone-opacity: .15; --print-contrast: 1.12; --print-saturation: .95; position: absolute; width: 140px; right: 6px; bottom: 12px; transform: rotate(6deg); }
 
 html[data-site-mode="rebel"] .history-path-panel { position: relative; }
 html[data-site-mode="rebel"] .history-path-panel:nth-child(2) .story-feature-copy { padding-bottom: 118px; }
-html[data-site-mode="rebel"] .cast-watercolor { --burst-inset: 16% -1% 0; --flare-inset: 40% -3% 5% 6%; --halftone-opacity: .14; --print-contrast: 1.1; --print-saturation: .9; position: absolute; width: 145px; right: 8px; bottom: -16px; z-index: 2; transform: rotate(5deg); }
+html[data-site-mode="rebel"] .cast-watercolor { --halftone-opacity: .14; --print-contrast: 1.1; --print-saturation: .9; position: absolute; width: 145px; right: 8px; bottom: -16px; z-index: 2; transform: rotate(5deg); }
 
 html[data-site-mode="rebel"] .cast-join-masthead { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.08fr); gap: 36px; align-items: center; margin-bottom: 26px; }
-html[data-site-mode="rebel"] .cast-bouquets { --burst-ink: #c8ff30; --flare-ink: #ef372b; --burst-inset: 9% 2% 7% 3%; --flare-inset: 15% 2% 13% 3%; --burst-angle: -3deg; --flare-angle: 5deg; --halftone-opacity: .3; --print-contrast: 1.22; --print-saturation: .65; transform: rotate(3deg); }
+html[data-site-mode="rebel"] .cast-bouquets { --halftone-opacity: .3; --print-contrast: 1.22; --print-saturation: .65; transform: rotate(3deg); }
 
 @media (min-width: 901px) {
   html[data-site-mode="rebel"] .hero-title .rebel-title>span:first-child { font-size: .88em; }
@@ -115,7 +200,6 @@ html[data-site-mode="rebel"] .cast-bouquets { --burst-ink: #c8ff30; --flare-ink:
 }
 
 @media (max-width: 370px) {
-  html[data-site-mode="rebel"] .site-cutout { overflow-clip-margin: 4px; }
   html[data-site-mode="rebel"] .cast-faq-masthead { grid-template-columns: minmax(0,1fr) 120px; }
   html[data-site-mode="rebel"] .cast-questioner { height: 135px; }
 }

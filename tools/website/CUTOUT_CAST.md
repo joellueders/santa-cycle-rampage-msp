@@ -26,6 +26,6 @@ Old poster dates, venues and routes were not imported. The new hero headline is 
 
 ## Screen-print integration
 
-The original WebPs are unchanged. The code-native print layer in `cutout-cast.css` reuses the chocolate collage’s `#screenprint` SVG filter for chipped ink and rough edges. A masked halftone pass follows each cutout’s own alpha, while two irregular red/lime eruption layers sit behind it. Individual inset, rotation and ink settings keep the nine scenes from reading as identical stickers.
+The original WebPs are unchanged. The code-native print layer in `cutout-cast.css` reuses the chocolate collage’s `#screenprint` SVG filter for chipped ink and rough edges. A masked halftone pass follows each cutout’s own alpha. The red/lime backgrounds are separate, shared section-level washes: feathered halftones and broken diagonal ink spread beyond the illustrations and across panel boundaries. The toy-drive drawing and chicken dinner share a single wash across both boxes. There are no per-cutout starbursts or background clipping frames.
 
 Photo collages use stronger contrast and denser dots. Pencil, crayon and watercolor art use lighter ink coverage to preserve their handmade marks. The layers are static, decorative and pointer-transparent; no regenerated images, runtime scripts, new video instances or motion are required. The regular theme does not show them.
