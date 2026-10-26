@@ -17,4 +17,4 @@ For publication, use a separate clean worktree at current origin/main, then run:
 
 Stage only files listed by the release manifest. Do not publish local QA outputs. Preserve current media, CNAME, analytics, and the existing calendar. No API credentials are used. A user reported the local MailerLite signup worked; the welcome automation is separate and was not activated by this release.
 
-Rollback baseline: 588528510773ada8d171ae231443f0fdb18ae2e1. Reverting the release commit restores the earlier website.
+Rollback baseline: 69eda49d9b5fdf3caf0be12c4f873ddcbdfe484d. Reverting the release commit restores the earlier website.

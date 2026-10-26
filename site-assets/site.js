@@ -49,7 +49,7 @@
       link.href = url.href;
     });
     updateLayout();
-    if (save) { try { localStorage.setItem('santa-site-mode', mode); } catch {} }
+    if (save) { try { localStorage.setItem('santa-rebel-default-mode', mode); } catch {} }
     if (updateUrl) { const url = new URL(location.href); url.searchParams.set('mode', mode); history.replaceState(history.state, '', url.href); }
     if (preservePosition) requestAnimationFrame(() => {
       const delta = anchor ? anchor.getBoundingClientRect().top - oldTop : 0;
