@@ -7,7 +7,7 @@ export function applyMonsterLayer(html, content) {
   html = html.replace('<body data-home-page>', `<body data-home-page data-monster-preview><svg class="print-filter-definitions" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><defs><filter id="screenprint" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" stitchTiles="stitch" result="noise"/><feColorMatrix in="noise" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0" result="alphaNoise"/><feComponentTransfer in="alphaNoise" result="flecks"><feFuncA type="linear" slope="8" intercept="-5.4"/></feComponentTransfer><feComposite in="SourceGraphic" in2="flecks" operator="out"/></filter><filter id="vhs-tracking" x="-5%" y="0" width="110%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0 .065" numOctaves="1" seed="9" result="tracking-noise"/><feColorMatrix in="tracking-noise" type="matrix" values="1 0 0 0 0 0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 1" result="horizontal-bands"/><feDisplacementMap in="SourceGraphic" in2="horizontal-bands" scale="32" xChannelSelector="R" yChannelSelector="G"/></filter></defs></svg>`);
   html = html.replace(/<span class="rebel-only rebel-title">[\s\S]*?<\/span><\/h1>/, '<span class="rebel-only rebel-title"><span>THE MACHINE</span><span>WANTS YOU</span><span>CHEERLESS.</span></span></h1>');
   // Internal tracking only. The label remains visually hidden by the Rebel layer.
-  html = html.replace('</h1><p class="hero-response', '</h1><span class="monster-internal-version rebel-only" aria-hidden="true"><span>v1.7.3</span><span>MORE MONSTER</span></span><p class="hero-response');
+  html = html.replace('</h1><p class="hero-response', '</h1><span class="monster-internal-version rebel-only" aria-hidden="true"><span>v1.7.4</span><span>PAPER MAYHEM</span></span><p class="hero-response');
   html = html.replace(/<figure class="hero-film">[\s\S]*?<\/figure>/, film => `<div class="monster-art rebel-only" data-monster-media data-takeover="video">${film}<img class="mockup-monster" src="assets/monster/hero-monster-user.png" width="1122" height="1402" alt="Santa monster holding the bicycle handlebars, with red and neon-yellow splashes" aria-hidden="true" fetchpriority="high" decoding="async"></div>`);
 
   const location = content.announcementStatus.startLocation;
@@ -32,7 +32,8 @@ export function applyMonsterLayer(html, content) {
 
   // The collage is decorative adapted artwork, so it carries alternative text
   // but no redundant public provenance caption.
-  const collage = '<figure class="chocolate-collage rebel-only"><img class="archive-cutout" src="assets/monster/chocolate-clean.png" alt="Chocolate-headed racing cyclists from the 2017 Santa Cycle Rampage poster" loading="lazy" decoding="async"></figure>';
+  const collage = '<figure class="chocolate-collage rebel-only"><img class="archive-cutout" width="1356" height="1160" src="assets/monster/chocolate-clean.png" alt="Chocolate-headed racing cyclists from the 2017 Santa Cycle Rampage poster" loading="lazy" decoding="async"></figure>';
   html = html.replace('<p class="eyebrow">The whole crew rolls together</p>', collage + '<p class="eyebrow">The whole crew rolls together</p>');
+  html = html.replace('<footer class="page-footer">', '<footer class="page-footer"><a class="monster-footer-emblem rebel-only" href="#about" aria-label="Back to the top"><img src="assets/monster/hero-monster-user.png" width="1122" height="1402" alt="" loading="lazy" decoding="async"></a>');
   return html.replace(/(<section class="content-section uprising-section[^\"]*"[^>]*>)([\s\S]*?<\/h2>)/, '$1<div class="uprising-masthead">$2</div>');
 }

@@ -100,20 +100,26 @@ html[data-site-mode="rebel"] .uprising-section { --ink: #161412; --muted: #49433
 html[data-site-mode="rebel"] .uprising-section::before,
 html[data-site-mode="rebel"] .uprising-section::after { content: ''; position: absolute; left: 0; right: 0; top: -15px; }
 html[data-site-mode="rebel"] .uprising-section::after { top: auto; bottom: -15px; transform: rotate(180deg); }
-html[data-site-mode="rebel"] .uprising-masthead { position: relative; min-height: 200px; padding: 5px 0 0 40%; }
+html[data-site-mode="rebel"] .uprising-masthead { position: relative; min-height: clamp(340px,30vw,440px); padding: 5px 0 0 48%; }
 html[data-site-mode="rebel"] .uprising-masthead>.eyebrow { color: #a5221a; font-size: 12px; margin-bottom: 11px; }
 html[data-site-mode="rebel"] .uprising-masthead>.section-title { color: #161412; font-size: clamp(35px,4.2vw,62px); line-height: 1.12; letter-spacing: -.035em; margin: 0; }
-html[data-site-mode="rebel"] .chocolate-collage { left: -5%; top: -78px; width: 43%; margin: 0; }
-html[data-site-mode="rebel"] .chocolate-collage .archive-cutout { display: block; width: 100%; height: auto; max-height: 330px; object-fit: contain; object-position: left top; transform: rotate(-3deg); }
+html[data-site-mode="rebel"] .chocolate-collage { left: -7%; top: -70px; width: 50%; margin: 0; isolation: isolate; transform: rotate(-3deg); }
+html[data-site-mode="rebel"] .chocolate-collage::before { content: ''; position: absolute; inset: -3% -5% 0 -3%; z-index: -1; pointer-events: none; background: radial-gradient(circle,#b52b22 1.4px,transparent 1.8px) 0 0/5px 5px, linear-gradient(117deg,transparent 12%,#c8ff30 12% 29%,transparent 29% 65%,#ef372b 65% 83%,transparent 83%); clip-path: polygon(10% 7%,42% 0,49% 15%,96% 9%,87% 47%,100% 76%,73% 92%,54% 82%,8% 100%,0 58%); transform: rotate(-5deg); }
+html[data-site-mode="rebel"] .chocolate-collage .archive-cutout { display: block; position: relative; width: 100%; height: auto; max-height: none; object-fit: contain; object-position: left top; transform: none; filter: url('#screenprint') contrast(1.18) saturate(.72) drop-shadow(3px 2px #efebdc) drop-shadow(-3px -2px #efebdc); }
 html[data-site-mode="rebel"] .chocolate-collage figcaption { color: #161412; font-size: 10px; }
-html[data-site-mode="rebel"] .chocolate-collage::after { top: 38px; right: 0; width: 110px; height: 28px; background: #ef372beb; }
-html[data-site-mode="rebel"] .uprising-section .brewery-film { width: 59%; margin: -60px 0 28px auto; }
+html[data-site-mode="rebel"] .chocolate-collage::after { top: 5%; left: 20%; right: auto; width: 24%; height: clamp(17px,2vw,28px); background: #ef372be8; transform: rotate(-12deg); clip-path: polygon(1% 9%,98% 0,100% 91%,3% 100%); }
+html[data-site-mode="rebel"] .uprising-section .brewery-film { width: 51%; margin: -160px 0 28px auto; }
 html[data-site-mode="rebel"] .uprising-section .media-caption { color: #494338; }
 html[data-site-mode="rebel"] .uprising-section .participation-number { color: #b52b22; }
 html[data-site-mode="rebel"] .uprising-section .participation-steps { margin-top: 24px; }
 html[data-site-mode="rebel"] .uprising-section .participation-steps>li { border-color: #b8b0a0; }
 html[data-site-mode="rebel"] .uprising-section :where(a,button,summary):focus-visible { outline-color: #161412; }
 html[data-site-mode="rebel"] .vibe-section>.monster-film-slot { margin: 28px 0; }
+
+.monster-footer-emblem { display: none; }
+html[data-site-mode="rebel"] .monster-footer-emblem { display: block; width: clamp(160px,18vw,210px); max-width: 58vw; margin: -8px auto 24px; }
+html[data-site-mode="rebel"] .monster-footer-emblem img { display: block; width: 100%; height: auto; }
+html[data-site-mode="rebel"] .monster-footer-emblem:focus-visible { outline: 3px solid #c8ff30; outline-offset: 8px; }
 
 @media (max-width: 1200px) and (min-width: 901px) {
   html[data-site-mode="rebel"] .header-bar { gap: 20px; }
@@ -142,15 +148,15 @@ html[data-site-mode="rebel"] .vibe-section>.monster-film-slot { margin: 28px 0; 
   html[data-site-mode="rebel"] .hero { padding-top: 27px; }
   html[data-site-mode="rebel"] .hero-layout { display: grid; grid-template-columns: minmax(0,1fr); gap: 0; }
   html[data-site-mode="rebel"] .hero-eyebrow { font-size: 10px; margin-bottom: 17px; }
-  html[data-site-mode="rebel"] .hero-title { grid-area: 3/1; font-size: clamp(54px,16.8vw,110px); line-height: .99; letter-spacing: -.035em; }
+  html[data-site-mode="rebel"] .hero-title { grid-area: 2/1; font-size: clamp(54px,16.8vw,110px); line-height: .99; letter-spacing: -.035em; }
   html[data-site-mode="rebel"] .monster-internal-version { display: none; }
-  html[data-site-mode="rebel"] .hero-response { grid-area: 2/1; font: 900 21px/1.23 Arial,sans-serif; white-space: normal; margin-bottom: 19px; }
+  html[data-site-mode="rebel"] .hero-response { grid-area: 4/1; font: 900 21px/1.23 Arial,sans-serif; white-space: normal; margin-bottom: 19px; }
   html[data-site-mode="rebel"] .hero-tagline { grid-area: 5/1; font: 800 21px/1.25 Arial,sans-serif; white-space: normal; margin-bottom: 14px; }
   html[data-site-mode="rebel"] .hero-actions { display: grid; grid-template-columns: 1.15fr 1fr; gap: 10px; }
   html[data-site-mode="rebel"] .hero-actions .button { font-size: 12px; min-height: 53px; padding: 13px 9px; white-space: nowrap; letter-spacing: 0; }
   html[data-site-mode="rebel"] .free-note { margin: 14px 0 20px; font-size: 12px; }
   /* The illustration is the headline's punchline, before copy and actions. */
-  html[data-site-mode="rebel"] .monster-art { grid-area: 4/1; width: 100%; height: auto; aspect-ratio: 1122/1402; margin: 0 0 16px; overflow: visible; }
+  html[data-site-mode="rebel"] .monster-art { grid-area: 3/1; width: 100%; height: auto; aspect-ratio: 1122/1402; margin: 0 0 16px; overflow: visible; }
   html[data-site-mode="rebel"] .monster-art .mockup-monster { width: 100%; height: 100%; object-fit: contain; }
   html[data-site-mode="rebel"] .monster-art figcaption { right: 0; bottom: 6px; font-size: 8px; }
   html[data-site-mode="rebel"] .date-card { grid-area: 9/1; display: grid; grid-template-columns: minmax(0,1fr); min-height: 0; padding-block: 24px; row-gap: 12px; }
@@ -176,13 +182,14 @@ html[data-site-mode="rebel"] .vibe-section>.monster-film-slot { margin: 28px 0; 
   html[data-site-mode="rebel"] .manifesto-rebellion { font-size: 33px; letter-spacing: -.025em; margin-top: 20px; }
   html[data-site-mode="rebel"] .uprising-section { margin: 48px -20px 0; padding: 28px 20px; }
   html[data-site-mode="rebel"] .uprising-masthead { min-height: 0; padding: 0; }
-  html[data-site-mode="rebel"] .chocolate-collage { position: relative; width: 93%; left: -8%; top: -50px; margin-bottom: -40px; }
-  html[data-site-mode="rebel"] .chocolate-collage .archive-cutout { max-height: 255px; }
+  html[data-site-mode="rebel"] .chocolate-collage { position: relative; width: calc(100% + 40px); left: -20px; top: -46px; margin-bottom: -28px; }
+  html[data-site-mode="rebel"] .chocolate-collage .archive-cutout { max-height: none; }
   html[data-site-mode="rebel"] .uprising-masthead>.section-title { font-size: 39px; margin-bottom: 24px; }
   html[data-site-mode="rebel"] .uprising-section .brewery-film { width: 100%; margin: 0 0 25px; }
   html[data-site-mode="rebel"] .vibe-section>.monster-film-slot { margin-block: 25px; }
 }
 @media (max-width: 370px) {
+  html[data-site-mode="rebel"] .chocolate-collage { width: calc(100% + 32px); left: -16px; }
   html[data-site-mode="rebel"] .brand { font-size: 16px; }
   html[data-site-mode="rebel"] .hero-title { font-size: 16.2vw; }
   html[data-site-mode="rebel"] .hero-actions .button { font-size: 12px; }
