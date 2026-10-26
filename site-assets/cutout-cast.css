@@ -1,46 +1,101 @@
-/* The archive cast belongs to the Rebel collage, not the regular theme. */
+/* Static print layers use the same ink, palette and filter as the candy collage. */
 .site-cutout { display: none; }
-html[data-site-mode="rebel"] .site-cutout { display: block; margin: 0; pointer-events: none; user-select: none; }
-html[data-site-mode="rebel"] .site-cutout img { display: block; width: 100%; height: auto; max-width: 100%; filter: drop-shadow(2px 2px #efebdc) drop-shadow(-2px -2px #efebdc); }
+html[data-site-mode="rebel"] .site-cutout {
+  --burst-ink: #ef372b;
+  --burst-inset: 8% -2% 6% 0;
+  --burst-angle: -9deg;
+  --flare-ink: #c8ff30;
+  --flare-inset: 27% -2% 5% 5%;
+  --flare-angle: 12deg;
+  --halftone-opacity: .24;
+  --print-contrast: 1.16;
+  --print-saturation: .78;
+  display: block;
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  overflow-clip-margin: 8px;
+  margin: 0;
+  pointer-events: none;
+  user-select: none;
+}
+html[data-site-mode="rebel"] .site-cutout::before,
+html[data-site-mode="rebel"] .site-cutout::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  filter: url('#screenprint');
+}
+html[data-site-mode="rebel"] .site-cutout::before {
+  inset: var(--burst-inset);
+  background: radial-gradient(circle,#161412 1.1px,transparent 1.5px) 0 0/5px 5px,var(--burst-ink);
+  clip-path: polygon(2% 37%,17% 30%,6% 8%,30% 15%,39% 0,49% 20%,67% 4%,70% 24%,93% 16%,84% 39%,100% 50%,83% 58%,96% 81%,71% 76%,68% 100%,49% 82%,34% 99%,26% 78%,0 85%,13% 61%,0 51%);
+  transform: rotate(var(--burst-angle));
+}
+html[data-site-mode="rebel"] .site-cutout::after {
+  inset: var(--flare-inset);
+  background: radial-gradient(circle,#161412 1px,transparent 1.5px) 2px 1px/6px 6px,var(--flare-ink);
+  clip-path: polygon(0 25%,35% 31%,45% 0,55% 33%,100% 14%,72% 52%,100% 90%,60% 78%,55% 100%,36% 72%,0 90%,20% 56%);
+  transform: rotate(var(--flare-angle));
+}
+html[data-site-mode="rebel"] .cutout-print {
+  display: block;
+  position: relative;
+  z-index: 1;
+  filter: url('#screenprint') contrast(var(--print-contrast)) saturate(var(--print-saturation)) drop-shadow(2px 2px #efebdc) drop-shadow(-2px -1px #efebdc) drop-shadow(4px 3px #161412);
+}
+/* Reuse the image's alpha so print dots cannot leak into the text around it. */
+html[data-site-mode="rebel"] .cutout-print::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle,#161412 .8px,transparent 1.2px) 0 0/4px 4px;
+  opacity: var(--halftone-opacity);
+  -webkit-mask: var(--cast-art) center top/contain no-repeat;
+  mask: var(--cast-art) center top/contain no-repeat;
+  pointer-events: none;
+}
+html[data-site-mode="rebel"] .site-cutout img { display: block; width: 100%; height: auto; max-width: 100%; }
 
-html[data-site-mode="rebel"] .cast-pointer { width: 92%; margin: 12px 0 -10px; transform: scaleX(-1) rotate(3deg); }
+html[data-site-mode="rebel"] .cast-pointer { --burst-inset: 12% 3% 5% 2%; --flare-inset: 39% 8% 6% 0; width: 92%; margin: 12px 0 -10px; transform: scaleX(-1) rotate(3deg); }
 html[data-site-mode="rebel"] .cast-pointer img { width: auto; max-height: 350px; margin: auto; }
 
 html[data-site-mode="rebel"] .ride-smart { display: flow-root; }
-html[data-site-mode="rebel"] .cast-doodle { float: right; width: 150px; margin: -14px 0 -12px 24px; transform: rotate(5deg); }
-html[data-site-mode="rebel"] .cast-doodle img { filter: url('#cutout-alpha') drop-shadow(1px 1px #efebdc) drop-shadow(-1px -1px #efebdc); }
+html[data-site-mode="rebel"] .cast-doodle { --burst-ink: #c8ff30; --flare-ink: #ef372b; --burst-inset: 22% -4% 4% 0; --flare-inset: 38% 3% 0 11%; --halftone-opacity: .12; --print-saturation: .9; float: right; width: 150px; margin: -14px 0 -12px 24px; transform: rotate(5deg); }
+html[data-site-mode="rebel"] :is(.cast-doodle,.cast-questioner) .cutout-print { filter: url('#cutout-alpha') url('#screenprint') contrast(1.12) saturate(.85) drop-shadow(2px 2px #efebdc) drop-shadow(-2px -1px #efebdc); }
 
 html[data-site-mode="rebel"] .gift-panel { display: flow-root; }
-html[data-site-mode="rebel"] .cast-wave { float: right; width: 44%; margin: -26px -12px 12px 14px; transform: rotate(5deg); }
+html[data-site-mode="rebel"] .cast-wave { --burst-inset: 4% -2% 7% 0; --flare-ink: #efebdc; --flare-inset: 33% -4% 5% 8%; --halftone-opacity: .16; --print-contrast: 1.1; --print-saturation: .95; float: right; width: 44%; margin: -26px -12px 12px 14px; transform: rotate(5deg); }
 html[data-site-mode="rebel"] .spectator-card { display: flex; flex-direction: column; justify-content: flex-end; }
-html[data-site-mode="rebel"] .cast-dinner { width: calc(100% + 48px); max-width: none; margin: -48px -24px 18px; transform: rotate(-2deg); }
-html[data-site-mode="rebel"] .cast-dinner img { width: auto; max-height: 390px; margin-inline: auto; filter: drop-shadow(3px 3px #efebdc) drop-shadow(-3px -3px #efebdc); }
+html[data-site-mode="rebel"] .cast-dinner { --burst-inset: 0 1% 9%; --flare-inset: 17% 4% 10%; --flare-angle: -13deg; --halftone-opacity: .34; --print-contrast: 1.22; --print-saturation: .7; width: calc(100% + 48px); max-width: none; margin: -48px -24px 18px; transform: rotate(-2deg); }
+html[data-site-mode="rebel"] .cast-dinner img { width: auto; max-height: 390px; margin-inline: auto; }
 
 html[data-site-mode="rebel"] .cast-faq-masthead { display: grid; grid-template-columns: minmax(0,1fr) 250px; gap: 24px; align-items: end; min-height: 220px; margin-bottom: 12px; }
 html[data-site-mode="rebel"] .cast-faq-masthead .section-title { margin-bottom: 12px; }
-html[data-site-mode="rebel"] .cast-questioner { height: 220px; overflow: hidden; transform: scaleX(-1) rotate(-3deg); clip-path: polygon(0 0,100% 0,100% 96%,92% 100%,80% 96%,68% 100%,53% 96%,42% 100%,28% 96%,17% 100%,0 96%); }
-html[data-site-mode="rebel"] .cast-questioner img { filter: url('#cutout-alpha') drop-shadow(2px 2px #efebdc) drop-shadow(-2px -2px #efebdc); }
+html[data-site-mode="rebel"] .cast-questioner { --burst-inset: 3% -4% -8% 0; --flare-inset: 17% 0 -10% 7%; height: 220px; overflow: hidden; transform: scaleX(-1) rotate(-3deg); clip-path: polygon(0 0,100% 0,100% 96%,92% 100%,80% 96%,68% 100%,53% 96%,42% 100%,28% 96%,17% 100%,0 96%); }
 
 html[data-site-mode="rebel"] .cast-vibe-masthead { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,.95fr); gap: 36px; align-items: center; margin-bottom: 32px; }
-html[data-site-mode="rebel"] .cast-crew { transform: rotate(-3deg); }
-html[data-site-mode="rebel"] .cast-crew img { filter: drop-shadow(3px 3px #efebdc) drop-shadow(-3px -3px #efebdc) drop-shadow(6px 4px #e03a2e); }
+html[data-site-mode="rebel"] .cast-crew { --burst-inset: 4% -3% 8%; --flare-inset: 28% 0 6% 3%; --burst-angle: 5deg; --flare-angle: -4deg; --halftone-opacity: .3; --print-contrast: 1.22; transform: rotate(-3deg); }
 
 html[data-site-mode="rebel"] .participation-steps>li { position: relative; }
 html[data-site-mode="rebel"] .participation-steps>li:nth-child(4) { padding-right: 165px; min-height: 205px; }
-html[data-site-mode="rebel"] .cast-beer { position: absolute; width: 140px; right: 6px; bottom: 12px; transform: rotate(6deg); }
+html[data-site-mode="rebel"] .cast-beer { --burst-inset: 3% -5% 10% -6%; --flare-inset: 40% -7% 0 -4%; --halftone-opacity: .15; --print-contrast: 1.12; --print-saturation: .95; position: absolute; width: 140px; right: 6px; bottom: 12px; transform: rotate(6deg); }
 
 html[data-site-mode="rebel"] .history-path-panel { position: relative; }
 html[data-site-mode="rebel"] .history-path-panel:nth-child(2) .story-feature-copy { padding-bottom: 118px; }
-html[data-site-mode="rebel"] .cast-watercolor { position: absolute; width: 145px; right: 8px; bottom: -16px; z-index: 2; transform: rotate(5deg); }
+html[data-site-mode="rebel"] .cast-watercolor { --burst-inset: 16% -1% 0; --flare-inset: 40% -3% 5% 6%; --halftone-opacity: .14; --print-contrast: 1.1; --print-saturation: .9; position: absolute; width: 145px; right: 8px; bottom: -16px; z-index: 2; transform: rotate(5deg); }
 
 html[data-site-mode="rebel"] .cast-join-masthead { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.08fr); gap: 36px; align-items: center; margin-bottom: 26px; }
-html[data-site-mode="rebel"] .cast-bouquets { transform: rotate(3deg); }
+html[data-site-mode="rebel"] .cast-bouquets { --burst-ink: #c8ff30; --flare-ink: #ef372b; --burst-inset: 9% 2% 7% 3%; --flare-inset: 15% 2% 13% 3%; --burst-angle: -3deg; --flare-angle: 5deg; --halftone-opacity: .3; --print-contrast: 1.22; --print-saturation: .65; transform: rotate(3deg); }
 
 @media (min-width: 901px) {
   html[data-site-mode="rebel"] .hero-title .rebel-title>span:first-child { font-size: .88em; }
 }
 
 @media (max-width: 900px) {
+  /* Crop the rotated, full-bleed candy eruption at the paper's phone edges. */
+  html[data-site-mode="rebel"] .uprising-section { overflow-x: clip; }
   html[data-site-mode="rebel"] .cast-pointer { width: 76%; max-width: 330px; margin: 4px 0 -6px auto; transform: rotate(-4deg); }
   html[data-site-mode="rebel"] .cast-pointer img { max-height: 285px; }
   html[data-site-mode="rebel"] .cast-doodle { width: 108px; margin: -6px -2px 2px 12px; }
@@ -60,6 +115,7 @@ html[data-site-mode="rebel"] .cast-bouquets { transform: rotate(3deg); }
 }
 
 @media (max-width: 370px) {
+  html[data-site-mode="rebel"] .site-cutout { overflow-clip-margin: 4px; }
   html[data-site-mode="rebel"] .cast-faq-masthead { grid-template-columns: minmax(0,1fr) 120px; }
   html[data-site-mode="rebel"] .cast-questioner { height: 135px; }
 }

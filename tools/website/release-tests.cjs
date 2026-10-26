@@ -62,6 +62,19 @@ test('all nine archive cutouts are decorative, lazy loaded and Rebel-only', () =
   }
   assert.match(page('site-assets/cutout-cast.css'), /\.site-cutout \{ display: none; \}/);
 });
+test('cutout print layers reuse source alpha and stay static and decorative', () => {
+  const text = page('index.html');
+  const art = JSON.parse(page('tools/website/cutout-cast.json'));
+  assert.equal((text.match(/class="cutout-print"/g) || []).length, 9);
+  for (const item of art) assert.ok(text.includes("--cast-art:url('assets/monster/" + item.file + "')"));
+  const css = page('site-assets/cutout-cast.css');
+  assert.match(css, /filter: url\('#screenprint'\)/);
+  assert.match(css, /mask: var\(--cast-art\) center top\/contain no-repeat/);
+  assert.match(css, /\.site-cutout::before/);
+  assert.match(css, /\.site-cutout::after/);
+  assert.match(css, /pointer-events: none/);
+  assert.doesNotMatch(css, /@keyframes|animation\s*:|transition\s*:/);
+});
 test('signup stays inline and uses the direct provider endpoint', () => {
   assert.equal((html.match(/>Keep me posted<\/button>/g) || []).length, 2);
   assert.match(html, /action="https:\/\/assets.mailerlite.com\/jsonp\/2739403\/forms\/202239538838374374\/subscribe"/);

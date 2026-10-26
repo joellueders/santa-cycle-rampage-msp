@@ -23,3 +23,9 @@ Shared instructions: extract the specified subject from the supplied original on
 Long-haired Santa points into the manifesto. The stick figure sits on Ride smart. The waving drawing accompanies the gift panel. The dinner interrupts the non-riding lunch invitation. Dinosaur Santa watches the FAQ. The three cycling friends accompany The Vibe. The many-eyed character raises a beer beside step 04. The watercolor rider rides out of the Our Story panel. The bouquet cyclists flank the closing invitation.
 
 Old poster dates, venues and routes were not imported. The new hero headline is stored in shared content as `THEY WANT US` / `CHEERLESS`. Event schema, shared event facts and original video nodes are unchanged.
+
+## Screen-print integration
+
+The original WebPs are unchanged. The code-native print layer in `cutout-cast.css` reuses the chocolate collage’s `#screenprint` SVG filter for chipped ink and rough edges. A masked halftone pass follows each cutout’s own alpha, while two irregular red/lime eruption layers sit behind it. Individual inset, rotation and ink settings keep the nine scenes from reading as identical stickers.
+
+Photo collages use stronger contrast and denser dots. Pencil, crayon and watercolor art use lighter ink coverage to preserve their handmade marks. The layers are static, decorative and pointer-transparent; no regenerated images, runtime scripts, new video instances or motion are required. The regular theme does not show them.
