@@ -24,7 +24,7 @@ function copy(source, relative) {
   copyFileSync(source, path.join(target, relative));
   files.add(relative);
 }
-const runtime = ['default.css', 'components.css', 'rebel.css', 'pages.css', 'mode-boot.js', 'site.js', 'email-signup.js', 'monster.css', 'monster-match.css', 'monster-vhs.css', 'monster-preview.js', 'monster-takeover.mjs'];
+const runtime = ['default.css', 'components.css', 'rebel.css', 'pages.css', 'mode-boot.js', 'site.js', 'email-signup.js', 'monster.css', 'monster-match.css', 'monster-vhs.css', 'monster-preview.js', 'monster-takeover.mjs', 'cutout-cast.css'];
 const versions = {};
 for (const name of runtime) {
   const text = readFileSync(path.join(directory, name), 'utf8').replaceAll('santa-claude-test-mode', 'santa-site-mode');
@@ -70,9 +70,14 @@ for (const html of Object.keys(pages).map(name => readFileSync(path.join(target,
 for (const name of readdirSync(directory)) if (/\.(?:mjs|cjs|js|css|json)$/.test(name)) copy(path.join(directory, name), 'tools/website/' + name);
 copy(path.join(directory, 'release-tests.cjs'), 'tests/site-mode.test.cjs');
 copy(path.join(directory, 'RETIRED_STEP_COPY.md'), 'tools/website/RETIRED_STEP_COPY.md');
+copy(path.join(directory, 'CUTOUT_CAST.md'), 'tools/website/CUTOUT_CAST.md');
 for (const name of ['current-site.html', 'press-before-pass3.html']) copy(path.join(directory, 'source', name), 'tools/website/source/' + name);
 for (const { photo } of content.history.strip) if (photo.src.startsWith('assets/history/')) copy(path.join(directory, photo.src), 'tools/website/' + photo.src);
 for (const name of ['hero-monster-user.png', 'chocolate-clean.png', 'anton-regular.ttf', 'ANTON-OFL.txt', 'grain.svg', 'print-grain.svg', 'paper-edge.svg']) {
+  copy(path.join(directory, 'assets/monster', name), 'assets/monster/' + name);
+  copy(path.join(directory, 'assets/monster', name), 'tools/website/assets/monster/' + name);
+}
+for (const name of readdirSync(path.join(directory, 'assets/monster')).filter(name => name.startsWith('cast-') && name.endsWith('.webp'))) {
   copy(path.join(directory, 'assets/monster', name), 'assets/monster/' + name);
   copy(path.join(directory, 'assets/monster', name), 'tools/website/assets/monster/' + name);
 }

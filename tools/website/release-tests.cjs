@@ -33,7 +33,7 @@ test('shared event, calendar, media and reduced FAQ remain present', () => {
   assert.equal(schema.endDate, undefined);
   assert.match(html, /Rebel Mode/);
   assert.match(html, /Fudge that! There’s something/);
-  assert.match(html, /THE MACHINE<\/span><span>WANTS YOU<\/span><span>CHEERLESS\.<\/span>/);
+  assert.match(html, /THEY WANT US<\/span><span>CHEERLESS<\/span>/);
   assert.match(html, /data-monster-media data-takeover="video"/);
   assert.match(html, /assets\/monster\/hero-monster-user\.png/);
 });
@@ -46,6 +46,21 @@ test('all public pages have production metadata and no visible version stamp', (
     if (!['rebel.html', 'our-story.html'].includes(name)) assert.match(text, /name="robots" content="index,follow"/);
     assert.doesNotMatch(text, /class="badge"/);
   }
+});
+test('all nine archive cutouts are decorative, lazy loaded and Rebel-only', () => {
+  const cast = JSON.parse(page('tools/website/cutout-cast.json'));
+  assert.equal(cast.length, 9);
+  for (const name of ['index.html', 'rebel.html']) {
+    const text = page(name);
+    const figures = [...text.matchAll(/<figure class="site-cutout [^"]+" aria-hidden="true">[\s\S]*?<\/figure>/g)];
+    assert.equal(figures.length, 9);
+    for (const [figure] of figures) {
+      assert.match(figure, /rebel-only/);
+      assert.match(figure, /alt="" loading="lazy" decoding="async"/);
+    }
+    for (const item of cast) assert.equal(text.split(`src="assets/monster/${item.file}"`).length - 1, 1);
+  }
+  assert.match(page('site-assets/cutout-cast.css'), /\.site-cutout \{ display: none; \}/);
 });
 test('signup stays inline and uses the direct provider endpoint', () => {
   assert.equal((html.match(/>Keep me posted<\/button>/g) || []).length, 2);
