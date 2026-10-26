@@ -29,7 +29,7 @@ const expectedSubline = 'Work. Buy. Scroll. Repeat. Keep your head down. Keep to
 check(content.copy.rebel.manifestoClosing === expectedClosing && JSON.stringify(paragraphs(manifesto)) === JSON.stringify([expectedSubline, ...expectedManifesto, expectedClosing]), 'Updated subheading, manifesto, and closing appear in exact requested order');
 check(manifesto.includes(`<h2 class="display" id="manifesto-title">JOIN THE RESISTANCE.</h2><p class="manifesto-subline">${expectedSubline}</p>`) && !manifesto.includes('SINCE 2013'), 'Requested subheading directly below title and Since removed');
 check(manifesto.includes('id="manifesto-title">JOIN THE RESISTANCE.</h2>') && !/[—'"]/.test(normal(manifesto)), 'Exact heading and curly apostrophes without em dashes');
-check(manifesto.includes(`<p class="manifesto-closing"><strong>${expectedClosing}</strong></p>`), 'Final sentence remains bold');
+check(manifesto.includes('<strong class="manifesto-rebellion">in a weary world, kindness is its own kind of rebellion.</strong>'), 'Final kindness statement remains bold');
 const biggerStory = renderStory(content);
 const ourStory = biggerStory;
 const legacyStory = renderOurStory(content);
@@ -74,7 +74,7 @@ check(html.includes(content.history.homepage.heading) && biggerStory.includes(co
 check(!html.includes('—') && !rebel.includes('—'), 'No em dashes in generated copy');
 check(defaultText.includes('Your bike is your sleigh.'), 'Toy drive voice retained');
 check(defaultText.includes('the Salvation Army'), 'Toy recipient present');
-check(rebelText.toLowerCase().includes('the machine') && rebelText.toLowerCase().includes('wants you') && rebelText.toLowerCase().includes('alone.'), 'Existing Rebel headline retained');
+check(rebelText.toLowerCase().includes('the machine') && rebelText.toLowerCase().includes('wants you') && rebelText.toLowerCase().includes('cheerless.'), 'Updated Rebel headline retained');
 const sharedLayout = page => page.replace(/<ol class="participation-steps"[\s\S]*?<\/ol>/, '').replace(/<figure class="wide-film brewery-film"[\s\S]*?<\/figure>/, '').replace(/data-page-mode="(?:default|rebel)" data-site-mode="(?:default|rebel)"/, '').replace(/aria-pressed="(?:true|false)"/, 'aria-pressed="MODE"');
 check(sharedLayout(html) === sharedLayout(rebel), 'Both themes share identical templates and facts, with single movable step rows and video');
 check(!rebel.includes('shared.css'), 'Legacy Rebel-only stylesheet removed from output');
@@ -171,13 +171,14 @@ function modeTest({ query = '', pageMode = 'default', remembered = null, denied 
   vm.runInNewContext(boot, { document: { documentElement: root }, location: { href: url.href, search: url.search, hash: url.hash, replace: value => { redirect = value; } }, localStorage: storage, URL, URLSearchParams });
   return { mode: root.dataset.siteMode, redirect };
 }
-check(modeTest({}).mode === 'default', 'Fresh visitor gets default');
+check(modeTest({}).mode === 'rebel', 'Fresh visitor gets Rebel');
 check(modeTest({ remembered: 'rebel' }).mode === 'rebel', 'Remembered Rebel choice is restored');
+check(modeTest({ remembered: 'default' }).mode === 'default', 'Remembered regular-mode choice is restored');
 check(modeTest({ query: '?mode=default', remembered: 'rebel' }).mode === 'default', 'Explicit default URL wins');
 check(modeTest({ query: '?mode=rebel' }).mode === 'rebel', 'Direct Rebel parameter works');
 check(modeTest({ query: '?mode=rebel' }).redirect === null, 'Direct mode selection does not reload page');
 check(modeTest({ pageMode: 'rebel' }).mode === 'rebel', 'Direct Rebel compatibility path works');
-check(modeTest({ denied: true }).mode === 'default', 'Denied localStorage does not break default');
+check(modeTest({ denied: true }).mode === 'rebel', 'Denied localStorage does not break Rebel default');
 check(modeTest({ denied: true, query: '?mode=rebel' }).mode === 'rebel', 'Direct Rebel works with denied localStorage');
 check(readFileSync(path.join(directory, 'index.html'), 'utf8') === html, 'Generated default is current');
 check(readFileSync(path.join(directory, 'rebel.html'), 'utf8') === rebel, 'Generated Rebel is current');

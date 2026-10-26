@@ -5,6 +5,7 @@ import { renderFaq, renderScheduleJoinNote } from './faq.mjs';
 import { escape, cleanCopy, dates, header, pageHead, footer, sticky, announcementDetails, renderHistoryHub, asset } from './shared.mjs';
 import { renderPress, renderSitemap } from './pages.mjs';
 import { renderStory, renderOurStory } from './stories.mjs';
+import { applyMonsterLayer } from './monster-layer.mjs';
 
 export const directory = path.dirname(fileURLToPath(import.meta.url));
 const source = readFileSync(path.join(directory, 'source/current-site.html'), 'utf8');
@@ -118,8 +119,10 @@ ${footer(c)}${sticky(c)}<script src="${asset('email-signup.js')}" defer></script
 </body></html>`);
 }
 
-export const renderDefault = c => renderPage(c, 'default');
-export const renderRebel = c => renderPage(c, 'rebel');
+// The public homepage now opens in Rebel mode. Both markup variants remain in
+// the shared page, so the existing toggle still reveals the regular site.
+export const renderDefault = c => applyMonsterLayer(renderPage(c, 'rebel'), c);
+export const renderRebel = c => applyMonsterLayer(renderPage(c, 'rebel'), c);
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   if (content.build.name.length > 15) throw new Error('Build name must be 15 characters or fewer');

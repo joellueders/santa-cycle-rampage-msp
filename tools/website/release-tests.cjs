@@ -13,12 +13,13 @@ function visit(query = '', saved = null, blocked = false) {
   vm.runInNewContext(boot, { document, location: { href: 'https://santacyclerampagemsp.org/' + query, search: query }, URL, URLSearchParams, localStorage: { getItem: () => { if (blocked) throw Error('Blocked'); return saved; }, setItem() {} } });
   return document.documentElement.dataset.siteMode;
 }
-test('fresh visits, direct mode links, remembered choice and blocked storage work', () => {
-  assert.equal(visit(), 'default');
+test('fresh visits open Rebel, while direct and remembered regular-mode choices work', () => {
+  assert.equal(visit(), 'rebel');
   assert.equal(visit('?mode=rebel'), 'rebel');
   assert.equal(visit('?mode=default', 'rebel'), 'default');
   assert.equal(visit('', 'rebel'), 'rebel');
-  assert.equal(visit('', 'rebel', true), 'default');
+  assert.equal(visit('', 'default'), 'default');
+  assert.equal(visit('', 'rebel', true), 'rebel');
 });
 test('shared event, calendar, media and reduced FAQ remain present', () => {
   assert.equal((html.match(/id="when-where"/g) || []).length, 1);
@@ -32,6 +33,9 @@ test('shared event, calendar, media and reduced FAQ remain present', () => {
   assert.equal(schema.endDate, undefined);
   assert.match(html, /Rebel Mode/);
   assert.match(html, /Fudge that! There’s something/);
+  assert.match(html, /THE MACHINE<\/span><span>WANTS YOU<\/span><span>CHEERLESS\.<\/span>/);
+  assert.match(html, /data-monster-media data-takeover="video"/);
+  assert.match(html, /assets\/monster\/hero-monster-user\.png/);
 });
 test('all public pages have production metadata and no visible version stamp', () => {
   for (const name of ['index.html', 'rebel.html', 'press.html', 'story.html', 'our-story.html']) {

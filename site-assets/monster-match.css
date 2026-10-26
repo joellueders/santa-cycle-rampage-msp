@@ -1,0 +1,191 @@
+/* Visual correction against the approved mockup. Local preview only. */
+@font-face {
+  font-family: 'Rampage Anton';
+  src: url('/assets/monster/anton-regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+.monster-fact-icon { display: none; }
+.print-filter-definitions { position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none; }
+html[data-site-mode="rebel"] .hero-title,
+html[data-site-mode="rebel"] .manifesto-heading h2,
+html[data-site-mode="rebel"] .manifesto-rebellion { filter: url('#screenprint'); }
+html[data-site-mode="rebel"] { --red: #ef372b; --small-red: #ff6a5c; }
+html[data-site-mode="rebel"] body { background-color: #12110f; background-image: url('/assets/monster/print-grain.svg'); }
+html[data-site-mode="rebel"] .display,
+html[data-site-mode="rebel"] .brand,
+html[data-site-mode="rebel"] .desktop-nav,
+html[data-site-mode="rebel"] .button,
+html[data-site-mode="rebel"] .mode-toggle .test-mode-label,
+html[data-site-mode="rebel"] .participation-number {
+  font-family: 'Rampage Anton',Impact,Haettenschweiler,sans-serif;
+  font-weight: 400;
+}
+html[data-site-mode="rebel"] .site-header { background: #12110ff7; }
+html[data-site-mode="rebel"] .header-bar { min-height: 82px; gap: 32px; border-color: #b7b09e; }
+html[data-site-mode="rebel"] .brand { font-size: 25px; flex-basis: 245px; line-height: 1.06; }
+html[data-site-mode="rebel"] .desktop-nav { font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-weight: 900; gap: 25px; }
+html[data-site-mode="rebel"] .header-actions .mode-toggle { border-color: #d6cebb; min-height: 54px; padding: 10px 17px; }
+html[data-site-mode="rebel"] .mode-toggle .mode-switch { display: none; }
+html[data-site-mode="rebel"] .mode-toggle .test-mode-label { font-size: 19px; }
+html[data-site-mode="rebel"] .mode-toggle[aria-pressed="true"] { color: #efebdc; }
+html[data-site-mode="rebel"] .mode-toggle[aria-pressed="true"] .test-mode-label { text-shadow: none; }
+
+html[data-site-mode="rebel"] .hero { padding-top: 52px; background: transparent; }
+html[data-site-mode="rebel"] .hero-layout { grid-template-columns: minmax(0,1.16fr) minmax(0,.84fr); column-gap: 12px; }
+html[data-site-mode="rebel"] .hero-eyebrow { font-size: 16px; letter-spacing: .075em; margin-bottom: 21px; }
+html[data-site-mode="rebel"] .hero-title { font-size: clamp(90px,10.55vw,158px); line-height: .90; letter-spacing: -.02em; }
+html[data-site-mode="rebel"] .rebel-title>span:last-child { padding-bottom: 19px; margin-bottom: 0; }
+html[data-site-mode="rebel"] .rebel-title>span:last-child::after { height: 9px; right: -28px; bottom: 3px; }
+/* Keep the desktop's existing geometry, with internal tracking out of view. */
+html[data-site-mode="rebel"] .monster-internal-version { visibility: hidden; margin: 1px 0 2px; font-size: 8px; }
+html[data-site-mode="rebel"] .hero-response { margin-top: 0; font-size: clamp(24px,2.65vw,38px); line-height: 1.18; letter-spacing: -.025em; white-space: nowrap; }
+html[data-site-mode="rebel"] .hero-tagline { margin: 12px 0 25px; font-size: clamp(21px,2.1vw,30px); line-height: 1.25; letter-spacing: -.035em; white-space: nowrap; }
+html[data-site-mode="rebel"] .hero-actions { display: grid; grid-template-columns: 1.14fr 1fr; gap: 20px; width: 100%; max-width: 720px; }
+html[data-site-mode="rebel"] .hero-actions .button { min-height: 64px; padding: 18px 26px; font-family: Arial,Helvetica,sans-serif; font-size: 19px; font-weight: 900; letter-spacing: .01em; }
+html[data-site-mode="rebel"] .button { background: #c32b22; border-color: #c32b22; }
+html[data-site-mode="rebel"] .button:hover { background: #a5221a; border-color: #a5221a; }
+html[data-site-mode="rebel"] .button-secondary,
+html[data-site-mode="rebel"] .button-outline { background: transparent; border-color: #d3cbb8; color: #efebdc; }
+html[data-site-mode="rebel"] .button-secondary:hover,
+html[data-site-mode="rebel"] .button-outline:hover { background: #efebdc; border-color: #efebdc; color: #161412; }
+html[data-site-mode="rebel"] .free-note { margin: 17px 0 35px; font-size: 17px; color: #efebdc; }
+html[data-site-mode="rebel"] .monster-art { grid-area: 1/2/6/3; margin: -85px -35px -5px -75px; align-self: stretch; z-index: 1; }
+html[data-site-mode="rebel"] .monster-art .mockup-monster { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center bottom; transform: none; filter: none; }
+html[data-site-mode="rebel"] .monster-art figcaption { right: 20px; bottom: 13px; font-size: 9px; transform: none; background: #12110f; }
+
+html[data-site-mode="rebel"] .date-card { grid-template-columns: minmax(0,1.15fr) minmax(0,.52fr) minmax(0,1fr); gap: 0 29px; min-height: 136px; padding-block: 20px; background-color: #efebdc; background-image: url('/assets/monster/print-grain.svg'); }
+html[data-site-mode="rebel"] .date-card::before,
+html[data-site-mode="rebel"] .date-card::after,
+html[data-site-mode="rebel"] .uprising-section::before,
+html[data-site-mode="rebel"] .uprising-section::after { height: 16px; clip-path: none; background: #efebdc; mask: url('/assets/monster/paper-edge.svg') repeat-x left bottom/360px 16px; -webkit-mask: url('/assets/monster/paper-edge.svg') repeat-x left bottom/360px 16px; }
+html[data-site-mode="rebel"] .date-card::before { top: -15px; }
+html[data-site-mode="rebel"] .date-card::after { bottom: -15px; }
+html[data-site-mode="rebel"] .ride-date { font-size: clamp(29px,2.75vw,42px); line-height: 1.1; letter-spacing: -.035em; white-space: nowrap; }
+html[data-site-mode="rebel"] .meet-time { font-family: 'Rampage Anton',Impact,sans-serif; font-size: 29px; font-weight: 400; line-height: 1.1; margin-top: 7px; text-transform: uppercase; }
+html[data-site-mode="rebel"] .date-card>.location-status { display: none; }
+html[data-site-mode="rebel"] .compact-location { display: block; grid-area: 1/2/3/3; position: relative; border: 2px solid #161412; background: #efebdc; font-size: 14px; line-height: 1.35; }
+.compact-location summary { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 55px; padding: 10px 11px; list-style: none; font-weight: 800; cursor: pointer; }
+.compact-location summary::-webkit-details-marker { display: none; }
+.compact-location summary::marker { content: ''; }
+.compact-location summary:focus-visible { outline: 3px solid #161412; outline-offset: 5px; }
+.compact-location-copy { position: absolute; z-index: 6; top: calc(100% + 9px); left: -2px; width: max(100%,280px); padding: 16px; border: 2px solid #161412; background: #efebdc; box-shadow: 0 6px 0 #16141233; }
+.compact-location-copy a { display: block; padding-top: 8px; }
+html[data-site-mode="rebel"] .date-card .email-signup label { font-family: 'Rampage Anton',Impact,sans-serif; font-size: 18px; letter-spacing: .01em; font-weight: 400; margin-bottom: 8px; }
+html[data-site-mode="rebel"] .date-card input { min-height: 54px; padding: 10px 14px; font-size: 16px; }
+html[data-site-mode="rebel"] .date-card .email-fields { gap: 12px; }
+html[data-site-mode="rebel"] .date-card .email-fields .button { min-height: 54px; font-size: 17px; padding: 12px 18px; background: #c32b22; border-color: #c32b22; }
+
+html[data-site-mode="rebel"] .hero-layout>.quick-facts { display: grid; grid-template-columns: 1fr 1fr 1.35fr; gap: 0; align-items: center; padding: 23px 0 22px; margin-top: 15px; border-bottom-color: #b7b09e; }
+html[data-site-mode="rebel"] .quick-facts>li:first-child,
+html[data-site-mode="rebel"] .quick-facts>li:last-child { display: none; }
+html[data-site-mode="rebel"] .quick-facts>li { display: flex; align-items: center; justify-content: center; gap: 16px; padding: 0 21px; font-family: 'Rampage Anton',Impact,sans-serif; font-size: clamp(16px,1.7vw,23px); font-weight: 400; line-height: 1.4; letter-spacing: 0; border-right: 1px solid #b7b09e; }
+html[data-site-mode="rebel"] .quick-facts>li:nth-last-child(2) { border-right: 0; padding-right: 0; }
+html[data-site-mode="rebel"] .monster-fact-icon { display: block; width: 38px; height: 38px; flex: 0 0 38px; fill: none; stroke: #ef372b; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+html[data-site-mode="rebel"] .what-section { padding-top: 36px; }
+html[data-site-mode="rebel"] .manifesto-section { grid-template-columns: minmax(0,1fr) minmax(0,1fr); column-gap: 55px; }
+html[data-site-mode="rebel"] .manifesto-heading { grid-row: 1/5; padding-right: 0; }
+html[data-site-mode="rebel"] .manifesto-heading h2 { font-size: clamp(72px,9vw,132px); line-height: .99; letter-spacing: -.035em; max-width: none; }
+html[data-site-mode="rebel"] .manifesto-heading h2::after { height: 7px; width: 44%; margin-top: 12px; }
+html[data-site-mode="rebel"] .manifesto-section .manifesto-subline { font-size: clamp(21px,2vw,28px); line-height: 1.25; margin-top: 20px; letter-spacing: -.025em; }
+html[data-site-mode="rebel"] .manifesto-copy>p:not(.manifesto-closing) { padding: 0 0 18px 30px; margin: 0; font-size: clamp(16px,1.55vw,21px); line-height: 1.5; border-color: #b7b09e; }
+html[data-site-mode="rebel"] .manifesto-section .manifesto-closing { display: contents; }
+html[data-site-mode="rebel"] .manifesto-preface { grid-column: 2; grid-row: 4; font-family: Arial,Helvetica,sans-serif; font-size: 17px; font-weight: 700; line-height: 1.5; padding: 0 0 0 30px; border-left: 1px solid #b7b09e; color: #efebdc; }
+html[data-site-mode="rebel"] .manifesto-rebellion { display: block; grid-column: 1/-1; font: 400 clamp(27px,4.65vw,67px)/1.15 'Rampage Anton',Impact,sans-serif; letter-spacing: -.045em; color: #ff6a5c; margin: 28px 0 0; }
+html[data-site-mode="rebel"] .manifesto-rebellion::first-letter { text-transform: uppercase; }
+
+html[data-site-mode="rebel"] .uprising-section { --ink: #161412; --muted: #494338; --line: #a9a08f; position: relative; margin: 66px calc(-1 * max(48px,(100vw - 1320px)/2)) 0; padding: 31px max(48px,calc((100vw - 1320px)/2)) 44px; border: 0; color: #161412; background: #efebdc url('/assets/monster/print-grain.svg'); }
+html[data-site-mode="rebel"] .uprising-section::before,
+html[data-site-mode="rebel"] .uprising-section::after { content: ''; position: absolute; left: 0; right: 0; top: -15px; }
+html[data-site-mode="rebel"] .uprising-section::after { top: auto; bottom: -15px; transform: rotate(180deg); }
+html[data-site-mode="rebel"] .uprising-masthead { position: relative; min-height: 200px; padding: 5px 0 0 40%; }
+html[data-site-mode="rebel"] .uprising-masthead>.eyebrow { color: #a5221a; font-size: 12px; margin-bottom: 11px; }
+html[data-site-mode="rebel"] .uprising-masthead>.section-title { color: #161412; font-size: clamp(35px,4.2vw,62px); line-height: 1.12; letter-spacing: -.035em; margin: 0; }
+html[data-site-mode="rebel"] .chocolate-collage { left: -5%; top: -78px; width: 43%; margin: 0; }
+html[data-site-mode="rebel"] .chocolate-collage .archive-cutout { display: block; width: 100%; height: auto; max-height: 330px; object-fit: contain; object-position: left top; transform: rotate(-3deg); }
+html[data-site-mode="rebel"] .chocolate-collage figcaption { color: #161412; font-size: 10px; }
+html[data-site-mode="rebel"] .chocolate-collage::after { top: 38px; right: 0; width: 110px; height: 28px; background: #ef372beb; }
+html[data-site-mode="rebel"] .uprising-section .brewery-film { width: 59%; margin: -60px 0 28px auto; }
+html[data-site-mode="rebel"] .uprising-section .media-caption { color: #494338; }
+html[data-site-mode="rebel"] .uprising-section .participation-number { color: #b52b22; }
+html[data-site-mode="rebel"] .uprising-section .participation-steps { margin-top: 24px; }
+html[data-site-mode="rebel"] .uprising-section .participation-steps>li { border-color: #b8b0a0; }
+html[data-site-mode="rebel"] .uprising-section :where(a,button,summary):focus-visible { outline-color: #161412; }
+html[data-site-mode="rebel"] .vibe-section>.monster-film-slot { margin: 28px 0; }
+
+@media (max-width: 1200px) and (min-width: 901px) {
+  html[data-site-mode="rebel"] .header-bar { gap: 20px; }
+  html[data-site-mode="rebel"] .brand { flex-basis: 190px; font-size: 21px; }
+  html[data-site-mode="rebel"] .desktop-nav { gap: 15px; font-size: 14px; }
+  html[data-site-mode="rebel"] .mode-toggle .test-mode-label { font-size: 16px; }
+  html[data-site-mode="rebel"] .hero { padding-top: 43px; }
+  html[data-site-mode="rebel"] .hero-title { font-size: 10.3vw; }
+  html[data-site-mode="rebel"] .hero-eyebrow { font-size: 12px; }
+  html[data-site-mode="rebel"] .hero-actions .button { min-height: 62px; font-size: 18px; padding-inline: 18px; }
+  html[data-site-mode="rebel"] .free-note { font-size: 14px; }
+  html[data-site-mode="rebel"] .date-card { grid-template-columns: minmax(0,1.1fr) minmax(0,.6fr) minmax(0,1fr); gap: 0 19px; }
+  html[data-site-mode="rebel"] .date-card .email-signup { grid-area: 1/3/3/4; padding: 0; }
+  html[data-site-mode="rebel"] .ride-date { font-size: 2.8vw; }
+  html[data-site-mode="rebel"] .date-card .email-fields .button { padding-inline: 10px; font-size: 14px; }
+  html[data-site-mode="rebel"] .date-card input { font-size: 14px; padding-inline: 9px; }
+  html[data-site-mode="rebel"] .compact-location summary { font-size: 12px; }
+  html[data-site-mode="rebel"] .uprising-section { margin-inline: -32px; padding-inline: 32px; }
+}
+
+@media (max-width: 900px) {
+  html[data-site-mode="rebel"] .header-bar { min-height: 76px; gap: 10px; }
+  html[data-site-mode="rebel"] .brand { font-size: 18px; flex-basis: auto; }
+  html[data-site-mode="rebel"] .header-actions .mode-toggle { min-height: 44px; padding: 7px 8px; }
+  html[data-site-mode="rebel"] .mode-toggle .test-mode-label { font-size: 14px; }
+  html[data-site-mode="rebel"] .hero { padding-top: 27px; }
+  html[data-site-mode="rebel"] .hero-layout { display: grid; grid-template-columns: minmax(0,1fr); gap: 0; }
+  html[data-site-mode="rebel"] .hero-eyebrow { font-size: 10px; margin-bottom: 17px; }
+  html[data-site-mode="rebel"] .hero-title { font-size: clamp(54px,16.8vw,110px); line-height: .99; letter-spacing: -.035em; }
+  html[data-site-mode="rebel"] .monster-internal-version { display: none; }
+  html[data-site-mode="rebel"] .hero-response { font: 900 21px/1.23 Arial,sans-serif; white-space: normal; margin-bottom: 19px; }
+  html[data-site-mode="rebel"] .hero-tagline { font: 800 21px/1.25 Arial,sans-serif; white-space: normal; margin-bottom: 14px; }
+  html[data-site-mode="rebel"] .hero-actions { display: grid; grid-template-columns: 1.15fr 1fr; gap: 10px; }
+  html[data-site-mode="rebel"] .hero-actions .button { font-size: 12px; min-height: 53px; padding: 13px 9px; white-space: nowrap; letter-spacing: 0; }
+  html[data-site-mode="rebel"] .free-note { margin: 14px 0 20px; font-size: 12px; }
+  /* The illustration is the headline's punchline, before copy and actions. */
+  html[data-site-mode="rebel"] .monster-art { grid-area: 3/1; width: 100%; height: auto; aspect-ratio: 1122/1402; margin: 0 0 16px; overflow: visible; }
+  html[data-site-mode="rebel"] .monster-art .mockup-monster { width: 100%; height: 100%; object-fit: contain; }
+  html[data-site-mode="rebel"] .monster-art figcaption { right: 0; bottom: 6px; font-size: 8px; }
+  html[data-site-mode="rebel"] .date-card { grid-area: 9/1; display: grid; grid-template-columns: minmax(0,1fr); min-height: 0; padding-block: 24px; row-gap: 12px; }
+  html[data-site-mode="rebel"] .ride-date { font-size: 31px; white-space: normal; }
+  html[data-site-mode="rebel"] .meet-time { font-size: 24px; }
+  html[data-site-mode="rebel"] .compact-location { grid-area: auto; }
+  .compact-location summary { min-height: 48px; }
+  .compact-location-copy { position: static; width: auto; border: 0; box-shadow: none; border-top: 1px solid #837966; font-size: 14px; }
+  html[data-site-mode="rebel"] .date-card .email-signup { grid-area: auto; }
+  html[data-site-mode="rebel"] .date-card .email-signup label { font-size: 16px; }
+  html[data-site-mode="rebel"] .date-card .email-fields .button { min-width: 115px; font-size: 14px; padding-inline: 12px; }
+  html[data-site-mode="rebel"] .hero-layout>.quick-facts { display: flex; flex-wrap: wrap; gap: 16px 0; justify-content: flex-start; padding: 25px 0 24px; }
+  html[data-site-mode="rebel"] .quick-facts>li { font-size: 16px; gap: 10px; padding: 0 15px; }
+  html[data-site-mode="rebel"] .quick-facts>li:nth-child(2) { padding-left: 0; }
+  html[data-site-mode="rebel"] .quick-facts>li:nth-child(3) { border-right: 0; }
+  html[data-site-mode="rebel"] .quick-facts>li:nth-last-child(2) { padding-left: 0; }
+  html[data-site-mode="rebel"] .monster-fact-icon { width: 27px; height: 27px; flex-basis: 27px; }
+  html[data-site-mode="rebel"] .what-section { padding-top: 29px; }
+  html[data-site-mode="rebel"] .manifesto-heading h2 { font-size: clamp(55px,13.7vw,92px); line-height: 1.02; }
+  html[data-site-mode="rebel"] .manifesto-section .manifesto-subline { font-size: 21px; margin: 23px 0; }
+  html[data-site-mode="rebel"] .manifesto-copy>p:not(.manifesto-closing) { border: 0; padding: 0; margin-bottom: 19px; font-size: 16px; }
+  html[data-site-mode="rebel"] .manifesto-preface { display: block; padding: 0; border: 0; font-size: 16px; margin-top: 0; }
+  html[data-site-mode="rebel"] .manifesto-rebellion { font-size: 33px; letter-spacing: -.025em; margin-top: 20px; }
+  html[data-site-mode="rebel"] .uprising-section { margin: 48px -20px 0; padding: 28px 20px; }
+  html[data-site-mode="rebel"] .uprising-masthead { min-height: 0; padding: 0; }
+  html[data-site-mode="rebel"] .chocolate-collage { position: relative; width: 93%; left: -8%; top: -50px; margin-bottom: -40px; }
+  html[data-site-mode="rebel"] .chocolate-collage .archive-cutout { max-height: 255px; }
+  html[data-site-mode="rebel"] .uprising-masthead>.section-title { font-size: 39px; margin-bottom: 24px; }
+  html[data-site-mode="rebel"] .uprising-section .brewery-film { width: 100%; margin: 0 0 25px; }
+  html[data-site-mode="rebel"] .vibe-section>.monster-film-slot { margin-block: 25px; }
+}
+@media (max-width: 370px) {
+  html[data-site-mode="rebel"] .brand { font-size: 16px; }
+  html[data-site-mode="rebel"] .hero-title { font-size: 16.2vw; }
+  html[data-site-mode="rebel"] .hero-actions .button { font-size: 12px; }
+  html[data-site-mode="rebel"] .date-card .email-fields .button { font-size: 13px; min-width: 106px; }
+  html[data-site-mode="rebel"] .uprising-section { margin-inline: -16px; padding-inline: 16px; }
+}
