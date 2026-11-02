@@ -204,3 +204,27 @@
   connection?.addEventListener?.('change', preferencesChanged);
   document.addEventListener('visibilitychange', () => states.forEach(update));
 })();
+
+// Confirmed 2026 route. Keep this beside the rendered site while the route
+// content is still emitted as compact HTML by the static build.
+(() => {
+  const set = (selector, value) => { const el = document.querySelector(selector); if (el) el.textContent = value; };
+  set('.date-card .meet-time', 'Meet at Cuzzy’s · 10 AM · Free');
+  document.querySelectorAll('.location-status, .compact-location-copy').forEach((el) => {
+    el.innerHTML = '<strong>Starting spot: Cuzzy’s.</strong> Meet at 10 AM, then ride together through Minneapolis.';
+  });
+  set('.compact-location summary', 'Starting location: Cuzzy’s');
+  document.querySelectorAll('.participation-steps li:first-child p').forEach((el) => {
+    el.innerHTML = '<span class="default-only">Put on your Santa suit. Meet at Cuzzy’s at 10 AM, or join us at any stop along the route.</span><span class="rebel-only">Put on the suit. Meet at Cuzzy’s at 10 AM, or join the party anywhere along the route.</span>';
+  });
+  set('.schedule-heading', 'Cuzzy’s to Fulton');
+  set('.schedule-description', 'Meet at Cuzzy’s at 10 AM, then ride about 15 miles through Minneapolis to six local craft-beer stops. We take it slow. Join anywhere along the route.');
+  const route = document.querySelector('.schedule-card');
+  if (route) route.innerHTML = [
+    ['10:00 AM', 'Cuzzy’s'], ['12:00 PM', 'Utepils'], ['1:15 PM', 'La Doña'],
+    ['2:15 PM', '56 Brewing'], ['3:30 PM', 'Sociable Cider'], ['4:30 PM', 'Dangerous Man'],
+    ['5:30 PM · Final stop', 'Fulton Taproom']
+  ].map(([time, stop]) => `<div class="schedule-row"><span>${time}</span><strong>${stop}</strong></div>`).join('');
+  set('.schedule-logistics dd', 'Cuzzy’s · 10 AM');
+  set('.schedule-join-note', 'Not riding the whole thing? Join at any stop. Approximate arrival times are listed above.');
+})();
