@@ -1,7 +1,15 @@
-# Website modes and source
+# Website pages and checks
 
-Rebel is the fresh-visitor landing mode. It uses the shared page structure, facts, media and FAQ, with a dark theme, monster visual layer, and editorial copy overrides. Use ?mode=rebel, ?mode=default, or rebel.html for direct links. The toggle remembers the choice and switches in place; turning Rebel Mode off reveals the regular cream version. Both history paths share story.html; Our Story links to #minneapolis. Press stays cream.
+The homepage starts in the regular design and offers a Rebel Mode toggle. `rebel.html` opens in Rebel Mode directly. Both entry points include email signup, the same linked schedule, and links to the full history. `our-story.html` forwards older history bookmarks to `story.html`.
 
-Editable shared source and release instructions: tools/website/LAUNCH.md. Published styles and scripts: site-assets/. The MailerLite signup uses a direct CORS POST and inline response messages, without API credentials. Welcome-email automation is separate and has not been activated by this release.
+The two public homepage files are maintained directly. When editing shared ride information, update both and check it against `press.html` and the calendar download.
 
-Run production checks with node --test tests/site-mode.test.cjs.
+Run current-site checks:
+
+    node tools/website/check.mjs
+
+Preview the current site:
+
+    node tools/website/preview.mjs
+
+See `tools/website/LAUNCH.md` before using older generators or release tools.

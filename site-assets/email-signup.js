@@ -1,4 +1,6 @@
 (() => {
+  const signupStates = new Map();
+  const successMessage = 'Thanks! Check your inbox to confirm your signup. If you’ve already confirmed, you’re all set.';
   document.querySelectorAll('form.email-signup:not([hidden])').forEach(form => {
     const input = form.querySelector('input[type="email"]');
     const button = form.querySelector('button[type="submit"]');
@@ -6,22 +8,30 @@
     const fallback = form.querySelector('.email-signup-fallback');
     const originalLabel = button.textContent;
     let busy = false;
+    let completed = false;
     form.addEventListener('submit', async event => {
       event.preventDefault();
-      if (busy || !form.reportValidity()) return;
+      if (busy || completed || !form.reportValidity()) return;
+      const body = new URLSearchParams(new window.FormData(form));
+      const email = body.get('fields[email]').trim().toLowerCase();
+      body.set('ajax', '1');
+      input.removeAttribute('aria-invalid');
+      status.hidden = false;
+      fallback.hidden = true;
+      const existing = signupStates.get(email);
+      if (existing) {
+        status.textContent = existing === 'accepted' ? successMessage : 'A signup for this address is already being sent. Check the other form for the result.';
+        return;
+      }
+      signupStates.set(email, 'pending');
       busy = true;
       button.disabled = true;
       button.textContent = 'Sending…';
       form.setAttribute('aria-busy', 'true');
-      input.removeAttribute('aria-invalid');
-      status.hidden = false;
       status.textContent = 'Sending your signup…';
-      fallback.hidden = true;
       const controller = new window.AbortController();
       const timeout = window.setTimeout(() => controller.abort(), 15000);
       try {
-        const body = new URLSearchParams(new window.FormData(form));
-        body.set('ajax', '1');
         const response = await window.fetch(form.action, {
           method: 'POST', body, mode: 'cors', credentials: 'omit',
           redirect: 'error', signal: controller.signal
@@ -29,7 +39,9 @@
         if (!response.ok) throw new Error('Signup service unavailable');
         const result = await response.json();
         if (result.success === true) {
-          status.textContent = 'Thanks! Check your inbox to confirm your signup. If you’ve already confirmed, you’re all set.';
+          completed = true;
+          signupStates.set(email, 'accepted');
+          status.textContent = successMessage;
           button.textContent = 'Request received';
           return;
         }
@@ -50,6 +62,7 @@
         button.disabled = false;
         button.textContent = originalLabel;
       } finally {
+        if (!completed) signupStates.delete(email);
         window.clearTimeout(timeout);
         form.removeAttribute('aria-busy');
         busy = false;

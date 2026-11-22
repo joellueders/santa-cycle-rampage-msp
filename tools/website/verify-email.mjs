@@ -6,27 +6,32 @@ const script = readFileSync(new URL('email-signup.js', import.meta.url), 'utf8')
 const endpoint = JSON.parse(readFileSync(new URL('event-data.json', import.meta.url))).email.endpoint;
 let checks = 0;
 const check = (value, message) => { assert.ok(value, message); checks++; };
-function harness(fetchResponse, valid = true) {
+function formFixture(endpoint, valid, email) {
   const input = { attributes: {}, removeAttribute(key) { delete this.attributes[key]; }, setAttribute(key, value) { this.attributes[key] = value; } };
   const button = { textContent: 'Keep me posted', disabled: false };
   const status = { hidden: true, textContent: '' };
   const fallback = { hidden: true };
   const nodes = { 'input[type="email"]': input, 'button[type="submit"]': button, '.email-signup-status': status, '.email-signup-fallback': fallback };
   let submit;
-  const calls = [];
   const form = {
+    email,
     action: endpoint, querySelector: key => nodes[key], reportValidity: () => valid,
     setAttribute() {}, removeAttribute() {}, addEventListener(_name, callback) { submit = callback; }
   };
+  const send = () => submit({ preventDefault() {} });
+  return { form, send, input, button, status, fallback };
+}
+function harness(fetchResponse, valid = true, addresses = ['fixture@example.org']) {
+  const forms = addresses.map(email => formFixture(endpoint, valid, email));
+  const calls = [];
   const window = {
     AbortController: globalThis.AbortController,
     setTimeout: () => 1, clearTimeout() {},
-    FormData: function () { return [['fields[email]', 'fixture@example.org'], ['ml-submit', '1'], ['anticsrf', 'true']]; },
+    FormData: function (form) { return [['fields[email]', form.email], ['ml-submit', '1'], ['anticsrf', 'true']]; },
     fetch: async (url, options) => { calls.push({ url, options }); return fetchResponse(url, options); }
   };
-  vm.runInNewContext(script, { document: { querySelectorAll: () => [form] }, window, URLSearchParams });
-  const send = () => submit({ preventDefault() {} });
-  return { send, calls, input, button, status, fallback };
+  vm.runInNewContext(script, { document: { querySelectorAll: () => forms.map(fixture => fixture.form) }, window, URLSearchParams });
+  return { ...forms[0], forms, calls };
 }
 const response = value => ({ ok: true, json: async () => value });
 const success = harness(async () => response({ success: true }));
@@ -60,4 +65,22 @@ await pending.send();
 check(pending.calls.length === 1 && pending.button.disabled, 'Double submission blocked while pending');
 release(response({ success: true }));
 await first;
+await success.send();
+check(success.calls.length === 1, 'Repeat events after success are ignored');
+let finishShared;
+const crossForm = harness(() => new Promise(resolve => { finishShared = resolve; }), true,
+  ['fixture@example.org', 'Fixture@EXAMPLE.org']);
+const sharedRequest = crossForm.send();
+await crossForm.forms[1].send();
+check(crossForm.calls.length === 1 && crossForm.forms[1].status.textContent.includes('already being sent'), 'Second form blocks the same address while pending');
+finishShared(response({ success: true }));
+await sharedRequest;
+await crossForm.forms[1].send();
+check(crossForm.calls.length === 1 && crossForm.forms[1].status.textContent.startsWith('Thanks!'), 'Second form reuses confirmed success');
+let attempt = 0;
+const retry = harness(async () => attempt++ === 0 ? { ok: false } : response({ success: true }), true,
+  ['fixture@example.org', 'fixture@example.org']);
+await retry.send();
+await retry.forms[1].send();
+check(retry.calls.length === 2 && retry.forms[1].status.textContent.startsWith('Thanks!'), 'Failure releases the address for retry in another form');
 console.log(`${checks} signup checks passed using mocked responses only. No email addresses submitted.`);

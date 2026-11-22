@@ -5,13 +5,20 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
 UID:20261205-meetup@santacyclerampagemsp.org
-DTSTAMP:20261109T160000Z
-SEQUENCE:6
+DTSTAMP:20261122T162140Z
+SEQUENCE:7
 DTSTART:20261205T160000Z
 DTEND:20261205T233000Z
 SUMMARY:Twin Cities Santa Cycle Rampage 2026
-LOCATION:Cuzzy’s\, North Loop\, Minneapolis\, MN
-DESCRIPTION:Meet at Cuzzy’s at 10 AM. Stops: Utepils\, La Doña\, 56 Brewing\, Sociable\, Dangerous Man\, Fulton. Bring a new\, unwrapped toy. See the Facebook event for approximate stop times: https://www.facebook.com/events/1972798296683555/ . Exact route unpublished. Free\; no registration. End time is an estimate.
-URL:https://scrmsp.org/
+LOCATION:Cuzzy's\, Minneapolis\, MN
+DESCRIPTION:Meet at Cuzzy's at 10 AM. Join anywhere along the route. Approx
+ imate arrival times: Utepils noon; La Dona 1:15 PM; 56 Brewing 2:15 PM; So
+ ciable Cider 3:30 PM; Dangerous Man 4:30 PM; Fulton Taproom 5:30 PM. Dress
+  festive and bring a new\, unwrapped toy for kids in need. The ride is free
+  and no registration is required. Ride at your own risk and follow traffic 
+ laws. If you're drinking\, arrange a sober ride home.\n\nWebsite: https://S
+ antaCycleRampage.org/\n\nFacebook RSVP: https://www.facebook.com/share/1CuK
+ 8AQxSm/?mibextid=wwXIfr
+URL:https://SantaCycleRampage.org/
 END:VEVENT
 END:VCALENDAR

@@ -34,6 +34,6 @@ const server = http.createServer((request, response) => {
     stream.pipe(response);
   } catch { if (!response.headersSent) response.writeHead(404).end('Not found'); else response.destroy(); }
 });
-server.listen(port, '127.0.0.1', () => console.log(`Local preview: http://127.0.0.1:${port}/${process.argv[2] ? '' : 'local-tests/claude-overhaul/'}`));
+server.listen(port, '127.0.0.1', () => console.log(`Local preview: http://127.0.0.1:${port}/`));
 process.on('SIGTERM', () => server.close(() => process.exit(0)));
 process.on('SIGINT', () => server.close(() => process.exit(0)));
